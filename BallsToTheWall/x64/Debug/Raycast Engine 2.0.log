@@ -1,0 +1,50 @@
+﻿  Sandbox.cpp
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\math\Math.h(9,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\math\Math.h(10,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(377,19): warning C4305: 'initializing': truncation from 'double' to 'float'
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(37,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(37,76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(47,42): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(47,76): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(82,1): warning C4305: '+=': truncation from 'double' to 'float'
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(86,1): warning C4305: '-=': truncation from 'double' to 'float'
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(148,1): warning C4305: '-=': truncation from 'double' to 'float'
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(152,1): warning C4305: '+=': truncation from 'double' to 'float'
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(174,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(196,72): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(198,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(236,101): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(236,81): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(236,77): warning C4244: 'argument': conversion from 'T' to 'const int', possible loss of data
+          with
+          [
+              T=float
+          ]
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(236,57): warning C4244: 'argument': conversion from 'T' to 'const int', possible loss of data
+          with
+          [
+              T=float
+          ]
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(236,40): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(253,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(276,72): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(278,29): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(317,97): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(317,79): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(317,75): warning C4244: 'argument': conversion from 'T' to 'const int', possible loss of data
+          with
+          [
+              T=float
+          ]
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(317,55): warning C4244: 'argument': conversion from 'T' to 'const int', possible loss of data
+          with
+          [
+              T=float
+          ]
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(317,38): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(347,1): warning C4305: '+=': truncation from 'double' to 'float'
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(348,1): warning C4305: '-=': truncation from 'double' to 'float'
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(351,23): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(366,1): warning C4305: '+=': truncation from 'double' to 'float'
+E:\Code\Raycast Engine 2.0\Raycast Engine 2.0\src\Sandbox.cpp(370,1): warning C4305: '-=': truncation from 'double' to 'float'
+  Raycast Engine 2.0.vcxproj -> E:\Code\Raycast Engine 2.0\x64\Debug\Raycast Engine 2.0.exe
