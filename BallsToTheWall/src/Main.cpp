@@ -10,5 +10,6 @@ int main()
 	Window::CurrentWindow = tempWindow;
 	Window::CurrentWindow->Run();
 	delete tempWindow;
+	int Test = 0;
 	return 0;
 }
