@@ -7,9 +7,13 @@ void Window::Run()
 	myPixel = sf::RectangleShape({ 1, 1 });
 	myRawWindow = new sf::RenderWindow(sf::VideoMode(myWidth, myHeight), myTitle);
 
+	myRawWindow->setView(sf::View(sf::Vector2f(0, 0), sf::Vector2f(myWidth, myHeight)));
+
 	// OnStart
 	Window::OnStart();
 	OnStart();
+
+
 
 	while (myRawWindow->isOpen())
 	{
