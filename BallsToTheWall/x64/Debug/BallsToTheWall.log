@@ -2,4 +2,5 @@
   Player.cpp
 C:\Balls\BallsToTheWall\BallsToTheWall\src\math\math.h(22,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
 C:\Balls\BallsToTheWall\BallsToTheWall\src\math\math.h(23,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\Player.cpp(89,105): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   BallsToTheWall.vcxproj -> C:\Balls\BallsToTheWall\x64\Debug\BallsToTheWall.exe

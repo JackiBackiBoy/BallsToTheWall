@@ -81,9 +81,12 @@ void Player::OnUpdate(const float& aDeltaTime)
 	{
 		myButtonTime += aDeltaTime;
 		sf::Vector2f tempBallVec = myShape.getPosition() - Ball::GetPosition();
-		if (Math::LengthSqrd(tempBallVec) <= myBallDistance && Math::NDot(tempBallVec, tempMouseVec) >= myBallLikeness)
+		sf::Vector2f tempMouseVecN = Math::Normalized(tempMouseVec);
+		sf::Vector2f tempBallVecN = Math::Normalized(tempBallVec);
+		if (Math::LengthSqrd(tempBallVec) <= myBallDistance && Math::Dot(tempBallVecN, tempMouseVecN) >= myBallLikeness)
 		{
-			Ball::Hit(Math::ToRadians(tempAngle - 180) * Math::NDot(tempBallVec, tempMouseVec));
+
+			Ball::Hit(std::atan2((tempMouseVecN.y + tempBallVecN.y) / 2, (tempMouseVecN.x + tempBallVecN.x) / 2) - Math::Pi);
 			myButtonPressedFlag = true;
 		}
 		if (aDeltaTime > myCoyoteTime)
