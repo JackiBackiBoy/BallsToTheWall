@@ -7,9 +7,12 @@ public:
 	static void OnStart();
 	static void OnUpdate(const float& aDeltaTime);
 	static void OnRender(sf::RenderWindow* aWindow);
+	static void Reset();
 private:
 	static std::vector<sf::Vector2f> myHealthbar;
+	static sf::Vector2f myPosition;
 	static float myMaxHealth;
 	static float myHealth;
+	static bool Resetting;
 };
 

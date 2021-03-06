@@ -6,6 +6,7 @@ public:
 	static void OnStart();
 	static void OnUpdate(const float& aDeltaTime);
 	static void OnRender(sf::RenderWindow* aWindow);
+	static sf::Vector2f GetPosition();
 
 private: 
 	static sf::ConvexShape myShape;
