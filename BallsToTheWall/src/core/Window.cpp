@@ -14,7 +14,6 @@ void Window::Run()
 	OnStart();
 
 
-
 	while (myRawWindow->isOpen())
 	{
 		// OnUpdate

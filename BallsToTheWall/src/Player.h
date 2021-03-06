@@ -10,5 +10,6 @@ public:
 private: 
 	static sf::ConvexShape myShape;
 	static float mySpeed;
+	static bool myButtonPressedFlag;
 };
 

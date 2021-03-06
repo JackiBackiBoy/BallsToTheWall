@@ -3,8 +3,10 @@
 #include "math/math.h"
 #include <iostream>
 #include "InputManager.h"
+#include "Ball.h"
 sf::ConvexShape Player::myShape = sf::ConvexShape(3);
 float Player::mySpeed = 500;
+bool Player::myButtonPressedFlag = false;
 
 void Player::OnStart()
 {
@@ -24,6 +26,7 @@ void Player::OnUpdate(const float& aDeltaTime)
 	float tempAngle = Math::ToDegrees(std::atan2(tempDiff.y, tempDiff.x));
 	myShape.setRotation(tempAngle -90);
 
+	//determine moving direction
 	sf::Vector2f tempDir;
 	if (InputManager::GetKey(sf::Keyboard::W))
 	{
@@ -43,9 +46,23 @@ void Player::OnUpdate(const float& aDeltaTime)
 	}
 
 
-	 
+	//move the player accordingly
 	myShape.setPosition(myShape.getPosition() + Math::Normalized(tempDir) * mySpeed * aDeltaTime);
-	
+
+
+	//If hit ball pressed
+	if (sf::Mouse::isButtonPressed(sf::Mouse::Button::Left) && !myButtonPressedFlag)
+	{
+		myButtonPressedFlag = true;
+		if (Math::Distance(myShape.getPosition(), Ball::GetPosition()) < 100)
+		{
+			Ball::Hit(Math::ToRadians(tempAngle-180) );
+		}
+	}
+	else if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
+	{
+		myButtonPressedFlag = false;
+	}
 }
 
 void Player::OnRender(sf::RenderWindow* aWindow)

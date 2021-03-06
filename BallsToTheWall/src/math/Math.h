@@ -22,7 +22,12 @@ public:
 			return aVector;
 		}
 	}
-
+	inline static float Distance(sf::Vector2f aVector0, sf::Vector2f aVector1)
+	{
+		sf::Vector2f tempDiff = aVector0 - aVector1;
+		tempDiff = sf::Vector2f(std::abs(tempDiff.x), std::abs(tempDiff.y));
+		return std::sqrt(tempDiff.x * tempDiff.x + tempDiff.y * tempDiff.y);
+	}
 	static constexpr double Pi = 3.14159265358979323846;
 
 private:
