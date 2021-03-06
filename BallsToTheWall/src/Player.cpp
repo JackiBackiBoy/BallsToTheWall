@@ -81,7 +81,7 @@ void Player::OnUpdate(const float& aDeltaTime)
 		sf::Vector2f tempBallVec = myShape.getPosition() - Ball::GetPosition();
 		if (Math::LengthSqrd(tempBallVec) <= myBallDistance && Math::NDot(tempBallVec, tempMouseVec) >= myBallLikeness)
 		{
-			Ball::Hit(Math::ToRadians(tempAngle - 180));
+			Ball::Hit(Math::ToRadians(tempAngle - 180) * Math::NDot(tempBallVec, tempMouseVec));
 			myButtonPressedFlag = true;
 		}
 		if (aDeltaTime > myCoyoteTime)

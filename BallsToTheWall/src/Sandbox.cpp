@@ -3,9 +3,9 @@
 #include "input/Keyboard.h"
 #include "input/Mouse.h"
 #include "math/Math.h"
+#include "Healthbar.h"
 #include "Player.h"
 #include "Ball.h"
-
 class Sandbox : public Window
 {
 public:
@@ -19,6 +19,7 @@ public:
 	{
 		Ball::OnStart();
 		Player::OnStart();
+		Healthbar::OnStart();
 		myClock = sf::Clock();
 		myClock.restart();
 	}
@@ -29,12 +30,14 @@ public:
 
 		Ball::OnUpdate(myDeltaTime);
 		Player::OnUpdate(myDeltaTime);
+		Healthbar::OnUpdate(myDeltaTime);
 	}
 
 	void OnRender(sf::RenderWindow* aWindow) override
 	{
 		Ball::OnRender(aWindow);
 		Player::OnRender(aWindow);
+		Healthbar::OnRender(aWindow);
 	}
 };
 

@@ -27,7 +27,7 @@ void Window::Run()
 				myRawWindow->close();
 		}
 
-		myRawWindow->clear({ 120, 120, 120 });
+		myRawWindow->clear({ 20, 20, 20 });
 
 		// OnRender
 		Window::OnRender(myRawWindow);

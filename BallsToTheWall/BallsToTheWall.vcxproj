@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Healthbar.cpp" />
     <ClCompile Include="src\Ball.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
     <ClCompile Include="src\Player.cpp" />
@@ -155,6 +156,7 @@
     <ClCompile Include="src\Sandbox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Healthbar.h" />
     <ClInclude Include="src\Ball.h" />
     <ClInclude Include="src\InputManager.h" />
     <ClInclude Include="src\Player.h" />
