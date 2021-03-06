@@ -14,7 +14,10 @@ float Player::myBallLikeness = 0.7f;
 float Player::myBallDistance = 10000;
 sf::Vector2f Player::myCurrentVelocity = sf::Vector2f(0, 0);
 float Player::myMaxVelocity = 600;
-float Player::myAcceleration = 1200;
+float Player::myAcceleration = 3000;
+float Player::myLerpDecelerationPercent = 8.f;
+float Player::myTurnSpeedMultiplier = 5;
+
 void Player::OnStart()
 {
 	myShape.setPoint(0, sf::Vector2f(0, -12.5f));
@@ -51,17 +54,16 @@ void Player::OnUpdate(const float& aDeltaTime)
 		tempDir += sf::Vector2f(1, 0);
 	}
 
-	myCurrentVelocity += Math::Normalized(tempDir) * myAcceleration * aDeltaTime;
+	myCurrentVelocity += Math::Normalized(tempDir) * sf::Vector2f((myCurrentVelocity.x < 0 != tempDir.x < 0) ? myTurnSpeedMultiplier:1, (myCurrentVelocity.y < 0 != tempDir.y < 0) ? myTurnSpeedMultiplier : 1) * myAcceleration * aDeltaTime;
 
-	float tempLerpPercent = 3.f;
 	if (tempDir.x == 0)
 	{
-		myCurrentVelocity = sf::Vector2f(Math::Lerp(myCurrentVelocity.x, 0, tempLerpPercent * aDeltaTime), myCurrentVelocity.y);
+		myCurrentVelocity = sf::Vector2f(Math::Lerp(myCurrentVelocity.x, 0, myLerpDecelerationPercent * aDeltaTime), myCurrentVelocity.y);
 
 	}
 	if (tempDir.y == 0)
 	{
-		myCurrentVelocity = sf::Vector2f(myCurrentVelocity.x, Math::Lerp(myCurrentVelocity.y, 0, tempLerpPercent * aDeltaTime ));
+		myCurrentVelocity = sf::Vector2f(myCurrentVelocity.x, Math::Lerp(myCurrentVelocity.y, 0, myLerpDecelerationPercent * aDeltaTime ));
 	}
 
 	if (Math::Length(myCurrentVelocity) > myMaxVelocity)
@@ -103,27 +105,17 @@ void Player::OnRender(sf::RenderWindow* aWindow)
 	sf::Vector2f tempMouseVec = myShape.getPosition() - Mouse::GetPosition();
 
 	//Player to Mouse
-	sf::VertexArray va = sf::VertexArray(sf::PrimitiveType::Lines, 2);
-	va[0].color = sf::Color::Red;
-	va[0].position = myShape.getPosition();
-	va[1].color = sf::Color::Red;
-	va[1].position = Mouse::GetPosition();
-	aWindow->draw(va);
+	Window::CurrentWindow->DrawLine(myShape.getPosition(), Mouse::GetPosition(), sf::Color::Red);
 
 	//Player to Ball
-	va = sf::VertexArray(sf::PrimitiveType::Lines, 2);
+
+	sf::Color tempColor = sf::Color::Red;
 	sf::Vector2f tempBallVec = myShape.getPosition() - Ball::GetPosition();
+
 	if (Math::LengthSqrd(tempBallVec) <= myBallDistance && Math::NDot(tempBallVec, tempMouseVec) >= myBallLikeness)
 	{
-		va[0].color = sf::Color::Green;
-		va[1].color = sf::Color::Green;
+		tempColor = sf::Color::Green;
 	}
-	else
-	{
-		va[0].color = sf::Color::Red;
-		va[1].color = sf::Color::Red;
-	}
-	va[0].position = myShape.getPosition();
-	va[1].position = Ball::GetPosition();
-	aWindow->draw(va);
+	Window::CurrentWindow->DrawLine(myShape.getPosition(), Ball::GetPosition(), tempColor);
+
 }
