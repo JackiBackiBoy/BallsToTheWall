@@ -1,5 +1,24 @@
 ﻿D:\VisualStudio\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Raycast Engine 2.0.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Healthbar.cpp
+F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\math\Math.h(22,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\math\Math.h(23,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Healthbar.cpp(14,37): warning C4305: 'initializing': truncation from 'double' to 'float'
+F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Healthbar.cpp(50,1): error C2601: 'Healthbar::OnRender': local function definitions are illegal
+F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Healthbar.cpp(23): message : this line contains a '{' which has not yet been matched
+F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Healthbar.cpp(77,1): error C2601: 'Healthbar::Reset': local function definitions are illegal
+F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Healthbar.cpp(23): message : this line contains a '{' which has not yet been matched
+F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Healthbar.cpp(23): fatal error C1075: '{': no matching token found
   Ball.cpp
 F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\math\Math.h(22,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
 F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\math\Math.h(23,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-  BallsToTheWall.vcxproj -> F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\x64\Debug\BallsToTheWall.exe
+  Player.cpp
+F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\math\math.h(22,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\math\math.h(23,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Player.cpp(100,105): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Player.cpp(137,22): error C2039: 'GetPos': is not a member of 'Player'
+F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Player.h(3): message : see declaration of 'Player'
+F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Player.cpp(139,9): error C2065: 'myShape': undeclared identifier
+  Sandbox.cpp
+F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\math\Math.h(22,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\math\Math.h(23,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Generating Code...

@@ -6,6 +6,7 @@
 #include "Ball.h"
 #include "input\Mouse.h"
 #include "TimeTracker.h"
+#include "Healthbar.h"
 
 sf::ConvexShape Player::myShape = sf::ConvexShape(3);
 bool Player::myButtonPressedFlag = false;
@@ -19,6 +20,11 @@ float Player::myAcceleration = 3000;
 float Player::myLerpDecelerationPercent = 8.f;
 float Player::myTurnSpeedMultiplier = 5;
 bool Player::myDeadFlag = false;
+
+sf::Vector2f Player::GetPosition() 
+{
+	return myShape.getPosition();
+}
 
 void Player::OnStart()
 {
@@ -90,7 +96,7 @@ void Player::OnUpdate()
 		sf::Vector2f tempBallVecN = Math::Normalized(tempBallVec);
 		if (Math::LengthSqrd(tempBallVec) <= myBallDistance && Math::Dot(tempBallVecN, tempMouseVecN) >= myBallLikeness)
 		{
-
+			Healthbar::Reset();
 			Ball::Hit(std::atan2((tempMouseVecN.y + tempBallVecN.y) / 2, (tempMouseVecN.x + tempBallVecN.x) / 2) - Math::Pi);
 			myButtonPressedFlag = true;
 		}

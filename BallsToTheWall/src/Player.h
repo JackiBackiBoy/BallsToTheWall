@@ -6,9 +6,9 @@ public:
 	static void OnStart();
 	static void OnUpdate();
 	static void OnRender(sf::RenderWindow* aWindow);
-	static sf::Vector2f GetPos();
 	static void Die();
 	static bool GetDeadFlag();
+	static sf::Vector2f GetPosition();
 
 private: 
 	static bool myDeadFlag;
