@@ -19,5 +19,8 @@ private:
 	static sf::Vector2f myCurrentVelocity;
 	static float myMaxVelocity;
 	static float myAcceleration;
+	static float myLerpDecelerationPercent;
+	static float myTurnSpeedMultiplier;
+
 };
 
