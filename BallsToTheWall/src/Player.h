@@ -11,8 +11,8 @@ private:
 	static sf::ConvexShape myShape;
 	static float mySpeed;
 	static bool myButtonPressedFlag;
-	float myButtonTime = 0;
-	float myCoyoteTime = 0.1f;
-	float myBallLikeness = 0.7f;
+	static float myButtonTime;
+	static float myCoyoteTime;
+	static float myBallLikeness;
 };
 

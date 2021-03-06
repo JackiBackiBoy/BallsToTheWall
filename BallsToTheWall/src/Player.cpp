@@ -8,6 +8,9 @@
 sf::ConvexShape Player::myShape = sf::ConvexShape(3);
 float Player::mySpeed = 500;
 bool Player::myButtonPressedFlag = false;
+float Player::myButtonTime = 0;
+float Player::myCoyoteTime = 0.1f;
+float Player::myBallLikeness = 0.7f;
 
 void Player::OnStart()
 {
