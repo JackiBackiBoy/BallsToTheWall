@@ -1,35 +1,38 @@
-﻿D:\VisualStudio\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Raycast Engine 2.0.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Raycast Engine 2.0.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Ball.cpp
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(11,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(12,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   Player.cpp
-F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\math\math.h(11,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\math\math.h(12,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\math.h(11,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\math.h(12,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   Sandbox.cpp
-F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\math\Math.h(11,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\math\Math.h(12,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(11,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(12,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
   Window.cpp
-F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\math\Math.h(11,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\math\Math.h(12,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(10,74): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(11,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(12,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(10,74): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(10,65): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(10,65): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(66,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(78,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(66,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(78,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(79,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(79,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
           with
           [
               T=float
           ]
-F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(125,27): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
-F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(125,19): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(125,27): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(125,19): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
   Generating Code...
-  BallsToTheWall.vcxproj -> F:\VisualStudio\Projects\BallsToTheWall\BallsToTheWall\x64\Debug\BallsToTheWall.exe
+  BallsToTheWall.vcxproj -> C:\Balls\BallsToTheWall\x64\Debug\BallsToTheWall.exe

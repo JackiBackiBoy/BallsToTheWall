@@ -14,5 +14,6 @@ private:
 	static float myButtonTime;
 	static float myCoyoteTime;
 	static float myBallLikeness;
+	static float myBallDistance;
 };
 

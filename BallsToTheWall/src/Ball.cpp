@@ -10,6 +10,7 @@ float Ball::myVelocity = 5;
 void Ball::OnStart()
 {
 	myShape.setPosition(sf::Vector2f(0, 0));
+	myShape.setOrigin(sf::Vector2f(myShape.getLocalBounds().width / 2, myShape.getLocalBounds().height / 2));
 	myDirection = Math::Normalized(sf::Vector2f(3, 7));
 }
 

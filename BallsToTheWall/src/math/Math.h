@@ -10,9 +10,13 @@ public:
 
 	inline static float ToDegrees(const float& someRadians) { return (180 / Pi) * someRadians; }
 	inline static float ToRadians(const float& someDegrees) { return (Pi / 180) * someDegrees; }
+	inline static float LengthSqrd(sf::Vector2f aVector)
+	{
+		return aVector.x * aVector.x + aVector.y * aVector.y;
+	}
 	inline static float Length(sf::Vector2f aVector)
 	{
-		return std::sqrt(aVector.x * aVector.x + aVector.y * aVector.y);
+		return std::sqrt(LengthSqrd(aVector));
 	}
 	inline static sf::Vector2f Normalized(sf::Vector2f aVector)
 	{

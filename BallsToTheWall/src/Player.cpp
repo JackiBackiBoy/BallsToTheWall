@@ -11,6 +11,7 @@ bool Player::myButtonPressedFlag = false;
 float Player::myButtonTime = 0;
 float Player::myCoyoteTime = 0.1f;
 float Player::myBallLikeness = 0.7f;
+float Player::myBallDistance = 10000;
 
 void Player::OnStart()
 {
@@ -58,7 +59,7 @@ void Player::OnUpdate(const float& aDeltaTime)
 	{
 		myButtonTime += aDeltaTime;
 		sf::Vector2f tempBallVec = myShape.getPosition() - Ball::GetPosition();
-		if (Math::Length(tempBallVec) <= 100 && Math::NDot(tempBallVec, tempMouseVec) >= myBallLikeness)
+		if (Math::LengthSqrd(tempBallVec) <= myBallDistance && Math::NDot(tempBallVec, tempMouseVec) >= myBallLikeness)
 		{
 			Ball::Hit(Math::ToRadians(tempAngle-180) );
 			myButtonPressedFlag = true;
@@ -78,4 +79,30 @@ void Player::OnUpdate(const float& aDeltaTime)
 void Player::OnRender(sf::RenderWindow* aWindow)
 {
 	aWindow->draw(myShape);
+
+	sf::Vector2f tempMouseVec = myShape.getPosition() - Mouse::GetPosition();
+
+	//Player to Mouse
+	sf::VertexArray va = sf::VertexArray(sf::PrimitiveType::Lines, 2);
+	va[0].color = sf::Color::Red;
+	va[0].position = myShape.getPosition();
+	va[1].color = sf::Color::Red;
+	va[1].position = Mouse::GetPosition();
+	aWindow->draw(va);
+
+	//Player to Ball
+	va = sf::VertexArray(sf::PrimitiveType::Lines, 2);
+	sf::Vector2f tempBallVec = myShape.getPosition() - Ball::GetPosition();
+	if (Math::LengthSqrd(tempBallVec) <= myBallDistance && Math::NDot(tempBallVec, tempMouseVec) >= myBallLikeness) {
+		va[0].color = sf::Color::Green;
+		va[1].color = sf::Color::Green;
+	}
+	else
+	{
+		va[0].color = sf::Color::Red;
+		va[1].color = sf::Color::Red;
+	}
+	va[0].position = myShape.getPosition();
+	va[1].position = Ball::GetPosition();
+	aWindow->draw(va);
 }
