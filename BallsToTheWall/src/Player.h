@@ -15,5 +15,9 @@ private:
 	static float myCoyoteTime;
 	static float myBallLikeness;
 	static float myBallDistance;
+
+	static sf::Vector2f myCurrentVelocity;
+	static float myMaxVelocity;
+	static float myAcceleration;
 };
 

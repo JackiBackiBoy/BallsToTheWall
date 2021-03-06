@@ -8,6 +8,17 @@ class Math
 public:
 	~Math() {};
 
+
+	inline static float Lerp(const float& aStartValue, const float& anEndValue, const float& aPercentage)
+	{
+		return ((1.0f - aPercentage) * aStartValue) + (aPercentage * anEndValue);
+	}
+
+	inline static sf::Vector2f Lerp(const sf::Vector2f& aStartValue, const sf::Vector2f& anEndValue, const float& aPercentage)
+	{
+		return ((1.0f - aPercentage) * aStartValue) + (aPercentage * anEndValue);
+	}
+
 	inline static float ToDegrees(const float& someRadians) { return (180 / Pi) * someRadians; }
 	inline static float ToRadians(const float& someDegrees) { return (Pi / 180) * someDegrees; }
 	inline static float LengthSqrd(sf::Vector2f aVector)
