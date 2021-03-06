@@ -4,12 +4,15 @@ class Player
 {
 public:
 	static void OnStart();
-	static void OnUpdate(const float& aDeltaTime);
+	static void OnUpdate();
 	static void OnRender(sf::RenderWindow* aWindow);
+	static sf::Vector2f GetPos();
+	static void Die();
+	static bool GetDeadFlag();
 
 private: 
+	static bool myDeadFlag;
 	static sf::ConvexShape myShape;
-	static float mySpeed;
 	static bool myButtonPressedFlag;
 	static float myButtonTime;
 	static float myCoyoteTime;

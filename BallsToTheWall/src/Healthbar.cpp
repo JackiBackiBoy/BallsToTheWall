@@ -1,6 +1,7 @@
 #include "Healthbar.h"
 #include "math\Math.h"
 #include "core\Window.h"
+#include "TimeTracker.h"
 std::vector<sf::Vector2f> Healthbar::myHealthbar = std::vector<sf::Vector2f>();
 float Healthbar::myMaxHealth = 12;
 float Healthbar::myHealth = 12;
@@ -16,9 +17,9 @@ void Healthbar::OnStart()
 	}
 }
 
-void Healthbar::OnUpdate(const float& aDeltaTime)
+void Healthbar::OnUpdate()
 {
-	myHealth -= aDeltaTime;
+	myHealth -= TimeTracker::GetDeltaTime();
 	if (myHealth <= 0) {
 		myHealth = 12;
 	}

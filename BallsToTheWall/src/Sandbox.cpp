@@ -6,6 +6,7 @@
 #include "Healthbar.h"
 #include "Player.h"
 #include "Ball.h"
+#include "TimeTracker.h"
 class Sandbox : public Window
 {
 public:
@@ -14,23 +15,21 @@ public:
 	sf::Clock myClock;
 	float myDeltaTime = 0;
 
-
 	void OnStart() override
 	{
 		Ball::OnStart();
 		Player::OnStart();
 		Healthbar::OnStart();
-		myClock = sf::Clock();
-		myClock.restart();
 	}
 
 	void OnUpdate() override
 	{
 		myDeltaTime = myClock.restart().asSeconds();
+		TimeTracker::Update();
 
-		Ball::OnUpdate(myDeltaTime);
-		Player::OnUpdate(myDeltaTime);
-		Healthbar::OnUpdate(myDeltaTime);
+		Ball::OnUpdate();
+		Player::OnUpdate();
+		Healthbar::OnUpdate();
 	}
 
 	void OnRender(sf::RenderWindow* aWindow) override

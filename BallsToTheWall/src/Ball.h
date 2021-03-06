@@ -4,7 +4,7 @@ class Ball
 {
 public:
 	static void OnStart();
-	static void OnUpdate(const float& aDeltaTime);
+	static void OnUpdate();
 	static void OnRender(sf::RenderWindow* aWindow);
 	static sf::Vector2f GetPosition();
 	static void Hit(float anAngle);

@@ -154,6 +154,7 @@
     <ClCompile Include="src\input\Mouse.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Sandbox.cpp" />
+    <ClCompile Include="src\TimeTracker.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Healthbar.h" />
@@ -164,6 +165,7 @@
     <ClInclude Include="src\input\Keyboard.h" />
     <ClInclude Include="src\input\Mouse.h" />
     <ClInclude Include="src\math\Math.h" />
+    <ClInclude Include="src\TimeTracker.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
