@@ -122,6 +122,7 @@ inline Vector2<T> operator *(const Vector2<T>& left, const Vector2<T>& right)
 }
 
 
+
 ////////////////////////////////////////////////////////////
 template <typename T>
 inline Vector2<T>& operator *=(Vector2<T>& left, T right)
