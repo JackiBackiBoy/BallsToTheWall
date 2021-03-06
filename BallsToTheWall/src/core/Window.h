@@ -21,10 +21,6 @@ public:
 	void DrawLine(const sf::Vector2f& aStartPoint, const sf::Vector2f& anEndPoint, const sf::Color& aColor, const int& someLineThickness = 1) const;
 	void DrawLine(const sf::Vector2f& aStartPoint, const float& anAngle, const int& aLength, const sf::Color& aColor) const;
 	void DrawVerticalLine(const sf::Vector2f& aStartPoint, const int& aWidth, const int& aHeight, const sf::Color& aColor);
-	sf::Vector2f MouseWorldPos()
-	{
-		return (sf::Vector2f)GetRawWindow()->mapPixelToCoords((sf::Vector2i)sf::Mouse::getPosition() - GetRawWindow()->getPosition());
-	}
 
 	inline sf::RenderWindow* GetRawWindow() const { return myRawWindow; }
 
