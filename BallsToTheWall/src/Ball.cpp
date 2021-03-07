@@ -44,9 +44,8 @@ void Ball::OnUpdate()
 	//recalculate new pos
 	myShape.setPosition(myShape.getPosition() + myDirection * myVelocity * TimeTracker::GetDeltaTime());
 
-	if (Math::Distance(myShape.getPosition(), Player::GetPos()) < 15)
+	if (Math::Distance(myShape.getPosition(), Player::GetPosition()) < 15)
 	{
-		TimeTracker::SetTimeScale(0);
 		Player::Die();
 	}
 }

@@ -134,14 +134,11 @@ void Player::OnRender(sf::RenderWindow* aWindow)
 
 }
 
-sf::Vector2f Player::GetPos()
-{
-	return myShape.getPosition();
-}
 
 void Player::Die()
 {
 	myDeadFlag = true;
+	TimeTracker::SetTimeScale(0);
 }
 
 bool Player::GetDeadFlag()

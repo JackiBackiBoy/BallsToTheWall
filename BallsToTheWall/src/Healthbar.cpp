@@ -23,8 +23,6 @@ void Healthbar::OnStart()
 void Healthbar::OnUpdate()
 {
 	myHealth -= TimeTracker::GetDeltaTime();
-	if (myHealth <= 0) {
-		myHealth = 12;
 
 	if (!Resetting) 
 	{
@@ -41,14 +39,16 @@ void Healthbar::OnUpdate()
 	}
 	if (myHealth <= 0) 
 	{
-		//dead
-		Resetting = true;
+		Player::Die();
 
 	}
 }
 
 void Healthbar::OnRender(sf::RenderWindow* aWindow)
 {
+	if (Player::GetDeadFlag())
+		return;
+
 	float tempHPPercent = myHealth / myMaxHealth;
 	int tempVCount = ceil(((myHealthbar.size() - 2) * tempHPPercent)) + 2;
 
