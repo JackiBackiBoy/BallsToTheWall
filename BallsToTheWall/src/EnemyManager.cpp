@@ -36,10 +36,6 @@ void EnemyManager::OnUpdate()
 			tempPP.VelocityVariation = sf::Vector2f(500, 500);
 			tempPP.LifeTime = 10;
 
-			tempPP.SizeBegin = 1000;
-			tempPP.SizeEnd = 1;
-			tempPP.SizeVariation = 100;
-
 			tempPP.ColorBegin = sf::Color(200, 0, 0, 255);
 			tempPP.ColorEnd = sf::Color::Transparent;
 

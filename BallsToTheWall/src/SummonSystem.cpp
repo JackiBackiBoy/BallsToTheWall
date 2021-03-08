@@ -68,6 +68,7 @@ void SummonSystem::Summon(const SummonProps& someSummonProps)
 	tempS.Position = someSummonProps.Position;
 	tempS.CompTime = someSummonProps.CompTime;
 	tempS.Remaining = someSummonProps.CompTime;
+	tempS.AngularVelocity = someSummonProps.AngularVelocity;
 	if (someSummonProps.EnemyType == EnemyType::Triangle) 
 	{
 		TriangleEnemy tempEnemy = TriangleEnemy(someSummonProps.Position, 0);
