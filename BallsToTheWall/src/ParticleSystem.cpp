@@ -36,12 +36,13 @@ void ParticleSystem::OnRender(sf::RenderWindow* aWindow)
 
 		sf::Color tempC = Math::Lerp(p.ColorEnd, p.ColorBegin, tempLife);
 
-		float tempSize = Math::Lerp(p.SizeBegin, p.SizeEnd, tempLife);
+		sf::Vector2f tempSize = Math::Lerp(p.SizeEnd, p.SizeBegin, tempLife);
 
-		sf::VertexArray tempVA = sf::VertexArray(sf::PrimitiveType::Quads, 4);
-		for (int i = 0; i < 4; i++) 
+		sf::VertexArray tempVA = sf::VertexArray(sf::PrimitiveType::TriangleFan, p.PointCount);
+		float tempAngleInc = Math::Pi * 2.f / p.PointCount;
+		for (int i = 0; i < p.PointCount; i++) 
 		{
-			tempVA[i].position = sf::Vector2f(cos(p.Rotation + Math::Pi / 2 * i), sin(p.Rotation + Math::Pi / 2 * i)) * tempSize + p.Position;
+			tempVA[i].position = sf::Vector2f(cos(p.Rotation + tempAngleInc * i) * tempSize.x, sin(p.Rotation + tempAngleInc * i) * tempSize.y) + p.Position;
 			tempVA[i].color = tempC;
 		}
 		aWindow->draw(tempVA);
@@ -67,6 +68,8 @@ void ParticleSystem::Emit(const ParticleProps& someParticleProps)
 	tempP.LifeRemaining = someParticleProps.LifeTime;
 	tempP.SizeBegin = someParticleProps.SizeBegin + someParticleProps.SizeVariation * (Random::Float() - 0.5f);
 	tempP.SizeEnd = someParticleProps.SizeEnd;
+
+	tempP.PointCount = someParticleProps.PointCount;
 
 	if (--myParticleIndex < 0) myParticleIndex = myParticles.size() - 1;
 }

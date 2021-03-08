@@ -9,8 +9,9 @@ struct ParticleProps
 	sf::Vector2f Velocity, VelocityVariation;
 	sf::Color ColorBegin, ColorEnd;
 	float Rotation = 0, RotationVariation = Math::Pi * 2.f, AngularVelocity = 0.1f;
-	float SizeBegin = 10, SizeEnd = 0, SizeVariation = 3;
+	sf::Vector2f SizeBegin = { 10, 10 }, SizeEnd = { 0, 0 }, SizeVariation = { 3, 3 };
 	float LifeTime = 1.0f;
+	int PointCount = 4;
 };
 class ParticleSystem
 {
@@ -27,11 +28,12 @@ private:
 		sf::Color ColorBegin, ColorEnd;
 		float Rotation = 0.0f;
 		float AngularVelocity;
-		float SizeBegin, SizeEnd;
+		sf::Vector2f SizeBegin, SizeEnd;
 		
 		float LifeTime = 1.0f;
 		float LifeRemaining = 0.0f;
 
+		int PointCount;
 		bool Active = false;
 	};
 	std::vector<Particle> myParticles;
