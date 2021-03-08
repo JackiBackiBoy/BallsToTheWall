@@ -14,7 +14,6 @@ Enemy::Enemy(const int& aPointCount, const float& aRadius, const sf::Vector2f& a
 	}
 	myShape.setFillColor(sf::Color::Color(200, 0, 0, 255));
 	myShape.setPosition(aPosition);
-	myShape.setScale(-1, -2);
 }
 
 void Enemy::OnStart()
@@ -60,6 +59,11 @@ sf::Vector2f Enemy::GetPosition()
 sf::Vector2f Enemy::GetVelocity()
 {
 	return myDirection * myVelocity;
+}
+
+sf::ConvexShape Enemy::GetShape()
+{
+	return myShape;
 }
 
 bool Enemy::Intersects(sf::ConvexShape a)

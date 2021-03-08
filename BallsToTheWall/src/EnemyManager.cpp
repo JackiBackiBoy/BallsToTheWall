@@ -29,7 +29,10 @@ void EnemyManager::OnUpdate()
 			tempPP.ColorBegin = sf::Color(200, 0, 0, 255);
 			tempPP.ColorEnd = sf::Color::Transparent;
 
-			tempPP.PointCount = 3;
+			tempPP.Shape = tempEnemy.GetShape();
+			tempPP.SizeBegin = { 0.3f, 0.3f };
+			tempPP.SizeEnd = { 0.f, 0.f };
+			tempPP.SizeVariation = { 0.1f, 0.1f };
 			for (int i = 0; i < Random::Int(10, 30); i++) 
 			{
 				myParticleSystem.Emit(tempPP);

@@ -13,6 +13,7 @@ public:
 	bool Intersects(sf::ConvexShape a);
 	sf::Vector2f GetPosition();
 	sf::Vector2f GetVelocity();
+	sf::ConvexShape GetShape();
 private:
 	sf::ConvexShape myShape;
 	sf::Vector2f myDirection;
