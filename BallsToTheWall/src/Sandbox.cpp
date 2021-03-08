@@ -9,6 +9,7 @@
 #include "TimeTracker.h"
 #include "EnemyManager.h"
 #include "Random.h"
+#include "MusicManager.h"
 class Sandbox : public Window
 {
 public:
@@ -23,6 +24,7 @@ public:
 		Ball::OnStart();
 		Player::OnStart();
 		Healthbar::OnStart();
+		MusicManager::Start("EDM 2");
 	}
 
 	void OnUpdate() override
@@ -33,6 +35,7 @@ public:
 		Ball::OnUpdate();
 		Player::OnUpdate();
 		Healthbar::OnUpdate();
+		MusicManager::OnUpdate();
 	}
 
 	void OnRender(sf::RenderWindow* aWindow) override

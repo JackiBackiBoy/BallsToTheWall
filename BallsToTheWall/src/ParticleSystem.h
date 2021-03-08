@@ -15,7 +15,7 @@ struct ParticleProps
 class ParticleSystem
 {
 public:
-	ParticleSystem(unsigned short aParticleCount = 1000);
+	ParticleSystem(unsigned int aParticleCount = 1000);
 	void OnUpdate();
 	void OnRender(sf::RenderWindow* aWindow);
 	void Emit(const ParticleProps& someParticleProps);

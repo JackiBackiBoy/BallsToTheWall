@@ -3,3 +3,6 @@
 
 #Files
 *.user
+*.obj
+*.obj
+BallsToTheWall/x64/Debug/Ball.obj

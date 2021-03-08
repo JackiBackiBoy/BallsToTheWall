@@ -3,7 +3,7 @@
 #include "Random.h"
 #include "math\Math.h"
 
-ParticleSystem::ParticleSystem(unsigned short aParticleCount)
+ParticleSystem::ParticleSystem(unsigned int aParticleCount)
 {
 	myParticles.resize(aParticleCount);
 }

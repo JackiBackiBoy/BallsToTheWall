@@ -5,6 +5,7 @@
 #endif
 
 #include "Random.h"
+#include <time.h>
 
 int Random::seed1 = 100;
 int Random::seed2 = 100;
