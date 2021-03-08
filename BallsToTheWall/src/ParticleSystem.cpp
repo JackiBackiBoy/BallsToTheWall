@@ -21,8 +21,8 @@ void ParticleSystem::OnUpdate()
 			continue;
 		}
 
-		p.Position += p.Velocity * TimeTracker::GetDeltaTime();
-		p.Rotation += p.AngularVelocity * TimeTracker::GetDeltaTime();
+		p.Shape.move(p.Velocity * TimeTracker::GetDeltaTime());
+		p.Shape.rotate(Math::ToDegrees(p.AngularVelocity * TimeTracker::GetDeltaTime()));
 	}
 }
 
@@ -34,17 +34,9 @@ void ParticleSystem::OnRender(sf::RenderWindow* aWindow)
 
 		float tempLife = p.LifeRemaining / p.LifeTime;
 
-		sf::Color tempC = Math::Lerp(p.ColorEnd, p.ColorBegin, tempLife);
-
-		float tempSize = Math::Lerp(p.SizeBegin, p.SizeEnd, tempLife);
-
-		sf::VertexArray tempVA = sf::VertexArray(sf::PrimitiveType::Quads, 4);
-		for (int i = 0; i < 4; i++) 
-		{
-			tempVA[i].position = sf::Vector2f(cos(p.Rotation + Math::Pi / 2 * i), sin(p.Rotation + Math::Pi / 2 * i)) * tempSize + p.Position;
-			tempVA[i].color = tempC;
-		}
-		aWindow->draw(tempVA);
+		p.Shape.setFillColor(Math::Lerp(p.ColorEnd, p.ColorBegin, tempLife));
+		p.Shape.setScale(Math::Lerp(p.SizeEnd, p.SizeBegin, tempLife));
+		aWindow->draw(p.Shape);
 	}
 }
 
@@ -52,23 +44,39 @@ void ParticleSystem::Emit(const ParticleProps& someParticleProps)
 {
 	Particle& tempP = myParticles[myParticleIndex];
 	tempP.Active = true;
-	tempP.Position = someParticleProps.Position;
-	tempP.Rotation = someParticleProps.Rotation;
-	tempP.Rotation += someParticleProps.RotationVariation * (Random::Float() - 0.5f);
 
 	tempP.Velocity = someParticleProps.Velocity;
 	tempP.Velocity.x += someParticleProps.VelocityVariation.x * (Random::Float() - 0.5f);
 	tempP.Velocity.y += someParticleProps.VelocityVariation.y * (Random::Float() - 0.5f);
+	tempP.AngularVelocity = someParticleProps.AngVel + someParticleProps.AngVelVariation * (Random::Float() - 0.5f);
 
 	tempP.ColorBegin = someParticleProps.ColorBegin;
 	tempP.ColorEnd = someParticleProps.ColorEnd;
 
 	tempP.LifeTime = someParticleProps.LifeTime;
 	tempP.LifeRemaining = someParticleProps.LifeTime;
+
 	tempP.SizeBegin = someParticleProps.SizeBegin + someParticleProps.SizeVariation * (Random::Float() - 0.5f);
 	tempP.SizeEnd = someParticleProps.SizeEnd;
 
-	if (--myParticleIndex < 0) myParticleIndex = myParticles.size() - 1;
+	if (someParticleProps.Shape.getPointCount() == 0) 
+	{
+		tempP.Shape = sf::ConvexShape(someParticleProps.PointCount);
+		float tempAngleInc = Math::Pi * 2.f / tempP.Shape.getPointCount();
+		for (int i = 0; i < tempP.Shape.getPointCount(); i++)
+		{
+			tempP.Shape.setPoint(i, sf::Vector2f(cos(tempAngleInc * i), sin(tempAngleInc * i)));
+		}
+	}
+	else tempP.Shape = someParticleProps.Shape;
+	tempP.Shape.setPosition(someParticleProps.Position);
+	tempP.Shape.setRotation(Math::ToDegrees(someParticleProps.Rotation + someParticleProps.RotationVariation * (Random::Float() - 0.5f)));
+
+	if (myParticleIndex == 0) 
+	{
+		myParticleIndex = myParticles.size() - 1;
+	}
+	else myParticleIndex--;
 }
 
 

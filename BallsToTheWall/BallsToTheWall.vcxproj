@@ -161,6 +161,8 @@
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Sandbox.cpp" />
     <ClCompile Include="src\TimeTracker.cpp" />
+    <ClCompile Include="src\SummonSystem.cpp" />
+    <ClCompile Include="src\TriangleEnemy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\MusicManager.h" />
@@ -178,6 +180,8 @@
     <ClInclude Include="src\input\Mouse.h" />
     <ClInclude Include="src\math\Math.h" />
     <ClInclude Include="src\TimeTracker.h" />
+    <ClInclude Include="src\SummonSystem.h" />
+    <ClInclude Include="src\TriangleEnemy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
