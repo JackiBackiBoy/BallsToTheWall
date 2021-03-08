@@ -9,7 +9,7 @@ void EnemyManager::OnStart()
 	SummonProps tempSP = SummonProps();
 	tempSP.CompTime = 10.f;
 	tempSP.Color = sf::Color(200, 0, 0, 255);
-	tempSP.EnemyType = EnemyType::Triangle;
+	tempSP.EnemyType = EnemyType::Hexagon;
 	tempSP.Position = sf::Vector2f(170, -100);
 	mySummonSystem.Summon(tempSP);
 }

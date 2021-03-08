@@ -1,2 +1,24 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Raycast Engine 2.0.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  SummonSystem.cpp
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(26,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(25,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(41,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(42,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\ParticleSystem.h(11,40): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(77,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(78,65): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(81,65): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(84,66): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(87,65): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(93,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(94,63): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(97,63): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(100,63): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(103,63): warning C4305: 'argument': truncation from 'double' to 'const float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(109,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(112,38): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(113,36): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(124,39): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
   BallsToTheWall.vcxproj -> C:\Balls\BallsToTheWall\x64\Debug\BallsToTheWall.exe

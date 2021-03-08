@@ -4,6 +4,8 @@
 #include "SFML\Graphics.hpp"
 #include "math\Math.h"
 #include "TriangleEnemy.h"
+#include "SquareEnemy.h"
+#include "HexagonEnemy.h"
 enum EnemyType
 {
 	Triangle = 3,

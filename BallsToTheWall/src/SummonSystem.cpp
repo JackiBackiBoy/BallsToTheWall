@@ -87,7 +87,37 @@ void SummonSystem::Summon(const SummonProps& someSummonProps)
 		tempS.Enemies.push_back(TriangleEnemy({ 0, 0 }, Math::Pi / 2.f));
 		tempS.EndPositions.push_back(sf::Vector2f(tempW, -tempR));
 	}
-	
+	else if (someSummonProps.EnemyType == EnemyType::Square) 
+	{
+		SquareEnemy tempEnemy = SquareEnemy(someSummonProps.Position, 0);
+		float tempW = Math::Length(tempEnemy.GetShape().getPoint(0)) / sqrt(2);
+		tempS.Enemies.push_back(SquareEnemy({ 0, 0 }, Math::Pi / 4.f));
+		tempS.EndPositions.push_back(sf::Vector2f(tempW, tempW));
+
+		tempS.Enemies.push_back(SquareEnemy({ 0, 0 }, Math::Pi / 4.f));
+		tempS.EndPositions.push_back(sf::Vector2f(tempW, -tempW));
+
+		tempS.Enemies.push_back(SquareEnemy({ 0, 0 }, Math::Pi / 4.f));
+		tempS.EndPositions.push_back(sf::Vector2f(-tempW, tempW));
+
+		tempS.Enemies.push_back(SquareEnemy({ 0, 0 }, Math::Pi / 4.f));
+		tempS.EndPositions.push_back(sf::Vector2f(-tempW, -tempW));
+	}
+	else if (someSummonProps.EnemyType == EnemyType::Hexagon)
+	{
+		HexagonEnemy tempEnemy = HexagonEnemy(someSummonProps.Position, 0);
+		float tempDist = Math::Length(tempEnemy.GetShape().getPoint(0)) * sqrt(3);
+		tempS.Enemies.push_back(HexagonEnemy({ 0, 0 }, 0));
+		tempS.EndPositions.push_back(sf::Vector2f(0, 0));
+		float tempAngleInc = Math::Pi / 3.f;
+		float tempOffset = Math::Pi / 6.f;
+		for (int i = 0; i < 6; i++)
+		{
+			tempS.Enemies.push_back(HexagonEnemy({ 0, 0 }, 0));
+			tempS.EndPositions.push_back(sf::Vector2f(cos(tempAngleInc * i + tempOffset), sin(tempAngleInc * i + tempOffset)) * tempDist);
+		}
+
+	}
 
 	if (mySummonIndex == 0) 
 	{
