@@ -36,6 +36,6 @@ private:
 		bool Active = false;
 	};
 	std::vector<Particle> myParticles;
-	unsigned short myParticleIndex = 999;
+	unsigned int myParticleIndex = 0;
 };
 

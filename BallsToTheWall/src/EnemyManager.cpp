@@ -3,10 +3,21 @@
 #include "Random.h"
 std::vector<Enemy> EnemyManager::myEnemies = std::vector<Enemy>();
 ParticleSystem EnemyManager::myParticleSystem = ParticleSystem(1000);
+SummonSystem EnemyManager::mySummonSystem = SummonSystem();
+
 void EnemyManager::OnStart()
 {
-	myEnemies.push_back(Enemy(3, 20, sf::Vector2f(-50, -50)));
-	myEnemies.push_back(Enemy(3, 20, sf::Vector2f(50, 50)));
+	SummonProps tempSP = SummonProps();
+	tempSP.CompTime = 10.f;
+	tempSP.Color = sf::Color(200, 0, 0, 255);
+	tempSP.EnemyType = EnemyType::Triangle;
+	tempSP.Position = sf::Vector2f(170, -100);
+	mySummonSystem.Summon(tempSP);
+}
+
+void EnemyManager::AddEnemyCopy(Enemy anEnemy) 
+{
+	myEnemies.push_back(anEnemy);
 }
 
 void EnemyManager::OnUpdate()
@@ -37,17 +48,18 @@ void EnemyManager::OnUpdate()
 			{
 				myParticleSystem.Emit(tempPP);
 			}
-			myParticleSystem.Emit(tempPP);
 			it = myEnemies.erase(it);
 		}
 		else ++it; 
 	}
 	myParticleSystem.OnUpdate();
+	mySummonSystem.OnUpdate();
 }
 
 void EnemyManager::OnRender(sf::RenderWindow* aWindow)
 {
 	myParticleSystem.OnRender(aWindow);
+	mySummonSystem.OnRender(aWindow);
 	for (Enemy& e : myEnemies)
 	{
 		e.OnRender(aWindow);

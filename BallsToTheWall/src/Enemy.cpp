@@ -4,7 +4,7 @@
 #include "Ball.h"
 #include "TimeTracker.h"
 #include "Random.h"
-Enemy::Enemy(const int& aPointCount, const float& aRadius, const sf::Vector2f& aPosition)
+Enemy::Enemy(const int& aPointCount, const float& aRadius, const sf::Vector2f& aPosition, const float& aRotation)
 {
 	float tempAngle = Math::Pi * 2 / aPointCount;
 	myShape.setPointCount(aPointCount);
@@ -14,26 +14,28 @@ Enemy::Enemy(const int& aPointCount, const float& aRadius, const sf::Vector2f& a
 	}
 	myShape.setFillColor(sf::Color::Color(200, 0, 0, 255));
 	myShape.setPosition(aPosition);
+	myShape.setRotation(Math::ToDegrees(aRotation));
 }
 
 void Enemy::OnStart()
 {
 
 }
-
-void Enemy::OnUpdate()
+void Enemy::Collision() 
 {
-	float tempRotation = Math::ToRadians(myShape.getRotation());
-	myDirection = sf::Vector2f(cos(tempRotation), sin(tempRotation));
-	myShape.move(myDirection * myVelocity * TimeTracker::GetDeltaTime());
-	if (Ball::Intersects(myShape)) 
+	if (Ball::Intersects(myShape))
 	{
 		Die();
 	}
-	if(Intersects(Player::GetShape()))
+	if (Intersects(Player::GetShape()))
 	{
 		Player::Die();
 	}
+}
+
+void Enemy::OnUpdate()
+{
+	Collision();
 }
 
 void Enemy::OnRender(sf::RenderWindow* aWindow)
@@ -49,6 +51,16 @@ void Enemy::Die()
 bool Enemy::IsDead()
 {
 	return myDeadFlag;
+}
+
+void Enemy::SetPosition(const sf::Vector2f& aPosition)
+{
+	myShape.setPosition(aPosition);
+}
+
+void Enemy::SetScale(const sf::Vector2f& aScale)
+{
+	myShape.setScale(aScale);
 }
 
 sf::Vector2f Enemy::GetPosition()

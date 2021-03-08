@@ -72,7 +72,11 @@ void ParticleSystem::Emit(const ParticleProps& someParticleProps)
 	tempP.Shape.setPosition(someParticleProps.Position);
 	tempP.Shape.setRotation(Math::ToDegrees(someParticleProps.Rotation + someParticleProps.RotationVariation * (Random::Float() - 0.5f)));
 
-	if (--myParticleIndex < 0) myParticleIndex = myParticles.size() - 1;
+	if (myParticleIndex == 0) 
+	{
+		myParticleIndex = myParticles.size() - 1;
+	}
+	else myParticleIndex--;
 }
 
 
