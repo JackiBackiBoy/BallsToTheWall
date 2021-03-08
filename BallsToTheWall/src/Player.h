@@ -9,6 +9,7 @@ public:
 	static void Die();
 	static bool GetDeadFlag();
 	static sf::Vector2f GetPosition();
+	static sf::ConvexShape GetShape();
 
 private: 
 	static bool myDeadFlag;

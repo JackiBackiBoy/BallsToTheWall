@@ -145,7 +145,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Enemy.cpp" />
+    <ClCompile Include="src\ParticleSystem.cpp" />
+    <ClCompile Include="src\Random.cpp" />
+    <ClCompile Include="src\EnemyManager.cpp" />
+    <ClCompile Include="src\Enemy.cpp" />
     <ClCompile Include="src\Healthbar.cpp" />
     <ClCompile Include="src\Ball.cpp" />
     <ClCompile Include="src\InputManager.cpp" />
@@ -158,7 +161,10 @@
     <ClCompile Include="src\TimeTracker.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Enemy.h" />
+    <ClInclude Include="src\ParticleSystem.h" />
+    <ClInclude Include="src\Random.h" />
+    <ClInclude Include="src\EnemyManager.h" />
+    <ClInclude Include="src\Enemy.h" />
     <ClInclude Include="src\Healthbar.h" />
     <ClInclude Include="src\Ball.h" />
     <ClInclude Include="src\InputManager.h" />

@@ -26,6 +26,11 @@ sf::Vector2f Player::GetPosition()
 	return myShape.getPosition();
 }
 
+sf::ConvexShape Player::GetShape()
+{
+	return myShape;
+}
+
 void Player::OnStart()
 {
 	myShape.setPoint(0, sf::Vector2f(0, -12.5f));
@@ -110,6 +115,13 @@ void Player::OnUpdate()
 		myButtonPressedFlag = false;
 		myButtonTime = 0;
 	}
+	myShape.setScale(0.7f, 0.7f);
+	if (Ball::Intersects(myShape))
+	{
+		myShape.setScale(1, 1);
+		Die();
+	}
+	myShape.setScale(1, 1);
 }
 
 void Player::OnRender(sf::RenderWindow* aWindow)

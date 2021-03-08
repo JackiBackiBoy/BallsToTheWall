@@ -7,7 +7,7 @@
 sf::CircleShape Ball::myShape = sf::CircleShape(10);
 
 sf::Vector2f Ball::myDirection = sf::Vector2f(0, 0);
-float Ball::myVelocity = 5;
+float Ball::myVelocity = 0;
 
 void Ball::OnStart()
 {
@@ -43,11 +43,6 @@ void Ball::OnUpdate()
 
 	//recalculate new pos
 	myShape.setPosition(myShape.getPosition() + myDirection * myVelocity * TimeTracker::GetDeltaTime());
-
-	if (Math::Distance(myShape.getPosition(), Player::GetPosition()) < 15)
-	{
-		Player::Die();
-	}
 }
 
 void Ball::OnRender(sf::RenderWindow* aWindow)
@@ -64,4 +59,67 @@ void Ball::Hit(float anAngle)
 {
 	myDirection = sf::Vector2f(std::cos(anAngle), std::sin(anAngle));
 	myVelocity += 100;
+}
+
+sf::Vector2f Ball::GetVelocity()
+{
+	return myDirection * myVelocity;
+}
+
+sf::CircleShape Ball::GetShape()
+{
+	return myShape;
+}
+
+bool CheckLineCircle(const sf::Vector2f& circle, const float& radius, const sf::Vector2f& p1, const sf::Vector2f& p2)
+{
+	sf::Vector2f v1 = {};
+	sf::Vector2f v2 = {};
+	sf::Vector2f v3 = {};
+	float u;
+	// get dist to end of line
+	v2.x = circle.x - p1.x;
+	v2.y = circle.y - p1.y;
+	// check if end points are inside the circle
+	if (std::min(Math::Length(p2 - circle), Math::Length(v2)) <= radius)
+	{
+		return true;
+	}
+	// get the line as a vector
+	v1.x = p2.x - p1.x;
+	v1.y = p2.y - p1.y;
+	// get the unit distance of the closest point on the line
+	u = (v2.x * v1.x + v2.y * v1.y) / (v1.y * v1.y + v1.x * v1.x);
+	// is this on the line segment
+	if (u >= 0 && u <= 1) {
+		v3.x = v1.x * u;  // get the point on the line segment
+		v3.y = v1.y * u;
+		// get the distance to that point and return true or false depending on the 
+		// it being inside the circle
+		return (Math::Length(v3 - v2) <= radius);
+	}
+	return false; // no intercept
+}
+
+bool Ball::Intersects(const sf::ConvexShape& aPolygon)
+{
+	auto current = aPolygon.getPoint(0);
+	current.x *= aPolygon.getScale().x;
+	current.y *= aPolygon.getScale().y;
+	current = Math::RotPDeg(current, aPolygon.getRotation());
+	for (auto i = 0; i < aPolygon.getPointCount(); i++)
+	{
+		auto next = aPolygon.getPoint((i + 1) % aPolygon.getPointCount());
+	    next.x *= aPolygon.getScale().x;
+		next.y *= aPolygon.getScale().y;
+		next = Math::RotPDeg(next, aPolygon.getRotation());
+		if (CheckLineCircle(myShape.getPosition(), myShape.getRadius(), current + aPolygon.getPosition(), next + aPolygon.getPosition()))
+		{
+			//slows ball down tweaking needed
+			myVelocity = powf(myVelocity, 0.8f);
+			return true;
+		}
+		current = next;
+	}
+	return false;
 }

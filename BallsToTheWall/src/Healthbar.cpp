@@ -3,14 +3,17 @@
 #include "core\Window.h"
 #include "TimeTracker.h"
 #include "Player.h"
+#include "Ball.h"
 
 std::vector<sf::Vector2f> Healthbar::myHealthbar = std::vector<sf::Vector2f>();
+sf::Vector2f Healthbar::myPosition = sf::Vector2f(30, 30);
 float Healthbar::myMaxHealth = 12;
-float Healthbar::myHealth = 12;
-sf::Vector2f Healthbar::myPosition = sf::Vector2f(30, 50);
+float Healthbar::myHealth;
 bool Healthbar::Resetting = false;
+
 void Healthbar::OnStart()
 {
+	myHealth = myMaxHealth;
 	float scale = 25;
 	float tempAngle = Math::Pi * 2 / 10;
 	myHealthbar.push_back(sf::Vector2f(myPosition - Window::CurrentWindow->GetRawWindow()->getDefaultView().getSize() / 2.f));
@@ -22,11 +25,10 @@ void Healthbar::OnStart()
 
 void Healthbar::OnUpdate()
 {
-	myHealth -= TimeTracker::GetDeltaTime();
-
-	if (!Resetting) 
+	if (!Resetting && Math::LengthSqrd(Ball::GetVelocity()) != 0)
 	{
-		myHealth -= TimeTracker::GetDeltaTime();
+		float tempHPScale = 2.2f - ( std::min(Math::LengthSqrd(Ball::GetVelocity()), 999999.f) / 1000000);
+		myHealth -= TimeTracker::GetDeltaTime() * tempHPScale;
 	}
 	else
 	{

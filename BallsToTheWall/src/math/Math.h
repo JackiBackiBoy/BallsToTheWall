@@ -19,6 +19,25 @@ public:
 		return ((1.0f - aPercentage) * aStartValue) + (aPercentage * anEndValue);
 	}
 
+	inline static sf::Color Lerp(const sf::Color& aStartValue, const sf::Color& anEndValue, const float& aPercentage) 
+	{
+		return sf::Color(
+			(1.0f - aPercentage) * aStartValue.r + aPercentage * anEndValue.r,
+			(1.0f - aPercentage) * aStartValue.g + aPercentage * anEndValue.g,
+			(1.0f - aPercentage) * aStartValue.b + aPercentage * anEndValue.b,
+			(1.0f - aPercentage) * aStartValue.a + aPercentage * anEndValue.a);
+	}
+
+	inline static sf::Vector2f RotPDeg(const sf::Vector2f& aPoint, const float& anAngle)
+	{
+		return RotPRad(aPoint, ToRadians(anAngle));
+	}
+
+	inline static sf::Vector2f RotPRad(const sf::Vector2f& aPoint, const float& anAngle) 
+	{
+		return sf::Vector2f(aPoint.x * cos(anAngle) - aPoint.y * sin(anAngle), aPoint.x * sin(anAngle) + aPoint.y * cos(anAngle));
+	}
+
 	inline static float ToDegrees(const float& someRadians) { return (180 / Pi) * someRadians; }
 	inline static float ToRadians(const float& someDegrees) { return (Pi / 180) * someDegrees; }
 	inline static float LengthSqrd(sf::Vector2f aVector)

@@ -7,6 +7,8 @@
 #include "Player.h"
 #include "Ball.h"
 #include "TimeTracker.h"
+#include "EnemyManager.h"
+#include "Random.h"
 class Sandbox : public Window
 {
 public:
@@ -14,9 +16,10 @@ public:
 
 	sf::Clock myClock;
 	float myDeltaTime = 0;
-
 	void OnStart() override
 	{
+		Random::RSeed();
+		EnemyManager::OnStart();
 		Ball::OnStart();
 		Player::OnStart();
 		Healthbar::OnStart();
@@ -26,7 +29,7 @@ public:
 	{
 		myDeltaTime = myClock.restart().asSeconds();
 		TimeTracker::Update();
-
+		EnemyManager::OnUpdate();
 		Ball::OnUpdate();
 		Player::OnUpdate();
 		Healthbar::OnUpdate();
@@ -34,6 +37,7 @@ public:
 
 	void OnRender(sf::RenderWindow* aWindow) override
 	{
+		EnemyManager::OnRender(aWindow);
 		Ball::OnRender(aWindow);
 		Player::OnRender(aWindow);
 		Healthbar::OnRender(aWindow);
