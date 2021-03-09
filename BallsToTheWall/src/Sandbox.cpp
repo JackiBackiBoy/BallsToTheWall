@@ -31,7 +31,7 @@ public:
 	{
 		myDeltaTime = myClock.restart().asSeconds();
 		TimeTracker::Update();
-		EnemyManager::OnUpdate();
+	    EnemyManager::OnUpdate();
 		Ball::OnUpdate();
 		Player::OnUpdate();
 		Healthbar::OnUpdate();

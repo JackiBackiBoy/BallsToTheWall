@@ -115,8 +115,8 @@ bool Ball::Intersects(const sf::ConvexShape& aPolygon)
 		next = Math::RotPDeg(next, aPolygon.getRotation());
 		if (CheckLineCircle(myShape.getPosition(), myShape.getRadius(), current + aPolygon.getPosition(), next + aPolygon.getPosition()))
 		{
-			//slows ball down tweaking needed
-			myVelocity = powf(myVelocity, 0.8f);
+			//slows ball down (tweaking needed)
+			myVelocity *= 0.9f;
 			return true;
 		}
 		current = next;

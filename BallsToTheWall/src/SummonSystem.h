@@ -8,14 +8,14 @@
 #include "HexagonEnemy.h"
 enum EnemyType
 {
-	Triangle = 3,
-	Square = 4,
-	Hexagon = 6
+	Triangle = 0,
+	Square = 1,
+	Hexagon = 2
 };
 struct SummonProps 
 {
 	sf::Vector2f Position;
-	sf::Color Color;
+	sf::Color Color = sf::Color(200, 0, 0, 255);
 	float Rotation, AngularVelocity;
 	int SizeEnd;
 	float CompTime = 5.f;
