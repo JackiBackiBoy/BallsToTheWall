@@ -10,6 +10,8 @@
 #include "EnemyManager.h"
 #include "Random.h"
 #include "MusicManager.h"
+#include "SaveLoad.h"
+#include "Options.h"
 class Sandbox : public Window
 {
 public:
@@ -19,6 +21,8 @@ public:
 	float myDeltaTime = 0;
 	void OnStart() override
 	{
+		Options::Load();
+
 		Random::RSeed();
 		EnemyManager::OnStart();
 		Ball::OnStart();

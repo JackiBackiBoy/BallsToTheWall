@@ -116,7 +116,7 @@ bool Ball::Intersects(const sf::ConvexShape& aPolygon)
 		if (CheckLineCircle(myShape.getPosition(), myShape.getRadius(), current + aPolygon.getPosition(), next + aPolygon.getPosition()))
 		{
 			//slows ball down (tweaking needed)
-			myVelocity *= 0.9f;
+			myVelocity *= 0.97f;
 			return true;
 		}
 		current = next;

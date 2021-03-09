@@ -146,6 +146,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\HexagonEnemy.cpp" />
+    <ClCompile Include="src\SaveLoad.cpp" />
     <ClCompile Include="src\SquareEnemy.cpp" />
     <ClCompile Include="src\MusicManager.cpp" />
     <ClCompile Include="src\Options.cpp" />
@@ -168,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\HexagonEnemy.h" />
+    <ClInclude Include="src\SaveLoad.h" />
     <ClInclude Include="src\SquareEnemy.h" />
     <ClInclude Include="src\MusicManager.h" />
     <ClInclude Include="src\Options.h" />
