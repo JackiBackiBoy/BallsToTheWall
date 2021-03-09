@@ -20,6 +20,7 @@ struct SummonProps
 	int SizeEnd;
 	float CompTime = 5.f;
 	EnemyType EnemyType;
+	bool* Sector;
 };
 class SummonSystem
 {
@@ -38,6 +39,7 @@ private:
 		sf::Vector2f Position;
 		bool Active = false;
 		float AngularVelocity;
+		bool* Sector;
 	};
 	std::vector<SummonData> mySummons;
 	unsigned int mySummonIndex = 0;
