@@ -14,5 +14,6 @@ private:
 	static std::vector<Enemy> myEnemies;
 	static ParticleSystem myParticleSystem;
 	static SummonSystem mySummonSystem;
+	static bool* OpenSectors;
 };
 

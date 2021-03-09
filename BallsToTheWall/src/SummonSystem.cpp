@@ -24,6 +24,7 @@ void SummonSystem::OnUpdate()
 				it = s.Enemies.erase(it);
 				s.EndPositions.erase(s.EndPositions.begin() + (it - s.Enemies.begin()));
 			}
+			s.Sector[0] = true;
 			continue;
 		}
 
@@ -69,6 +70,8 @@ void SummonSystem::Summon(const SummonProps& someSummonProps)
 	tempS.CompTime = someSummonProps.CompTime;
 	tempS.Remaining = someSummonProps.CompTime;
 	tempS.AngularVelocity = someSummonProps.AngularVelocity;
+	tempS.Sector = someSummonProps.Sector;
+	tempS.Sector[0] = false;
 	if (someSummonProps.EnemyType == EnemyType::Triangle) 
 	{
 		TriangleEnemy tempEnemy = TriangleEnemy(someSummonProps.Position, 0);

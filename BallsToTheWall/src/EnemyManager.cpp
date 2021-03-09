@@ -6,6 +6,8 @@
 std::vector<Enemy> EnemyManager::myEnemies = std::vector<Enemy>();
 ParticleSystem EnemyManager::myParticleSystem = ParticleSystem(3000);
 SummonSystem EnemyManager::mySummonSystem = SummonSystem();
+bool* EnemyManager::OpenSectors = new bool[4] { true, true, true, true };
+
 void EnemyManager::OnStart()
 {
 
@@ -52,17 +54,49 @@ void EnemyManager::OnUpdate()
 		}
 		if (Random::Float() > 0.9995f) 
 		{
-			SummonProps tempSP = SummonProps();
-			tempSP.CompTime = 5.f;
-			tempSP.EnemyType = (EnemyType)Random::Int(0, 3);
-			float tempRandomAngle = Random::Float() * 2 * Math::Pi;
-			tempSP.Position = Player::GetPosition() + sf::Vector2f(
-				cos(tempRandomAngle) * (200 + Random::Float() * Window::CurrentWindow->GetRawWindow()->getSize().x / 2.4f),
-				sin(tempRandomAngle) * (200 + Random::Float() * Window::CurrentWindow->GetRawWindow()->getSize().y / 2.4f));
-			tempSP.Position = sf::Vector2f(
-				std::min(std::max(tempSP.Position.x, Window::CurrentWindow->GetRawWindow()->getSize().x / -2.4f), Window::CurrentWindow->GetRawWindow()->getSize().x / 2.4f),
-				std::min(std::max(tempSP.Position.y, Window::CurrentWindow->GetRawWindow()->getSize().y / -2.4f), Window::CurrentWindow->GetRawWindow()->getSize().y / 2.4f));
-			mySummonSystem.Summon(tempSP);
+			int tempPlayerSector;
+			if (Player::GetPosition().x <= 0 && Player::GetPosition().y <= 0) 
+			{
+				tempPlayerSector = 0;
+			}
+			if (Player::GetPosition().x >= 0 && Player::GetPosition().y <= 0) 
+			{ 
+				tempPlayerSector = 1; 
+			}
+			if (Player::GetPosition().x <= 0 && Player::GetPosition().y >= 0)
+			{
+				tempPlayerSector = 2; 
+			}
+			if (Player::GetPosition().x >= 0 && Player::GetPosition().y >= 0)
+			{
+				tempPlayerSector = 3; 
+			}
+			std::vector<int> tempSectorIndices = std::vector<int>();
+			for (int i = 0; i < 4; i++)
+			{
+				if (OpenSectors[i] && i != tempPlayerSector) 
+				{
+					tempSectorIndices.push_back(i);
+				}
+			}
+			if (tempSectorIndices.size() != 0) 
+			{
+				int tempSector = tempSectorIndices[Random::Int(0, tempSectorIndices.size())];
+				SummonProps tempSP = SummonProps();
+				tempSP.CompTime = 5.f;
+				tempSP.EnemyType = (EnemyType)Random::Int(0, 3);
+				float tempW = Window::CurrentWindow->GetRawWindow()->getDefaultView().getSize().x / 2.f;
+				float tempH = Window::CurrentWindow->GetRawWindow()->getDefaultView().getSize().y / 2.f;
+				if (tempSector == 0) tempSP.Position = sf::Vector2f(-tempW, -tempH);
+				if (tempSector == 1) tempSP.Position = sf::Vector2f(0, -tempH);
+				if (tempSector == 2) tempSP.Position = sf::Vector2f(-tempW, 0);
+				if (tempSector == 3) tempSP.Position = sf::Vector2f(0, 0);
+				tempSP.Sector = &OpenSectors[tempSector];
+				tempSP.Position += sf::Vector2f(
+					std::min(std::max(Random::Float() * tempW, 50.f), tempW - 50),
+					std::min(std::max(Random::Float() * tempH, 50.f), tempH - 50));
+				mySummonSystem.Summon(tempSP);
+			}
 		}
 		myParticleSystem.OnUpdate();
 		mySummonSystem.OnUpdate();
