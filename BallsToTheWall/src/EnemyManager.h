@@ -9,9 +9,9 @@ public:
 	static void OnStart();
 	static void OnUpdate();
 	static void OnRender(sf::RenderWindow* aWindow);
-	static void AddEnemyCopy(Enemy anEnemy);
+	static void AddEnemyCopy(Enemy* anEnemy);
 private:
-	static std::vector<Enemy> myEnemies;
+	static std::vector<Enemy*> myEnemies;
 	static ParticleSystem myParticleSystem;
 	static SummonSystem mySummonSystem;
 	static bool* OpenSectors;

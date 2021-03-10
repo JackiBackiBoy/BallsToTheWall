@@ -34,7 +34,7 @@ private:
 	{
 		float CompTime = 1.f;
 		float Remaining = 0.f;
-		std::vector<Enemy> Enemies;
+		std::vector<Enemy*> Enemies;
 		std::vector<sf::Vector2f> EndPositions;
 		sf::Vector2f Position;
 		bool Active = false;

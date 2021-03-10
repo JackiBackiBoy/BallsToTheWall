@@ -1,9 +1,5 @@
 #include "Enemy.h"
-#include "math\Math.h"
-#include "Player.h"
-#include "Ball.h"
-#include "TimeTracker.h"
-#include "Random.h"
+
 Enemy::Enemy(const int& aPointCount, const float& aRadius, const sf::Vector2f& aPosition, const float& aRotation)
 {
 	float tempAngle = Math::Pi * 2 / aPointCount;

@@ -3,7 +3,7 @@
 #include "Random.h"
 #include "core\Window.h"
 #include "Player.h"
-std::vector<Enemy> EnemyManager::myEnemies = std::vector<Enemy>();
+std::vector<Enemy*> EnemyManager::myEnemies = std::vector<Enemy*>();
 ParticleSystem EnemyManager::myParticleSystem = ParticleSystem(3000);
 SummonSystem EnemyManager::mySummonSystem = SummonSystem();
 bool* EnemyManager::OpenSectors = new bool[4] { true, true, true, true };
@@ -13,7 +13,7 @@ void EnemyManager::OnStart()
 
 }
 
-void EnemyManager::AddEnemyCopy(Enemy anEnemy) 
+void EnemyManager::AddEnemyCopy(Enemy* anEnemy) 
 {
 	myEnemies.push_back(anEnemy);
 }
@@ -22,25 +22,25 @@ void EnemyManager::OnUpdate()
 {
 	if (Ball::GetVelocity() != sf::Vector2f(0, 0))
 	{
-		for (Enemy& e : myEnemies)
+		for (auto& e : myEnemies)
 		{
-			e.OnUpdate();
+			e->OnUpdate();
 		}
 		for (auto it = myEnemies.begin(); it != myEnemies.end();)
 		{
-			Enemy tempEnemy = *it._Ptr;
-			if (tempEnemy.IsDead()) // remove dead enemy and add death effect
+			
+			if ((*it._Ptr)->IsDead()) // remove dead enemy and add death effect
 			{
 				ParticleProps tempPP = ParticleProps();
-				tempPP.Position = sf::Vector2f(tempEnemy.GetPosition());
-				tempPP.Velocity = tempEnemy.GetVelocity();
+				tempPP.Position = sf::Vector2f((*it._Ptr)->GetPosition());
+				tempPP.Velocity = (*it._Ptr)->GetVelocity();
 				tempPP.VelocityVariation = sf::Vector2f(500, 500);
 				tempPP.LifeTime = 10;
 
 				tempPP.ColorBegin = sf::Color(200, 0, 0, 255);
 				tempPP.ColorEnd = sf::Color::Transparent;
 
-				tempPP.Shape = tempEnemy.GetShape();
+				tempPP.Shape = (*it._Ptr)->GetShape();
 				tempPP.SizeBegin = { 0.3f, 0.3f };
 				tempPP.SizeEnd = { 0.f, 0.f };
 				tempPP.SizeVariation = { 0.1f, 0.1f };
@@ -48,6 +48,7 @@ void EnemyManager::OnUpdate()
 				{
 					myParticleSystem.Emit(tempPP);
 				}
+				delete (*it._Ptr);
 				it = myEnemies.erase(it);
 			}
 			else ++it;
@@ -109,9 +110,9 @@ void EnemyManager::OnRender(sf::RenderWindow* aWindow)
 	{
 		myParticleSystem.OnRender(aWindow);
 		mySummonSystem.OnRender(aWindow);
-		for (Enemy& e : myEnemies)
+		for (auto& e : myEnemies)
 		{
-			e.OnRender(aWindow);
+			e->OnRender(aWindow);
 		}
 	}
 }

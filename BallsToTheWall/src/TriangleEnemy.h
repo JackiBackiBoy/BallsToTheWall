@@ -7,5 +7,8 @@ public:
 	void OnStart() override;
 	void OnUpdate() override;
 	void OnRender(sf::RenderWindow* aWindow) override;
+private:
+	float myAngle = 0;
+	float myDistance = 300;
 };
 

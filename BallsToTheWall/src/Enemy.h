@@ -1,6 +1,11 @@
 #pragma once
 #include "SFML\Graphics.hpp"
 #include <iostream>
+#include "Player.h"
+#include "TimeTracker.h"
+#include "math\Math.h"
+#include "Ball.h"
+#include "Random.h"
 class Enemy
 {
 public:
