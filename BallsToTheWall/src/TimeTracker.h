@@ -10,5 +10,7 @@ public:
 	static void Update();
 	static sf::Time GetTime();
 	static float GetDeltaTime();
+	static float GetUnscaledDeltaTime();
+	static float GetTimeScale();
 	static void SetTimeScale(float aValue);
 };

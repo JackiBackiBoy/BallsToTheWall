@@ -7,9 +7,9 @@ public:
 	static float GetMasterVolume();
 	static float GetMusicVolume();
 	static float GetSoundEffectVolume();
-	static void SetMasterVolume(float aValue);
-	static void SetMusicVolume(float aValue);
-	static void SetSoundEffectVolume(float aValue);
+	static void SetMasterVolume(const float& aValue);
+	static void SetMusicVolume(const float& aValue);
+	static void SetSoundEffectVolume(const float& aValue);
 private:
 	static float myMasterVolume;
 	static float myMusicVolume;

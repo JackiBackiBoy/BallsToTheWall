@@ -6,7 +6,7 @@ std::vector < sf::Keyboard::Key> InputManager::myKeyBuffer = std::vector<sf::Key
 std::vector < sf::Mouse::Button> InputManager::myPrevMouseBuffer = std::vector<sf::Mouse::Button>();
 std::vector < sf::Mouse::Button> InputManager::myMouseBuffer = std::vector<sf::Mouse::Button>();
 
-bool InputManager::GetKey(sf::Keyboard::Key aKey)
+bool InputManager::GetKey(const sf::Keyboard::Key& aKey)
 {
 	if (!Window::CurrentWindow->GetRawWindow()->hasFocus())
 	{
@@ -14,7 +14,7 @@ bool InputManager::GetKey(sf::Keyboard::Key aKey)
 	}
 	return sf::Keyboard::isKeyPressed(aKey);
 }
-bool InputManager::GetMouseButton(sf::Mouse::Button aButton)
+bool InputManager::GetMouseButton(const sf::Mouse::Button& aButton)
 {
 	if (!Window::CurrentWindow->GetRawWindow()->hasFocus())
 	{
@@ -23,7 +23,7 @@ bool InputManager::GetMouseButton(sf::Mouse::Button aButton)
 	return sf::Mouse::isButtonPressed(aButton);
 }
 
-bool InputManager::GetMouseButtonDown(sf::Mouse::Button aButton)
+bool InputManager::GetMouseButtonDown(const sf::Mouse::Button& aButton)
 {
 	//if key is down
 	if (GetMouseButton(aButton))
@@ -42,7 +42,7 @@ bool InputManager::GetMouseButtonDown(sf::Mouse::Button aButton)
 	return false;
 }
 
-bool InputManager::GetMouseButtonUp(sf::Mouse::Button aButton)
+bool InputManager::GetMouseButtonUp(const sf::Mouse::Button& aButton)
 {
 	//if key isn't down
 	if (!GetMouseButton(aButton))
@@ -65,7 +65,7 @@ bool InputManager::GetMouseButtonUp(sf::Mouse::Button aButton)
 	return false;
 }
 
-bool InputManager::GetKeyDown(sf::Keyboard::Key aKey)
+bool InputManager::GetKeyDown(const sf::Keyboard::Key& aKey)
 {
 
 	//if key is down
@@ -85,7 +85,7 @@ bool InputManager::GetKeyDown(sf::Keyboard::Key aKey)
 	return false;
 }
 
-bool InputManager::GetKeyUp(sf::Keyboard::Key aKey)
+bool InputManager::GetKeyUp(const sf::Keyboard::Key& aKey)
 {
 	//if key isn't down
 	if (!GetKey(aKey))

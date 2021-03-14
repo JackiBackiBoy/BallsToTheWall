@@ -11,7 +11,7 @@ private:
 	static void ReadSave();
 	static bool myLoadedFlag;
 public:
-	static void Save(std::string aKey, std::string aValue);
-	static std::string Load(std::string aKey);
+	static void Save(const std::string& aKey, const std::string& aValue);
+	static std::string Load(const std::string& aKey);
 };
 

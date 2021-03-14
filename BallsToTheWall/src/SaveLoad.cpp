@@ -45,7 +45,7 @@ void SaveLoad::ReadSave()
 	myLoadedFlag = true;
 }
 
-void SaveLoad::Save(std::string aKey, std::string aValue)
+void SaveLoad::Save(const std::string& aKey, const std::string& aValue)
 {
 	if (myAppdataString == "")
 	{
@@ -79,7 +79,7 @@ void SaveLoad::Save(std::string aKey, std::string aValue)
 	tempFile.close();
 }
 
-std::string SaveLoad::Load(std::string aKey)
+std::string SaveLoad::Load(const std::string& aKey)
 {
 	if (myAppdataString == "")
 	{

@@ -46,18 +46,18 @@ float Options::GetSoundEffectVolume()
 	return mySoundEffectVolume * myMasterVolume;
 }
 
-void Options::SetMasterVolume(float aValue)
+void Options::SetMasterVolume(const float& aValue)
 {
 	myMasterVolume = aValue;
 	sf::Listener::setGlobalVolume(aValue);
 }
 
-void Options::SetMusicVolume(float aValue)
+void Options::SetMusicVolume(const float& aValue)
 {
 	myMusicVolume = aValue;
 }
 
-void Options::SetSoundEffectVolume(float aValue)
+void Options::SetSoundEffectVolume(const float& aValue)
 {
 	mySoundEffectVolume = aValue;
 }

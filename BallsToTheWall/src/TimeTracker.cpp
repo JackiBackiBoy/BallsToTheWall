@@ -19,6 +19,16 @@ float TimeTracker::GetDeltaTime()
 	return myTime.asSeconds() * myTimeScale;
 }
 
+float TimeTracker::GetUnscaledDeltaTime()
+{
+	return myTime.asSeconds();
+}
+
+float TimeTracker::GetTimeScale() 
+{
+	return myTimeScale;
+}
+
 void TimeTracker::SetTimeScale(float aValue)
 {
 	myTimeScale = aValue;

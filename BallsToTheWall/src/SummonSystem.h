@@ -16,8 +16,7 @@ struct SummonProps
 {
 	sf::Vector2f Position;
 	sf::Color Color = sf::Color(200, 0, 0, 255);
-	float Rotation, AngularVelocity;
-	int SizeEnd;
+	float Rotation = 0, AngularVelocity = Math::Pi / 2.5f;
 	float CompTime = 5.f;
 	EnemyType EnemyType;
 	bool* Sector;
@@ -25,7 +24,7 @@ struct SummonProps
 class SummonSystem
 {
 public:
-	SummonSystem(unsigned int aSummonCount = 10);
+	SummonSystem(const unsigned int& aSummonCount = 10);
 	void OnUpdate();
 	void OnRender(sf::RenderWindow* aWindow);
 	void Summon(const SummonProps& someSummonProps);
@@ -39,6 +38,7 @@ private:
 		sf::Vector2f Position;
 		bool Active = false;
 		float AngularVelocity;
+		float Rotation;
 		bool* Sector;
 	};
 	std::vector<SummonData> mySummons;

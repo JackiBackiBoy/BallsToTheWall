@@ -59,6 +59,16 @@ void Enemy::SetScale(const sf::Vector2f& aScale)
 	myShape.setScale(aScale);
 }
 
+void Enemy::SetRotation(const float& someDegrees) 
+{
+	myShape.setRotation(someDegrees);
+}
+
+void Enemy::Rotate(const float& someDegrees) 
+{
+	myShape.rotate(someDegrees);
+}
+
 sf::Vector2f Enemy::GetPosition()
 {
 	return myShape.getPosition();
@@ -80,7 +90,7 @@ bool Enemy::Intersects(sf::ConvexShape a)
 	// loop over the vertices(-> edges -> axis) of the first polygon
 	for (int n = 0; n < 2; n++) 
 	{
-		auto current = a.getPoint(0);
+		auto current = a.getPoint(a.getPointCount() - 1);
 		current.x *= a.getScale().x;
 		current.y *= a.getScale().y;
 		current = Math::RotPDeg(current, a.getRotation());
@@ -88,7 +98,7 @@ bool Enemy::Intersects(sf::ConvexShape a)
 		{
 			// calculate the normal vector of the current edge
 			// this is the axis will we check in this loop
-			auto next = a.getPoint((i + 1) % a.getPointCount());
+			auto next = a.getPoint(i);
 			next.x *= a.getScale().x;
 			next.y *= a.getScale().y;
 			next = Math::RotPDeg(next, a.getRotation());

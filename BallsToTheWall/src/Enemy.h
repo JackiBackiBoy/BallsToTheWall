@@ -20,6 +20,8 @@ public:
 	sf::Vector2f GetPosition();
 	void SetPosition(const sf::Vector2f& aPosition);
 	void SetScale(const sf::Vector2f& aScale);
+	void SetRotation(const float& someDegrees);
+	void Rotate(const float& someDegrees);
 	sf::Vector2f GetVelocity();
 	sf::ConvexShape GetShape();
 protected:

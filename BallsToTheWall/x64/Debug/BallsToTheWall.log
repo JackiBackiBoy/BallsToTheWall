@@ -1,4 +1,29 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Raycast Engine 2.0.vcxproj).  This can lead to incorrect clean and rebuild behavior.
+  Ball.cpp
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(26,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(25,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(41,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(42,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  Enemy.cpp
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(26,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(25,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(41,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(42,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\Enemy.cpp(5,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+  EnemyManager.cpp
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(26,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(25,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(41,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(42,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\ParticleSystem.h(11,40): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.h(19,38): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\EnemyManager.cpp(90,79): warning C4267: 'argument': conversion from 'size_t' to 'const int', possible loss of data
   Healthbar.cpp
 C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
 C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
@@ -16,4 +41,114 @@ C:\Balls\BallsToTheWall\BallsToTheWall\src\Healthbar.cpp(62,7): warning C4244: '
 C:\Balls\BallsToTheWall\BallsToTheWall\src\Healthbar.cpp(61,17): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
 C:\Balls\BallsToTheWall\BallsToTheWall\src\Healthbar.cpp(60,17): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
 C:\Balls\BallsToTheWall\BallsToTheWall\src\Healthbar.cpp(59,23): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+  HexagonEnemy.cpp
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(26,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(25,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(41,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(42,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  InputManager.cpp
+  MusicManager.cpp
+  Options.cpp
+  ParticleSystem.cpp
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(26,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(25,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(41,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(42,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\ParticleSystem.h(11,40): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\ParticleSystem.cpp(65,22): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\ParticleSystem.cpp(77,43): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+  Player.cpp
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\math.h(26,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\math.h(25,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\math.h(41,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\math.h(42,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\Player.cpp(105,105): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+  Random.cpp
+C:\Balls\BallsToTheWall\BallsToTheWall\src\Random.cpp(28,18): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\Random.cpp(33,31): warning C4244: 'return': conversion from 'float' to 'int', possible loss of data
+  Sandbox.cpp
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(26,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(25,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(41,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(42,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\ParticleSystem.h(11,40): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.h(19,38): warning C4305: 'initializing': truncation from 'double' to 'float'
+  SaveLoad.cpp
+  SquareEnemy.cpp
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(26,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(25,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(41,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(42,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+  SummonSystem.cpp
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(26,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(25,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(41,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(42,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.h(19,38): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\ParticleSystem.h(11,40): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(85,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(86,70): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(89,70): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(92,71): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(95,70): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(101,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(102,68): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(105,68): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(108,68): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(111,68): warning C4244: 'argument': conversion from 'double' to 'const float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(117,18): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(120,38): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(121,36): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Balls\BallsToTheWall\BallsToTheWall\src\SummonSystem.cpp(132,39): warning C4267: '=': conversion from 'size_t' to 'unsigned int', possible loss of data
+  TriangleEnemy.cpp
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(26,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(25,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(41,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(42,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\TriangleEnemy.cpp(6,39): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Window.cpp
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(26,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(25,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(41,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\math\Math.h(42,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(10,74): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Balls\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(10,65): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Balls\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(66,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(78,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Balls\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(79,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Balls\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(125,27): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+C:\Balls\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(125,19): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+  Generating Code...
   BallsToTheWall.vcxproj -> C:\Balls\BallsToTheWall\x64\Debug\BallsToTheWall.exe

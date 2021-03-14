@@ -12,7 +12,7 @@ sf::Clock MusicManager::myTransitionThreadClock = sf::Clock();
 bool MusicManager::myLoopingFlag = true;
 bool MusicManager::myTransitioningFlag = false;
 
-void MusicManager::TransitionTo(std::string aString)
+void MusicManager::TransitionTo(const std::string& aString)
 {
 	myTransitioningFlag = true;
 	myCurrentMusicIndex = GetOtherMusicIndex();
@@ -53,7 +53,7 @@ void MusicManager::Stop()
 {
 	myMusic[myCurrentMusicIndex].stop();
 }
-void MusicManager::Start(std::string aString)
+void MusicManager::Start(const std::string& aString)
 {
 	myMusic[myCurrentMusicIndex].openFromFile("Assets/" + aString + ".wav");
 	myMusic[myCurrentMusicIndex].setLoop(myLoopingFlag);
@@ -69,7 +69,7 @@ void MusicManager::Resume()
 	myMusic[myCurrentMusicIndex].play();
 }
 
-void MusicManager::SetLoopingFlag(bool aFlag)
+void MusicManager::SetLoopingFlag(const bool& aFlag)
 {
 	myLoopingFlag = aFlag;
 	myMusic[myCurrentMusicIndex].setLoop(myLoopingFlag);

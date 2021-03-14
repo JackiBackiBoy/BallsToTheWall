@@ -28,7 +28,7 @@ float Random::Float()
 	return std::fmod(seed1 / 30269.f + seed2 / 30307.f + seed3 / 30323.f, 1);
 }
 
-int Random::Int(int min, int max) 
+int Random::Int(const int& min, const int& max) 
 {
 	return (max - min) * Float() + min;
 }

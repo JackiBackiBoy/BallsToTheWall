@@ -7,7 +7,7 @@ public:
 	static void OnUpdate();
 	static void OnRender(sf::RenderWindow* aWindow);
 	static sf::Vector2f GetPosition();
-	static void Hit(float anAngle);
+	static void Hit(const float& anAngle);
 	static sf::Vector2f GetVelocity();
 	static sf::CircleShape GetShape();
 	static bool Intersects(const sf::ConvexShape& aPolygon);

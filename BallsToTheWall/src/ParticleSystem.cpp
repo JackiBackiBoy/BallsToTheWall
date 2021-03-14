@@ -3,7 +3,7 @@
 #include "Random.h"
 #include "math\Math.h"
 
-ParticleSystem::ParticleSystem(unsigned int aParticleCount)
+ParticleSystem::ParticleSystem(const unsigned int& aParticleCount)
 {
 	myParticles.resize(aParticleCount);
 }
@@ -14,15 +14,15 @@ void ParticleSystem::OnUpdate()
 	{
 		if (!p.Active) continue;
 		
-		p.LifeRemaining -= TimeTracker::GetDeltaTime();
+		p.LifeRemaining -= TimeTracker::GetUnscaledDeltaTime();
 		if (p.LifeRemaining <= 0.0f)
 		{
 			p.Active = false;
 			continue;
 		}
 
-		p.Shape.move(p.Velocity * TimeTracker::GetDeltaTime());
-		p.Shape.rotate(Math::ToDegrees(p.AngularVelocity * TimeTracker::GetDeltaTime()));
+		p.Shape.move(p.Velocity * TimeTracker::GetUnscaledDeltaTime());
+		p.Shape.rotate(Math::ToDegrees(p.AngularVelocity * TimeTracker::GetUnscaledDeltaTime()));
 	}
 }
 

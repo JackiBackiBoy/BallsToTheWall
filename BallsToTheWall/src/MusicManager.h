@@ -5,12 +5,12 @@
 class MusicManager
 {
 public:
-	static void TransitionTo(std::string aString);
+	static void TransitionTo(const std::string& aString);
 	static void Stop();
-	static void Start(std::string aString);
+	static void Start(const std::string& aString);
 	static void Pause();
 	static void Resume();
-	static void SetLoopingFlag(bool aFlag);
+	static void SetLoopingFlag(const bool& aFlag);
 	static bool GetLoopingFlag();
 	static void OnUpdate();
 private:
