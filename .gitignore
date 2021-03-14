@@ -6,3 +6,13 @@
 *.obj
 *.obj
 BallsToTheWall/x64/Debug/Ball.obj
+*.log
+*.tlog
+x64/Debug/BallsToTheWall.exe
+x64/Debug/BallsToTheWall.ilk
+x64/Debug/BallsToTheWall.pdb
+BallsToTheWall/x64/Debug/BallsToTheWall.tlog/link.read.1.tlog
+BallsToTheWall/x64/Debug/BallsToTheWall.tlog/link.write.1.tlog
+x64/Debug/BallsToTheWall.exe
+x64/Debug/BallsToTheWall.ilk
+x64/Debug/BallsToTheWall.pdb
