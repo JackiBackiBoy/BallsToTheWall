@@ -169,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\HexagonEnemy.h" />
+    <ClInclude Include="src\Sandbox.h" />
     <ClInclude Include="src\SaveLoad.h" />
     <ClInclude Include="src\SquareEnemy.h" />
     <ClInclude Include="src\MusicManager.h" />

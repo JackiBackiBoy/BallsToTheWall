@@ -24,19 +24,19 @@ void Ball::OnUpdate()
 	sf::Vector2f tempNewPos = myShape.getPosition() + myDirection * myVelocity * TimeTracker::GetDeltaTime();
 
 	//check if new pos is inside the screen
-	if (tempNewPos.x < -(int)Window::CurrentWindow->GetRawWindow()->getSize().x / 2 && myDirection.x < 0)
+	if (tempNewPos.x < -(int)Window::GetSize().x / 2 && myDirection.x < 0)
 	{
 		myDirection.x *= -1;
 	}
-	if (tempNewPos.x + 20 > Window::CurrentWindow->GetRawWindow()->getSize().x / 2 && myDirection.x > 0)
+	if (tempNewPos.x + 20 > Window::GetSize().x / 2 && myDirection.x > 0)
 	{
 		myDirection.x *= -1;
 	}
-	if (tempNewPos.y < -(int)Window::CurrentWindow->GetRawWindow()->getSize().y / 2 && myDirection.y < 0)
+	if (tempNewPos.y < -(int)Window::GetSize().y / 2 && myDirection.y < 0)
 	{
 		myDirection.y *= -1;
 	}
-	if (tempNewPos.y + 20 > Window::CurrentWindow->GetRawWindow()->getSize().y / 2 && myDirection.y > 0)
+	if (tempNewPos.y + 20 > Window::GetSize().y / 2 && myDirection.y > 0)
 	{
 		myDirection.y *= -1;
 	}
@@ -71,12 +71,12 @@ sf::CircleShape Ball::GetShape()
 	return myShape;
 }
 
-bool CheckLineCircle(const sf::Vector2f& circle, const float& radius, const sf::Vector2f& p1, const sf::Vector2f& p2)
+bool CheckLineCircle(const sf::Vector2f& circle, const float& radiusSqrd, const sf::Vector2f& p1, const sf::Vector2f& p2)
 {
 	// get dist to end of line
 	sf::Vector2f v2 = circle - p1;
 	// check if end points are inside the circle
-	if (std::min(Math::LengthSqrd(p2 - circle), Math::LengthSqrd(v2)) <= radius * radius)
+	if (std::min(Math::LengthSqrd(p2 - circle), Math::LengthSqrd(v2)) <= radiusSqrd)
 	{
 		return true;
 	}
@@ -92,7 +92,7 @@ bool CheckLineCircle(const sf::Vector2f& circle, const float& radius, const sf::
 
 		// get the distance to that point and return true or false depending on the 
 		// it being inside the circle
-		return (Math::LengthSqrd(v3 - v2) <= radius * radius);
+		return (Math::LengthSqrd(v3 - v2) <= radiusSqrd);
 	}
 	return false; // no intercept
 }
@@ -103,13 +103,14 @@ bool Ball::Intersects(const sf::ConvexShape& aPolygon)
 	current.x *= aPolygon.getScale().x;
 	current.y *= aPolygon.getScale().y;
 	current = Math::RotPDeg(current, aPolygon.getRotation());
+	float tempRadiusSqrd = myShape.getRadius() * myShape.getRadius();
 	for (auto i = 0; i < aPolygon.getPointCount(); i++)
 	{
 		auto next = aPolygon.getPoint(i);
 	    next.x *= aPolygon.getScale().x;
 		next.y *= aPolygon.getScale().y;
 		next = Math::RotPDeg(next, aPolygon.getRotation());
-		if (CheckLineCircle(myShape.getPosition(), myShape.getRadius(), current + aPolygon.getPosition(), next + aPolygon.getPosition()))
+		if (CheckLineCircle(myShape.getPosition(),  tempRadiusSqrd, current + aPolygon.getPosition(), next + aPolygon.getPosition()))
 		{
 			//If ball hits enemy, reduce the velocity of the ball
 			myVelocity *= 0.97f;
