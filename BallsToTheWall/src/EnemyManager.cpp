@@ -1,7 +1,7 @@
 #include "EnemyManager.h"
 #include "Ball.h"
 #include "Random.h"
-#include "core\Window.h"
+#include "Sandbox.h"
 #include "Player.h"
 std::vector<Enemy*> EnemyManager::myEnemies = std::vector<Enemy*>();
 ParticleSystem EnemyManager::myParticleSystem = ParticleSystem(3000);
@@ -53,6 +53,7 @@ void EnemyManager::OnUpdate()
 				}
 				delete (*it._Ptr);
 				it = myEnemies.erase(it);
+				Sandbox::Shake(10);
 			}
 			else ++it;
 		}
@@ -90,8 +91,8 @@ void EnemyManager::OnUpdate()
 				int tempSector = tempSectorIndices[Random::Int(0, tempSectorIndices.size())];
 				SummonProps tempSP = SummonProps();
 				tempSP.EnemyType = (EnemyType)Random::Int(0, 3);
-				float tempW = Window::CurrentWindow->GetRawWindow()->getDefaultView().getSize().x / 2.f;
-				float tempH = Window::CurrentWindow->GetRawWindow()->getDefaultView().getSize().y / 2.f;
+				float tempW = Window::GetSize().x / 2.f;
+				float tempH = Window::GetSize().y / 2.f;
 				if (tempSector == 0) tempSP.Position = sf::Vector2f(-tempW, -tempH);
 				if (tempSector == 1) tempSP.Position = sf::Vector2f(0, -tempH);
 				if (tempSector == 2) tempSP.Position = sf::Vector2f(-tempW, 0);

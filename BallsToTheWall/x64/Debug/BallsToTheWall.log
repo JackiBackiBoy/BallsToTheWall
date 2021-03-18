@@ -1,11 +1,4 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Raycast Engine 2.0.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Sandbox.cpp
-C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
-C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
-C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(26,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
-C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(25,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
-C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(41,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(42,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Development\BallsToTheWall\BallsToTheWall\src\ParticleSystem.h(11,40): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Development\BallsToTheWall\BallsToTheWall\src\SummonSystem.h(19,38): warning C4305: 'initializing': truncation from 'double' to 'float'
-  BallsToTheWall.vcxproj -> C:\Development\BallsToTheWall\x64\Debug\BallsToTheWall.exe
+Mouse.obj : error LNK2019: unresolved external symbol "public: static class sf::Vector2<float> __cdecl Window::GetCenter(void)" (?GetCenter@Window@@SA?AV?$Vector2@M@sf@@XZ) referenced in function "public: static class sf::Vector2<float> __cdecl Mouse::GetPosition(void)" (?GetPosition@Mouse@@SA?AV?$Vector2@M@sf@@XZ)
+Sandbox.obj : error LNK2001: unresolved external symbol "public: virtual void __cdecl Sandbox::OnStart(void)" (?OnStart@Sandbox@@UEAAXXZ)
+C:\Development\BallsToTheWall\x64\Debug\BallsToTheWall.exe : fatal error LNK1120: 2 unresolved externals

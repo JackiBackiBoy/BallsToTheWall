@@ -52,6 +52,16 @@ void Window::OnRender(sf::RenderWindow* aWindow)
 
 }
 
+sf::Vector2f Window::GetSize()
+{
+	return CurrentWindow->GetRawWindow()->getDefaultView().getSize();
+}
+
+sf::Vector2f Window::GetCenter()
+{
+	return CurrentWindow->GetRawWindow()->getDefaultView().getCenter();
+}
+
 void Window::DrawQuad(const int& aWidth, const int& aHeight, const sf::Vector2f& aPosition, const sf::Color& aColor) const
 {
 	sf::RectangleShape tempQuad({ static_cast<float>(aWidth), static_cast<float>(aHeight) });

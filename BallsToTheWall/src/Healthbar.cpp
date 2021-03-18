@@ -16,7 +16,7 @@ void Healthbar::OnStart()
 	myHealth = myMaxHealth;
 	float scale = 25;
 	float tempAngle = Math::Pi * 2 / 10;
-	myHealthbar.push_back(sf::Vector2f(myPosition - Window::CurrentWindow->GetRawWindow()->getDefaultView().getSize() / 2.f));
+	myHealthbar.push_back(sf::Vector2f(myPosition - Window::GetSize() / 2.f));
 	for (int i = 10; i >= 0; i--) 
 	{
 		myHealthbar.push_back(sf::Vector2f(cos(tempAngle * i) * scale, sin(tempAngle * i) * scale));
@@ -59,7 +59,7 @@ void Healthbar::OnRender(sf::RenderWindow* aWindow)
 		(1 - tempHPPercent) * 255, 
 		tempHPPercent * 200, 
 		tempHPPercent * 200, 
-		100 + 100 * std::max(0.f, std::min(1.f, Math::LengthSqrd((Player::GetPosition() + Window::CurrentWindow->GetRawWindow()->getDefaultView().getSize() / 2.f - myPosition) / 500.f))));
+		100 + 100 * std::max(0.f, std::min(1.f, Math::LengthSqrd((Player::GetPosition() + Window::GetSize() / 2.f - myPosition) / 500.f))));
 
 	for (int i = 0; i < tempVCount - 1; i++)
 	{

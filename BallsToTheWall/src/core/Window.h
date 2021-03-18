@@ -16,6 +16,9 @@ public:
 	virtual void OnUpdate() = 0;
 	virtual void OnRender(sf::RenderWindow* aWindow) = 0;
 
+	static sf::Vector2f GetSize();
+	static sf::Vector2f GetCenter();
+
 	void DrawQuad(const int& aWidth, const int& aHeight, const sf::Vector2f& aPosition, const sf::Color& aColor) const;
 	void DrawCircle(const int& aDiameter, const sf::Vector2f& aPosition, const sf::Color& aColor) const;
 	void DrawLine(const sf::Vector2f& aStartPoint, const sf::Vector2f& anEndPoint, const sf::Color& aColor, const int& someLineThickness = 1) const;
