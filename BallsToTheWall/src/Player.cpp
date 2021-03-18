@@ -26,6 +26,11 @@ sf::Vector2f Player::GetPosition()
 	return myShape.getPosition();
 }
 
+void Player::SetPosition(const sf::Vector2f& aPos)
+{
+	myShape.setPosition(aPos);
+}
+
 sf::ConvexShape Player::GetShape()
 {
 	return myShape;

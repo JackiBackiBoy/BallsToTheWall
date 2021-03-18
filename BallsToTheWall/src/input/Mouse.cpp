@@ -6,3 +6,4 @@ sf::Vector2f Mouse::GetPosition()
 	
 	return { static_cast<float>(tempPos.x), static_cast<float>(tempPos.y) };
 }
+

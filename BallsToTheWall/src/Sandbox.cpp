@@ -16,11 +16,18 @@ class Sandbox : public Window
 {
 public:
 	Sandbox(const std::string& aTitle, const int& aWidth, const int& aHeight) : Window(aTitle, aWidth, aHeight) {};
+	sf::Sprite TitleText;
 
+	sf::Texture TitleNameTex;
 	sf::Clock myClock;
 	float myDeltaTime = 0;
 	void OnStart() override
 	{
+		TitleNameTex.loadFromFile("Assets/GameName.png");
+		TitleText = sf::Sprite(TitleNameTex);
+		TitleText.setScale(sf::Vector2f(0.5f,0.5f));
+		TitleText.setPosition(sf::Vector2f(-(int)TitleNameTex.getSize().x*TitleText.getScale().x/2, -(int)TitleNameTex.getSize().y * TitleText.getScale().y /2));
+
 		Options::Load();
 
 		Random::RSeed();
@@ -29,13 +36,16 @@ public:
 		Player::OnStart();
 		Healthbar::OnStart();
 		MusicManager::Start("EDM 2");
+
+		Player::SetPosition(sf::Vector2f(0, 65));
+		sf::Mouse::setPosition(sf::Vector2i(0, 60));
 	}
 
 	void OnUpdate() override
 	{
 		myDeltaTime = myClock.restart().asSeconds();
 		TimeTracker::Update();
-	    EnemyManager::OnUpdate();
+		EnemyManager::OnUpdate();
 		Ball::OnUpdate();
 		Player::OnUpdate();
 		Healthbar::OnUpdate();
@@ -44,6 +54,7 @@ public:
 
 	void OnRender(sf::RenderWindow* aWindow) override
 	{
+		aWindow->draw(TitleText);
 		EnemyManager::OnRender(aWindow);
 		Ball::OnRender(aWindow);
 		Player::OnRender(aWindow);

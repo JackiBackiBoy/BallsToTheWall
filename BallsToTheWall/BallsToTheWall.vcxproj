@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\HexagonEnemy.cpp" />
     <ClCompile Include="src\SaveLoad.cpp" />
     <ClCompile Include="src\SquareEnemy.cpp" />
@@ -168,6 +169,7 @@
     <ClCompile Include="src\TriangleEnemy.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Button.h" />
     <ClInclude Include="src\HexagonEnemy.h" />
     <ClInclude Include="src\SaveLoad.h" />
     <ClInclude Include="src\SquareEnemy.h" />
