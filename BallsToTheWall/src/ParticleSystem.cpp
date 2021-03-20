@@ -79,4 +79,9 @@ void ParticleSystem::Emit(const ParticleProps& someParticleProps)
 	else myParticleIndex--;
 }
 
+int ParticleSystem::GetSize()
+{
+	return myParticles.size();
+}
+
 

@@ -4,14 +4,14 @@
 #include <Player.h>
 #include "TimeTracker.h"
 
-sf::CircleShape Ball::myShape = sf::CircleShape(10);
+sf::CircleShape Ball::myShape = sf::CircleShape(13);
 
 sf::Vector2f Ball::myDirection = sf::Vector2f(0, 0);
 float Ball::myVelocity = 0;
 
 void Ball::OnStart()
 {
-	myShape.setPosition(sf::Vector2f(200, 0));
+	myShape.setPosition(sf::Vector2f(-45, 0));
 	myShape.setOrigin(sf::Vector2f(myShape.getLocalBounds().width / 2, myShape.getLocalBounds().height / 2));
 	myDirection = Math::Normalized(sf::Vector2f(3, 7));
 	//myShape.setFillColor(sf::Color(200, 255, 255));

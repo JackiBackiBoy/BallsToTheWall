@@ -6,4 +6,8 @@ sf::Vector2f Mouse::GetPosition()
 	
 	return { static_cast<float>(tempPos.x), static_cast<float>(tempPos.y) };
 }
+void Mouse::SetPosition(const sf::Vector2i& aPos)
+{
+	sf::Mouse::setPosition(aPos + (sf::Vector2i)Window::GetCenter(), *Window::CurrentWindow->GetRawWindow());
+}
 

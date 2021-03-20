@@ -21,6 +21,7 @@ public:
 	void OnUpdate();
 	void OnRender(sf::RenderWindow* aWindow);
 	void Emit(const ParticleProps& someParticleProps);
+	int GetSize();
 private:
 	struct Particle 
 	{

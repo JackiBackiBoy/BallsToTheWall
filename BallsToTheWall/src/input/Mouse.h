@@ -11,6 +11,8 @@ public:
 
 	static sf::Vector2f GetPosition();
 
+	static void SetPosition(const sf::Vector2i& aPos);
+
 private:
 	Mouse() {};
 };
