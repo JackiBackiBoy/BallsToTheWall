@@ -7,7 +7,7 @@ Sandbox::Sandbox(const std::string& aTitle, const int& aWidth, const int& aHeigh
 sf::Sprite TitleText;
 sf::Texture TitleNameTex;
 
-void OnStart()
+void Sandbox::OnStart()
 {
 	TitleNameTex.loadFromFile("Assets/GameName.png");
 	TitleText = sf::Sprite(TitleNameTex);
