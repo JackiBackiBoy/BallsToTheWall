@@ -8,8 +8,10 @@ public:
 	void OnUpdate() override;
 	void OnRender(sf::RenderWindow* aWindow) override;
 private:
-	float myX;
+	float myExtent;
 	float myTime = 0;
 	float mySpeed;
+	bool myAxis;
+	bool myStarting = 1;
 };
 
