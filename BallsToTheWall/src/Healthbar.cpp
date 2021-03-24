@@ -7,7 +7,7 @@
 
 std::vector<sf::Vector2f> Healthbar::myHealthbar = std::vector<sf::Vector2f>();
 sf::Vector2f Healthbar::myPosition = sf::Vector2f(30, 30);
-float Healthbar::myMaxHealth = 12;
+float Healthbar::myMaxHealth = 16;
 float Healthbar::myHealth;
 bool Healthbar::Resetting = false;
 

@@ -8,6 +8,7 @@ sf::Sprite TitleText;
 sf::Texture TitleNameTex;
 bool GameStarted = false;
 int myStartWidth, myStartHeight;
+float myTempWidth;
 
 int myTitleSplit = 10;
 
@@ -22,9 +23,7 @@ void Sandbox::OnStart()
 	TitleText = sf::Sprite(TitleNameTex);
 	TitleText.setScale(sf::Vector2f(0.5f, 0.5f));
 	TitleText.setPosition(sf::Vector2f(-(int)TitleNameTex.getSize().x * TitleText.getScale().x / 2, -(int)TitleNameTex.getSize().y * TitleText.getScale().y / 2));
-
-
-	myTitleParticleSystem = ParticleSystem(TitleNameTex.getSize().x / myTitleSplit * TitleNameTex.getSize().y / myTitleSplit);
+	myTitleParticleSystem = ParticleSystem((TitleNameTex.getSize().x / myTitleSplit) * (TitleNameTex.getSize().y/myTitleSplit));
 
 	Options::Load();
 
@@ -39,6 +38,7 @@ void Sandbox::OnStart()
 	Mouse::SetPosition(sf::Vector2i(0, 20));
 	myHeight /= 2;
 	myWidth /= 2;
+	myTempWidth = myWidth;
 }
 
 
@@ -63,22 +63,35 @@ void Sandbox::OnUpdate()
 	if ((std::abs(Ball::GetVelocity().x) > 0 || std::abs(Ball::GetVelocity().y > 0)) && !GameStarted)
 	{
 		GameStarted = true;
+		Shake(200);
 		sf::Image tempImg = TitleNameTex.copyToImage();
 		for (int i = 0; i < myTitleParticleSystem.GetSize(); i++)
 		{
-			int tempPlace = i * myTitleSplit / TitleNameTex.getSize().x;
-			sf::Color tempCol = tempImg.getPixel(tempPlace % tempImg.getSize().x, tempPlace / tempImg.getSize().x);
+			int tempPlace = i *   myTitleSplit;
+			sf::Color tempCol = tempImg.getPixel(tempPlace % tempImg.getSize().x,  myTitleSplit*(tempPlace / tempImg.getSize().x));
 			ParticleProps tempProp = ParticleProps();
+			if (tempCol == sf::Color::Transparent)
+			{
+				continue;
+			}
 			tempProp.ColorBegin = tempCol;
-			tempProp.ColorEnd = sf::Color::Transparent;
-
-			tempProp.Position = TitleText.getPosition() + sf::Vector2f(tempPlace % tempImg.getSize().x, tempPlace / tempImg.getSize().x);
+			tempProp.SizeEnd = sf::Vector2f(0,0);
+			tempProp.LifeTime = 3;
+			tempProp.Position = TitleText.getPosition() + sf::Vector2f(tempPlace % tempImg.getSize().x * TitleText.getScale().x, (myTitleSplit * tempPlace / tempImg.getSize().x) * TitleText.getScale().x);
+			tempProp.PointCount = Random::Int(3, 7);
+			tempProp.Velocity = tempProp.Position * 5.f;
+			tempProp.VelocityVariation = sf::Vector2f(70, 70);
+			tempProp.AngVelVariation = 30;
 			myTitleParticleSystem.Emit(tempProp);
 		}
 	}
-	if (GameStarted && (myWidth != myStartWidth || myHeight != myStartHeight))
+	myTitleParticleSystem.OnUpdate();
+	if (GameStarted && (myWidth <= myStartWidth || myHeight <= myStartHeight))
 	{
-		myWidth = ceil(Math::Lerp(myWidth, myStartWidth, 10.f * TimeTracker::GetDeltaTime()));
+		myTempWidth = Math::Lerp(myTempWidth, myStartWidth, 7.f * TimeTracker::GetDeltaTime());
+		myWidth = (int)myTempWidth;
+		if (myWidth > myStartWidth)
+			myWidth = myStartWidth;
 		myHeight = myStartHeight * myWidth / myStartWidth;
 	}
 
@@ -90,6 +103,7 @@ void Sandbox::OnRender(sf::RenderWindow* aWindow)
 {
 	if (!GameStarted)
 		aWindow->draw(TitleText);
+	myTitleParticleSystem.OnRender(aWindow);
 	EnemyManager::OnRender(aWindow);
 	Ball::OnRender(aWindow);
 	Player::OnRender(aWindow);

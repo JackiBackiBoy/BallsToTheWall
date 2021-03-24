@@ -60,7 +60,12 @@ void Ball::Hit(const float& anAngle)
 	myDirection = sf::Vector2f(std::cos(anAngle), std::sin(anAngle));
 	if (myVelocity == 0)
 		myVelocity += 400;
-	myVelocity += 150;
+	else if (myVelocity < 1000)
+		myVelocity += 100;
+	else if (myVelocity < 1500)
+		myVelocity += 75;
+	else
+		myVelocity += 50;
 }
 
 sf::Vector2f Ball::GetVelocity()
@@ -115,7 +120,7 @@ bool Ball::Intersects(const sf::ConvexShape& aPolygon)
 		if (CheckLineCircle(myShape.getPosition(),  tempRadiusSqrd, current + aPolygon.getPosition(), next + aPolygon.getPosition()))
 		{
 			//If ball hits enemy, reduce the velocity of the ball
-			myVelocity *= 0.98f;
+			myVelocity *= 0.97f;
 			return true;
 		}
 		current = next;

@@ -2,6 +2,9 @@
 #include "TimeTracker.h"
 #include "Random.h"
 #include "math\Math.h"
+#include "SFML/System/Clock.hpp"
+
+sf::Clock tempClock = sf::Clock();
 
 ParticleSystem::ParticleSystem(const unsigned int& aParticleCount)
 {
@@ -10,10 +13,10 @@ ParticleSystem::ParticleSystem(const unsigned int& aParticleCount)
 
 void ParticleSystem::OnUpdate()
 {
-	for (auto& p : myParticles) 
+	for (auto& p : myParticles)
 	{
 		if (!p.Active) continue;
-		
+
 		p.LifeRemaining -= TimeTracker::GetUnscaledDeltaTime();
 		if (p.LifeRemaining <= 0.0f)
 		{
@@ -28,7 +31,8 @@ void ParticleSystem::OnUpdate()
 
 void ParticleSystem::OnRender(sf::RenderWindow* aWindow)
 {
-	for (auto& p : myParticles) 
+
+	for (auto& p : myParticles)
 	{
 		if (!p.Active) continue;
 
@@ -59,7 +63,7 @@ void ParticleSystem::Emit(const ParticleProps& someParticleProps)
 	tempP.SizeBegin = someParticleProps.SizeBegin + someParticleProps.SizeVariation * (Random::Float() - 0.5f);
 	tempP.SizeEnd = someParticleProps.SizeEnd;
 
-	if (someParticleProps.Shape.getPointCount() == 0) 
+	if (someParticleProps.Shape.getPointCount() == 0)
 	{
 		tempP.Shape = sf::ConvexShape(someParticleProps.PointCount);
 		float tempAngleInc = Math::Pi * 2.f / tempP.Shape.getPointCount();
@@ -72,7 +76,7 @@ void ParticleSystem::Emit(const ParticleProps& someParticleProps)
 	tempP.Shape.setPosition(someParticleProps.Position);
 	tempP.Shape.setRotation(Math::ToDegrees(someParticleProps.Rotation + someParticleProps.RotationVariation * (Random::Float() - 0.5f)));
 
-	if (myParticleIndex == 0) 
+	if (myParticleIndex == 0)
 	{
 		myParticleIndex = myParticles.size() - 1;
 	}
