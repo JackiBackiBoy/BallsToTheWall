@@ -90,7 +90,7 @@ void EnemyManager::OnUpdate()
 			{
 				int tempSector = tempSectorIndices[Random::Int(0, tempSectorIndices.size())];
 				SummonProps tempSP = SummonProps();
-				tempSP.EnemyType = (EnemyType)Random::Int(0, 1);
+				tempSP.EnemyType = (EnemyType)Random::Int(0, 3);
 				float tempW = Window::GetSize().x / 2.f;
 				float tempH = Window::GetSize().y / 2.f;
 				if (tempSector == 0) tempSP.Position = sf::Vector2f(-tempW, -tempH);
@@ -102,7 +102,7 @@ void EnemyManager::OnUpdate()
 					std::min(std::max(Random::Float() * tempW, 50.f), tempW - 50),
 					std::min(std::max(Random::Float() * tempH, 50.f), tempH - 50));
 				mySummonSystem.Summon(tempSP);
-				myCurrentSummonTime = Random::Float() * -3;
+				myCurrentSummonTime = Random::Float() * -3 - myEnemies.size() * 0.2f;
 			}
 			tempSectorIndices.clear();
 		}
