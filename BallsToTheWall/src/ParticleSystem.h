@@ -36,6 +36,7 @@ private:
 		sf::ConvexShape Shape;
 		bool Active = false;
 	};
+	std::vector<sf::Vertex> GetVerts(Particle aParticle);
 	std::vector<Particle> myParticles;
 	unsigned int myParticleIndex = 0;
 };
