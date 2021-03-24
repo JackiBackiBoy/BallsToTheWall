@@ -7,5 +7,9 @@ public:
 	void OnStart() override;
 	void OnUpdate() override;
 	void OnRender(sf::RenderWindow* aWindow) override;
+private:
+	float myX;
+	float myTime = 0;
+	float mySpeed;
 };
 

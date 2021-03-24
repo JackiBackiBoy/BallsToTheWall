@@ -6,6 +6,7 @@
 #include "math\Math.h"
 #include "Ball.h"
 #include "Random.h"
+#include "core\Window.h"
 class Enemy
 {
 public:
