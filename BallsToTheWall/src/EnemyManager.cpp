@@ -9,11 +9,14 @@ SummonSystem EnemyManager::mySummonSystem = SummonSystem();
 bool* EnemyManager::myOpenSectors = new bool[4] { true, true, true, true };
 float EnemyManager::mySummonTime = 3;
 float EnemyManager::myCurrentSummonTime = 0;
+sf::Font EnemyManager::myScoreFont = sf::Font();
+std::vector<ScoreText> EnemyManager::myTexts = std::vector<ScoreText>();
+
 
 
 void EnemyManager::OnStart()
 {
-
+	myScoreFont.loadFromFile("Assets/ScoreFont.ttf");
 }
 
 void EnemyManager::AddEnemyCopy(Enemy* anEnemy) 
@@ -23,6 +26,8 @@ void EnemyManager::AddEnemyCopy(Enemy* anEnemy)
 
 void EnemyManager::OnUpdate()
 {
+
+
 	if (Ball::GetVelocity() != sf::Vector2f(0, 0))
 	{
 		for (auto& e : myEnemies)
@@ -51,9 +56,33 @@ void EnemyManager::OnUpdate()
 				{
 					myParticleSystem.Emit(tempPP);
 				}
+				ScoreText tempText = ScoreText();
+				tempText.Init();
+				tempText.Text = sf::Text(std::to_string((*it._Ptr)->GetScore()), myScoreFont);
+				tempText.Text.setPosition((*it._Ptr)->GetPosition() - sf::Vector2f(tempText.Text.getLocalBounds().width/2, tempText.Text.getLocalBounds().height/2));
+
+				for (int i = 0; i < myTexts.size(); i++)
+				{
+					if (Math::Distance(tempText.Text.getPosition(), myTexts[i].Text.getPosition())< 100)
+					{ 
+						
+						int val = std::stoi((std::string)tempText.Text.getString()) + std::stoi((std::string)myTexts[i].Text.getString());
+						tempText.Text.setString(std::to_string(val));
+						tempText.AddSize(5);
+
+						tempText.Text.setPosition((tempText.Text.getPosition() + myTexts[i].Text.getPosition()) / 2.f);
+
+						myTexts.erase(myTexts.begin() + i);
+						break;
+					}
+				}
+
+				myTexts.push_back(tempText);
+
 				delete (*it._Ptr);
 				it = myEnemies.erase(it);
 				Sandbox::Shake(10);
+
 			}
 			else ++it;
 		}
@@ -111,8 +140,21 @@ void EnemyManager::OnUpdate()
 	mySummonSystem.OnUpdate();
 }
 
+
 void EnemyManager::OnRender(sf::RenderWindow* aWindow)
 {
+	for (int i = 0; i < myTexts.size(); i++)
+	{
+		myTexts[i].DecreaseAlpha(TimeTracker::GetDeltaTime() * 255 / myTexts[i].FadeTime);
+		myTexts[i].Text.setPosition(myTexts[i].Text.getPosition() + sf::Vector2f(0, -TimeTracker::GetDeltaTime() * 50));
+		myTexts[i].UpdateRainbow();
+
+		aWindow->draw(myTexts[i].Text);
+	}
+	while (myTexts.size() > 0 && myTexts[0].Alpha <= 0)
+	{
+		myTexts.erase(myTexts.begin());
+	}
 	if (Ball::GetVelocity() != sf::Vector2f(0, 0)) 
 	{
 		myParticleSystem.OnRender(aWindow);
@@ -122,4 +164,5 @@ void EnemyManager::OnRender(sf::RenderWindow* aWindow)
 			e->OnRender(aWindow);
 		}
 	}
+
 }

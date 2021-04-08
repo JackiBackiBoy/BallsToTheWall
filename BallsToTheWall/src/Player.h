@@ -11,6 +11,7 @@ public:
 	static sf::Vector2f GetPosition();
 	static void SetPosition(const sf::Vector2f& aPos);
 	static sf::ConvexShape GetShape();
+	static float GetScoreMultiplier();
 
 private: 
 	static bool myDeadFlag;
@@ -26,6 +27,7 @@ private:
 	static float myAcceleration;
 	static float myLerpDecelerationPercent;
 	static float myTurnSpeedMultiplier;
+	static float myScoreMultiplier;
 
 };
 

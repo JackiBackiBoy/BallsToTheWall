@@ -15,6 +15,7 @@ SquareEnemy::SquareEnemy(const sf::Vector2f& aPosition, const float& aRotation) 
 	}
 	myTime = Random::Float() * Math::Pi;
 	mySpeed = (1 + Random::Float() * 0.5f);
+	myScore = 400;
 }
 
 void SquareEnemy::OnStart()

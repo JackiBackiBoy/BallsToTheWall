@@ -19,7 +19,7 @@ public:
 		return ((1.0f - aPercentage) * aStartValue) + (aPercentage * anEndValue);
 	}
 
-	inline static sf::Color Lerp(const sf::Color& aStartValue, const sf::Color& anEndValue, const float& aPercentage) 
+	inline static sf::Color Lerp(const sf::Color& aStartValue, const sf::Color& anEndValue, const float& aPercentage)
 	{
 		return sf::Color(
 			(1.0f - aPercentage) * aStartValue.r + aPercentage * anEndValue.r,
@@ -33,7 +33,7 @@ public:
 		return RotPRad(aPoint, ToRadians(anAngle));
 	}
 
-	inline static sf::Vector2f RotPRad(const sf::Vector2f& aPoint, const float& anAngle) 
+	inline static sf::Vector2f RotPRad(const sf::Vector2f& aPoint, const float& anAngle)
 	{
 		return sf::Vector2f(aPoint.x * cos(anAngle) - aPoint.y * sin(anAngle), aPoint.x * sin(anAngle) + aPoint.y * cos(anAngle));
 	}
@@ -64,7 +64,7 @@ public:
 	{
 		return(Length(aVector0 - aVector1));
 	}
-	inline static float Dot(const sf::Vector2f& aVector0, const sf::Vector2f& aVector1) 
+	inline static float Dot(const sf::Vector2f& aVector0, const sf::Vector2f& aVector1)
 	{
 		return aVector0.x * aVector1.x + aVector0.y * aVector1.y;
 	}
@@ -73,6 +73,88 @@ public:
 		return Dot(Normalized(aVector0), Normalized(aVector1));
 	}
 	static constexpr double Pi = 3.14159265358979323846;
+
+	inline static sf::Vector3f ColorToHsv(sf::Color aColor)
+	{
+		sf::Vector3f tempHsv = sf::Vector3f(0, 0, 0);
+		float r = aColor.r / 255.f;
+		float g = aColor.g / 255.f;
+		float b = aColor.b / 255.f;
+		float cMax = std::max(std::max(r, g), b);
+		float cMin = std::min(std::min(r, g), b);
+		float delta = cMax - cMin;
+
+		if (delta == 0)tempHsv.x = 0;
+		else if (cMax == r)tempHsv.x = 60 * fmod((g - b) / delta, 6.f);
+		else if (cMax == g)tempHsv.x = 60 * ((b - r) / delta + 2);
+		else if (cMax == b)tempHsv.x = 60 * ((r - g) / delta + 4);
+
+		if (cMax == 0)tempHsv.y = 0;
+		else tempHsv.y = delta / cMax;
+
+		tempHsv.z = cMax;
+
+		return tempHsv;
+	}
+
+	inline static sf::Color HsvToColor(sf::Vector3f aHsv)
+	{
+		float c = aHsv.z * aHsv.y;
+		float x = c * (1 - std::abs(fmod(aHsv.x / 60, 2) - 1));
+		float m = aHsv.z - c;
+		float r, g, b = 0;
+		if (aHsv.x >= 300)
+		{
+			r = c;
+			g = 0;
+			b = x;
+		}
+		else if (aHsv.x >= 240)
+		{
+			r = x;
+			g = 0;
+			b = c;
+		}
+		else if (aHsv.x >= 180)
+		{
+			r = 0;
+			g = x;
+			b = c;
+		}
+		else if (aHsv.x >= 120)
+		{
+			r = 0;
+			g = c;
+			b = x;
+		}
+		else if (aHsv.x >= 60)
+		{
+			r = x;
+			g = c;
+			b = 0;
+		}
+		else
+		{
+			r = c;
+			g = x;
+			b = 0;
+		}
+
+		return sf::Color((r + m) * 255, (g + m) * 255, (b + m) * 255);
+
+
+	}
+
+	inline static sf::Color ShiftRainbow(sf::Color aColor, float aValue)
+	{
+		sf::Vector3f tempHsv = ColorToHsv(aColor);
+		tempHsv.x += aValue;
+		tempHsv.y = 1;
+		tempHsv.z = 1;
+
+		sf::Color tempCol = HsvToColor(tempHsv);
+		return sf::Color(tempCol.r, tempCol.g, tempCol.b, aColor.a);
+	}
 
 private:
 	Math() {};

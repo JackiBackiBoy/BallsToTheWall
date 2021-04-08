@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 #include "SFML/Audio.hpp"
-
 class MusicManager
 {
 public:
