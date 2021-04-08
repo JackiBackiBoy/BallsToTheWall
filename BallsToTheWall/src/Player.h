@@ -15,6 +15,7 @@ public:
 private: 
 	static bool myDeadFlag;
 	static sf::ConvexShape myShape;
+	static sf::ConvexShape myShapeDir;
 	static bool myButtonPressedFlag;
 	static float myButtonTime;
 	static float myCoyoteTime;

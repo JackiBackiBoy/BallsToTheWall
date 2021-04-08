@@ -1,5 +1,6 @@
 #include "InputManager.h"
 #include "core/Window.h"
+#include <iostream>
 
 std::vector < sf::Keyboard::Key> InputManager::myPrevKeyBuffer = std::vector<sf::Keyboard::Key>();
 std::vector < sf::Keyboard::Key> InputManager::myKeyBuffer = std::vector<sf::Keyboard::Key>();
@@ -111,4 +112,6 @@ void InputManager::OnUpdate()
 {
 	myPrevKeyBuffer = myKeyBuffer;
 	myKeyBuffer.clear();
+	myPrevMouseBuffer = myMouseBuffer;
+	myMouseBuffer.clear();
 }

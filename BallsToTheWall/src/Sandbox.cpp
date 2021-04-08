@@ -1,4 +1,5 @@
 #include "Sandbox.h"
+#include"InputManager.h"
 
 float Sandbox::myMagnitude = 0;
 
@@ -45,7 +46,7 @@ void Sandbox::OnStart()
 
 void Sandbox::OnUpdate()
 {
-
+	InputManager::OnUpdate();
 
 	TimeTracker::Update();
 	EnemyManager::OnUpdate();
