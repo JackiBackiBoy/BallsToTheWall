@@ -21,6 +21,7 @@ float Player::myAcceleration = 3000;
 float Player::myLerpDecelerationPercent = 8.f;
 float Player::myTurnSpeedMultiplier = 5;
 bool Player::myDeadFlag = false;
+float Player::myScoreMultiplier = 1;
 
 sf::Vector2f Player::GetPosition()
 {
@@ -35,6 +36,11 @@ void Player::SetPosition(const sf::Vector2f& aPos)
 sf::ConvexShape Player::GetShape()
 {
 	return myShape;
+}
+
+float Player::GetScoreMultiplier()
+{
+	return myScoreMultiplier;
 }
 
 void Player::OnStart()

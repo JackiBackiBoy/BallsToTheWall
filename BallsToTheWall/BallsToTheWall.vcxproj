@@ -192,6 +192,12 @@
     <ClInclude Include="src\SummonSystem.h" />
     <ClInclude Include="src\TriangleEnemy.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="Assets\EDM 2.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Assets\GameName.png" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
