@@ -29,7 +29,7 @@ void SquareEnemy::OnUpdate()
 	sf::Vector2f tempGoal = sf::Vector2f(
 		(myAxis) * myExtent + (!myAxis) * sin(myTime) * Window::GetSize().x * 0.45f,
 		(!myAxis) * myExtent + (myAxis) * sin(myTime) * Window::GetSize().y * 0.4f);
-	myShape.setPosition(Math::Lerp(myShape.getPosition(), tempGoal, 0.3f / Math::Distance(myShape.getPosition(), tempGoal) * TimeTracker::GetTimeScale()));
+	myShape.setPosition(Math::Lerp(myShape.getPosition(), tempGoal, 200.f / Math::Distance(myShape.getPosition(), tempGoal) * TimeTracker::GetDeltaTime()));
 	if (Math::Distance(myShape.getPosition(), tempGoal) < 1) 
 	{
 		myStarting = false;
