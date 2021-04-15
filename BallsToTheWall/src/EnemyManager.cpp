@@ -20,6 +20,7 @@ void EnemyManager::OnStart()
 void EnemyManager::AddEnemyCopy(Enemy* anEnemy) 
 {
 	myEnemies.push_back(anEnemy);
+	anEnemy->OnStart();
 }
 
 void EnemyManager::OnUpdate()

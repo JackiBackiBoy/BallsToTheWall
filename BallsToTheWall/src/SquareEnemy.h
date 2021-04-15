@@ -12,6 +12,5 @@ private:
 	float myTime = 0;
 	float mySpeed;
 	bool myAxis;
-	bool myStarting = 1;
 };
 
