@@ -29,6 +29,7 @@ protected:
 	sf::ConvexShape myShape;
 	sf::Vector2f myDirection;
 	float myVelocity = 0;
+	bool myStarting = 1;
 private:
 	bool myDeadFlag = false;
 };
