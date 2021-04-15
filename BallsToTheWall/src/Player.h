@@ -11,10 +11,12 @@ public:
 	static sf::Vector2f GetPosition();
 	static void SetPosition(const sf::Vector2f& aPos);
 	static sf::ConvexShape GetShape();
+	static float GetScoreMultiplier();
 
 private: 
 	static bool myDeadFlag;
 	static sf::ConvexShape myShape;
+	static sf::ConvexShape myShapeDir;
 	static bool myButtonPressedFlag;
 	static float myButtonTime;
 	static float myCoyoteTime;
@@ -26,6 +28,7 @@ private:
 	static float myAcceleration;
 	static float myLerpDecelerationPercent;
 	static float myTurnSpeedMultiplier;
+	static float myScoreMultiplier;
 
 };
 

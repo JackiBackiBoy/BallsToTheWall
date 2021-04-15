@@ -9,6 +9,7 @@
 #include "Healthbar.h"
 
 sf::ConvexShape Player::myShape = sf::ConvexShape(3);
+sf::ConvexShape Player::myShapeDir = sf::ConvexShape(3);
 bool Player::myButtonPressedFlag = false;
 float Player::myButtonTime = 0;
 float Player::myCoyoteTime = 0.1f;
@@ -20,8 +21,9 @@ float Player::myAcceleration = 3000;
 float Player::myLerpDecelerationPercent = 8.f;
 float Player::myTurnSpeedMultiplier = 5;
 bool Player::myDeadFlag = false;
+float Player::myScoreMultiplier = 1;
 
-sf::Vector2f Player::GetPosition() 
+sf::Vector2f Player::GetPosition()
 {
 	return myShape.getPosition();
 }
@@ -36,6 +38,11 @@ sf::ConvexShape Player::GetShape()
 	return myShape;
 }
 
+float Player::GetScoreMultiplier()
+{
+	return myScoreMultiplier;
+}
+
 void Player::OnStart()
 {
 	myShape.setPoint(0, sf::Vector2f(0, -12.5f));
@@ -43,6 +50,12 @@ void Player::OnStart()
 	myShape.setPoint(2, sf::Vector2f(-12.5f, 12.5f));
 	myShape.setPosition(sf::Vector2f(0, 0));
 	myShape.setFillColor(sf::Color(0, 200, 200));
+
+	myShapeDir.setPoint(0, sf::Vector2f(0, -12.5f));
+	myShapeDir.setPoint(1, sf::Vector2f(5, -3));
+	myShapeDir.setPoint(2, sf::Vector2f(-5, -3));
+	myShapeDir.setPosition(sf::Vector2f(0, 0));
+	myShapeDir.setFillColor(sf::Color(200, 100, 0));
 }
 
 void Player::OnUpdate()
@@ -75,7 +88,7 @@ void Player::OnUpdate()
 		tempDir += sf::Vector2f(1, 0);
 	}
 
-	myCurrentVelocity += Math::Normalized(tempDir) * sf::Vector2f((myCurrentVelocity.x < 0 != tempDir.x < 0) ? myTurnSpeedMultiplier:1, (myCurrentVelocity.y < 0 != tempDir.y < 0) ? myTurnSpeedMultiplier : 1) * myAcceleration * TimeTracker::GetDeltaTime();
+	myCurrentVelocity += Math::Normalized(tempDir) * sf::Vector2f((myCurrentVelocity.x < 0 != tempDir.x < 0) ? myTurnSpeedMultiplier : 1, (myCurrentVelocity.y < 0 != tempDir.y < 0) ? myTurnSpeedMultiplier : 1) * myAcceleration * TimeTracker::GetDeltaTime();
 
 	if (tempDir.x == 0)
 	{
@@ -96,25 +109,30 @@ void Player::OnUpdate()
 	myShape.setPosition(myShape.getPosition() + myCurrentVelocity * TimeTracker::GetDeltaTime());
 
 
-
-	//If hit ball pressed
-	if (InputManager::GetMouseButton(sf::Mouse::Left) && !myButtonPressedFlag)
+	InputManager::GetMouseButtonDown(sf::Mouse::Left);
+	myButtonTime += TimeTracker::GetDeltaTime();
+	sf::Vector2f tempBallVec = myShape.getPosition() - Ball::GetPosition();
+	sf::Vector2f tempMouseVecN = Math::Normalized(tempMouseVec);
+	sf::Vector2f tempBallVecN = Math::Normalized(tempBallVec);
+	if (Math::LengthSqrd(tempBallVec) <= myBallDistance && Math::Dot(tempBallVecN, tempMouseVecN) >= myBallLikeness)
 	{
-		myButtonTime += TimeTracker::GetDeltaTime();
-		sf::Vector2f tempBallVec = myShape.getPosition() - Ball::GetPosition();
-		sf::Vector2f tempMouseVecN = Math::Normalized(tempMouseVec);
-		sf::Vector2f tempBallVecN = Math::Normalized(tempBallVec);
-		if (Math::LengthSqrd(tempBallVec) <= myBallDistance && Math::Dot(tempBallVecN, tempMouseVecN) >= myBallLikeness)
+		myShapeDir.setFillColor(sf::Color(0, 255, 0));
+		if (InputManager::GetMouseButtonDown(sf::Mouse::Left))
 		{
 			Healthbar::Reset();
 			Ball::Hit(std::atan2((tempMouseVecN.y + tempBallVecN.y) / 2, (tempMouseVecN.x + tempBallVecN.x) / 2) - Math::Pi);
 			myButtonPressedFlag = true;
 		}
-		if (myButtonTime > myCoyoteTime)
-		{
-			myButtonPressedFlag = true;
-		}
 	}
+	else
+	{
+		myShapeDir.setFillColor(sf::Color(200, 100, 0));
+	}
+	if (myButtonTime > myCoyoteTime)
+	{
+		myButtonPressedFlag = true;
+	}
+
 	else if (!sf::Mouse::isButtonPressed(sf::Mouse::Button::Left))
 	{
 		myButtonPressedFlag = false;
@@ -132,7 +150,9 @@ void Player::OnUpdate()
 void Player::OnRender(sf::RenderWindow* aWindow)
 {
 	aWindow->draw(myShape);
-
+	myShapeDir.setRotation(myShape.getRotation());
+	myShapeDir.setPosition(myShape.getPosition());
+	aWindow->draw(myShapeDir);
 
 	//Player to Mouse
 	//Window::CurrentWindow->DrawLine(myShape.getPosition(), Mouse::GetPosition(), sf::Color::Red);

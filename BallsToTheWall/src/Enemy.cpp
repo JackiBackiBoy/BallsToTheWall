@@ -84,6 +84,11 @@ sf::ConvexShape Enemy::GetShape()
 	return myShape;
 }
 
+int Enemy::GetScore()
+{
+	return myScore * Player::GetScoreMultiplier();
+}
+
 bool Enemy::Intersects(sf::ConvexShape a)
 {
 	sf::ConvexShape b = myShape;

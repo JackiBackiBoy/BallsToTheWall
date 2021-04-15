@@ -25,10 +25,12 @@ public:
 	void Rotate(const float& someDegrees);
 	sf::Vector2f GetVelocity();
 	sf::ConvexShape GetShape();
+	int GetScore();
 protected:
 	sf::ConvexShape myShape;
 	sf::Vector2f myDirection;
 	float myVelocity = 0;
+	int myScore = 300;
 	bool myStarting = 1;
 private:
 	bool myDeadFlag = false;
