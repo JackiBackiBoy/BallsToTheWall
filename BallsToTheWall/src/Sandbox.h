@@ -13,6 +13,11 @@
 #include "MusicManager.h"
 #include "SaveLoad.h"
 #include "Options.h"
+struct Score
+{
+	std::string Name;
+	int Score;
+};
 class Sandbox : public Window
 {
 public:
@@ -27,4 +32,5 @@ public:
 	static void Shake(float aMagnitude);
 private:
 	static float myMagnitude;
+	static std::vector<Score> myHighscores;
 };

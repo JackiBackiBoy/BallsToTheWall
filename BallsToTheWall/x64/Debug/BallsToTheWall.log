@@ -1,5 +1,5 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Raycast Engine 2.0.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  Healthbar.cpp
+  HexagonEnemy.cpp
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(26,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
@@ -10,14 +10,17 @@ C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(103,11): warning C4
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(143,58): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(143,43): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(143,28): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
-C:\Development\BallsToTheWall\BallsToTheWall\src\Healthbar.cpp(18,37): warning C4305: 'initializing': truncation from 'double' to 'float'
-C:\Development\BallsToTheWall\BallsToTheWall\src\Healthbar.cpp(55,17): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-C:\Development\BallsToTheWall\BallsToTheWall\src\Healthbar.cpp(62,7): warning C4244: 'argument': conversion from '_Ty' to 'sf::Uint8', possible loss of data
-          with
-          [
-              _Ty=float
-          ]
-C:\Development\BallsToTheWall\BallsToTheWall\src\Healthbar.cpp(61,17): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
-C:\Development\BallsToTheWall\BallsToTheWall\src\Healthbar.cpp(60,17): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
-C:\Development\BallsToTheWall\BallsToTheWall\src\Healthbar.cpp(59,23): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+  SquareEnemy.cpp
+C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(26,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(25,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(41,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(42,78): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(103,11): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(143,58): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(143,43): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(143,28): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\SquareEnemy.cpp(16,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+  Generating Code...
   BallsToTheWall.vcxproj -> C:\Development\BallsToTheWall\x64\Debug\BallsToTheWall.exe
