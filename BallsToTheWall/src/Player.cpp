@@ -22,6 +22,11 @@ float Player::myLerpDecelerationPercent = 8.f;
 float Player::myTurnSpeedMultiplier = 5;
 bool Player::myDeadFlag = false;
 float Player::myScoreMultiplier = 1;
+int Player::myScore = 0;
+float Player::myTimeScore = 0;
+sf::Font Player::myScoreFont = sf::Font();
+sf::Text Player::myScoreText = sf::Text();
+
 
 sf::Vector2f Player::GetPosition()
 {
@@ -43,8 +48,24 @@ float Player::GetScoreMultiplier()
 	return myScoreMultiplier;
 }
 
+void Player::AddScore(int aVal)
+{
+	myScore += aVal;
+}
+
+sf::Font& Player::GetScoreFont()
+{
+	return myScoreFont;
+}
+
 void Player::OnStart()
 {
+	myScoreFont.loadFromFile("Assets/ScoreFont.ttf");
+
+	myScoreText.setString(std::to_string(myScore));
+	myScoreText.setFont(myScoreFont);
+	myScoreText.setCharacterSize(40);
+
 	myShape.setPoint(0, sf::Vector2f(0, -12.5f));
 	myShape.setPoint(1, sf::Vector2f(12.5f, 12.5f));
 	myShape.setPoint(2, sf::Vector2f(-12.5f, 12.5f));
@@ -145,6 +166,18 @@ void Player::OnUpdate()
 		Die();
 	}
 	myShape.setScale(1, 1);
+
+	myScoreText.setPosition(sf::Vector2f(-myScoreText.getLocalBounds().width / 2, -Window::GetSize().y / 2));
+	if (Ball::GetVelocity() != sf::Vector2f(0, 0))
+	{
+		myTimeScore += TimeTracker::GetDeltaTime() * 10;
+		while (myTimeScore > 1)
+		{
+			myTimeScore--;
+			myScore++;
+		}
+	}
+
 }
 
 void Player::OnRender(sf::RenderWindow* aWindow)
@@ -153,6 +186,9 @@ void Player::OnRender(sf::RenderWindow* aWindow)
 	myShapeDir.setRotation(myShape.getRotation());
 	myShapeDir.setPosition(myShape.getPosition());
 	aWindow->draw(myShapeDir);
+
+	myScoreText.setString("Score: " + std::to_string(myScore));
+	aWindow->draw(myScoreText);
 
 	//Player to Mouse
 	//Window::CurrentWindow->DrawLine(myShape.getPosition(), Mouse::GetPosition(), sf::Color::Red);
@@ -176,6 +212,7 @@ void Player::Die()
 {
 	myDeadFlag = true;
 	TimeTracker::SetTimeScale(0);
+
 }
 
 bool Player::GetDeadFlag()
