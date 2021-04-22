@@ -1,5 +1,5 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(491,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Raycast Engine 2.0.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  HexagonEnemy.cpp
+  Sandbox.cpp
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(26,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
@@ -10,7 +10,41 @@ C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(103,11): warning C4
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(143,58): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(143,43): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(143,28): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
-  SquareEnemy.cpp
+C:\Development\BallsToTheWall\BallsToTheWall\src\ParticleSystem.h(11,40): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Development\BallsToTheWall\BallsToTheWall\src\SummonSystem.h(19,38): warning C4305: 'initializing': truncation from 'double' to 'float'
+C:\Development\BallsToTheWall\BallsToTheWall\src\EnemyManager.h(21,100): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(53,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(73,86): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(73,60): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(73,130): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(73,104): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(73,103): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Development\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(73,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Development\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(73,159): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Development\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(73,150): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Development\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(103,41): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(141,76): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+  Window.cpp
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(28,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(27,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(26,41): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
@@ -21,6 +55,28 @@ C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(103,11): warning C4
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(143,58): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(143,43): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
 C:\Development\BallsToTheWall\BallsToTheWall\src\math\Math.h(143,28): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
-C:\Development\BallsToTheWall\BallsToTheWall\src\SquareEnemy.cpp(16,27): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(12,74): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Development\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(12,65): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Development\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(102,39): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(114,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Development\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(115,17): warning C4244: 'initializing': conversion from 'T' to 'int', possible loss of data
+          with
+          [
+              T=float
+          ]
+C:\Development\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(161,27): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+C:\Development\BallsToTheWall\BallsToTheWall\src\core\Window.cpp(161,19): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
   Generating Code...
   BallsToTheWall.vcxproj -> C:\Development\BallsToTheWall\x64\Debug\BallsToTheWall.exe

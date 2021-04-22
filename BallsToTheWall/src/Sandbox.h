@@ -16,7 +16,17 @@
 struct Score
 {
 	std::string Name;
-	int Score;
+	int Value;
+	Score()
+	{
+		Name = "";
+		Value = 0;
+	}
+	Score(std::string aName, int aValue)
+	{
+		Name = aName;
+		Value = aValue;
+	}
 };
 class Sandbox : public Window
 {
@@ -32,5 +42,6 @@ public:
 	static void Shake(float aMagnitude);
 private:
 	static float myMagnitude;
-	static std::vector<Score> myHighscores;
+
+	void CheckScore(Score aScore);
 };

@@ -7,6 +7,7 @@
 #include "input\Mouse.h"
 #include "TimeTracker.h"
 #include "Healthbar.h"
+#include "SaveLoad.h"
 
 sf::ConvexShape Player::myShape = sf::ConvexShape(3);
 sf::ConvexShape Player::myShapeDir = sf::ConvexShape(3);
@@ -56,6 +57,11 @@ void Player::AddScore(int aVal)
 sf::Font& Player::GetScoreFont()
 {
 	return myScoreFont;
+}
+
+int Player::GetScore()
+{
+	return myScore;
 }
 
 void Player::OnStart()
@@ -212,7 +218,6 @@ void Player::Die()
 {
 	myDeadFlag = true;
 	TimeTracker::SetTimeScale(0);
-
 }
 
 bool Player::GetDeadFlag()

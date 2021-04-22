@@ -1,6 +1,8 @@
 #include "Window.h"
 #include "math/Math.h"
 #include "input/Keyboard.h"
+#include <iostream>
+#include "Player.h"
 
 void Window::Run()
 {
@@ -12,6 +14,9 @@ void Window::Run()
 	// OnStart
 	Window::OnStart();
 	OnStart();
+
+	sf::Text myPlayerText;
+	std::string myPlayerInput;
 
 
 	while (myRawWindow->isOpen())
@@ -25,6 +30,27 @@ void Window::Run()
 		{
 			if (event.type == sf::Event::Closed)
 				myRawWindow->close();
+			if (Player::GetDeadFlag())
+			{
+				myPlayerText.setPosition(sf::Vector2f(-myPlayerText.getLocalBounds().width / 2, -myPlayerText.getLocalBounds().height / 2));
+				sf::Event tempEvent;
+				while (Window::CurrentWindow->GetRawWindow()->pollEvent(tempEvent))
+				{
+
+					if (tempEvent.type == sf::Event::TextEntered)
+					{
+						if (tempEvent.KeyPressed == sf::Keyboard::BackSpace && myPlayerInput.size() != 0)
+						{
+							myPlayerInput.pop_back();
+						}
+						else if (tempEvent.text.unicode < 128)
+						{
+							myPlayerInput.push_back((char)tempEvent.text.unicode);
+						}
+					}
+				}
+				myPlayerText.setString(myPlayerInput);
+			}
 		}
 
 		myRawWindow->clear({ 20, 20, 20 });

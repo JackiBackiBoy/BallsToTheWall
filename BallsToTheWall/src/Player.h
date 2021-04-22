@@ -14,6 +14,7 @@ public:
 	static float GetScoreMultiplier();
 	static void AddScore(int aVal);
 	static sf::Font& GetScoreFont();
+	static int GetScore();
 
 private: 
 	static sf::Font myScoreFont;

@@ -3,6 +3,7 @@
 #include <fstream>
 #include <sstream>
 
+
 std::map<std::string, std::string> SaveLoad::mySavedStrings = std::map<std::string, std::string>();
 bool SaveLoad::myLoadedFlag = false;
 std::string SaveLoad::myAppdataString = "";
