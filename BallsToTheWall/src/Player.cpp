@@ -25,6 +25,7 @@ bool Player::myDeadFlag = false;
 float Player::myScoreMultiplier = 1;
 int Player::myScore = 0;
 float Player::myTimeScore = 0;
+sf::Font Player::myScoreFont = sf::Font();
 sf::Text Player::myScoreText = sf::Text();
 
 
