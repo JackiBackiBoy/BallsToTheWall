@@ -12,6 +12,7 @@ public:
 	static void SetPosition(const sf::Vector2f& aPos);
 	static sf::ConvexShape GetShape();
 	static float GetScoreMultiplier();
+	static float UpdateScore();
 
 private: 
 	static bool myDeadFlag;
@@ -22,6 +23,7 @@ private:
 	static float myCoyoteTime;
 	static float myBallLikeness;
 	static float myBallDistance;
+	static float myScore;
 
 	static sf::Vector2f myCurrentVelocity;
 	static float myMaxVelocity;
