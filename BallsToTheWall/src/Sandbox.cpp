@@ -25,7 +25,8 @@ void Sandbox::OnStart()
 	for (int i = 0; i < 10; i++)
 	{
 		std::string tempValue = SaveLoad::Load("HSV" + std::to_string(i));
-		myHighscores[i] = Score(SaveLoad::Load("HSN" + std::to_string(i)), std::stoi(tempValue != "" ? tempValue : "0"));
+		std::string tempName = SaveLoad::Load("HSN" + std::to_string(i));
+		myHighscores[i] = Score(tempName != "" ? tempName: "Unclaimed", std::stoi(tempValue != "" ? tempValue : "0"));
 	}
 
 	myStartWidth = myWidth;
