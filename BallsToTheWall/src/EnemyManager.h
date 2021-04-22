@@ -45,7 +45,6 @@ private:
 	static bool* myOpenSectors;
 	static float mySummonTime;
 	static float myCurrentSummonTime;
-	static sf::Font myScoreFont;
 	static std::vector<ScoreText> myTexts;
 };
 

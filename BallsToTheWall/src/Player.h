@@ -12,9 +12,12 @@ public:
 	static void SetPosition(const sf::Vector2f& aPos);
 	static sf::ConvexShape GetShape();
 	static float GetScoreMultiplier();
-	static float UpdateScore();
-
+	static void AddScore(int aVal);
+	static sf::Font& GetScoreFont();
+	static int GetScore();
 private: 
+	static sf::Font myScoreFont;
+	static sf::Text myScoreText;
 	static bool myDeadFlag;
 	static sf::ConvexShape myShape;
 	static sf::ConvexShape myShapeDir;
@@ -31,6 +34,9 @@ private:
 	static float myLerpDecelerationPercent;
 	static float myTurnSpeedMultiplier;
 	static float myScoreMultiplier;
+
+	static int myScore;
+	static float myTimeScore;
 
 };
 

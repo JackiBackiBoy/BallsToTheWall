@@ -9,19 +9,18 @@ SummonSystem EnemyManager::mySummonSystem = SummonSystem();
 bool* EnemyManager::myOpenSectors = new bool[4] { true, true, true, true };
 float EnemyManager::mySummonTime = 3;
 float EnemyManager::myCurrentSummonTime = 0;
-sf::Font EnemyManager::myScoreFont = sf::Font();
 std::vector<ScoreText> EnemyManager::myTexts = std::vector<ScoreText>();
 
 
 
 void EnemyManager::OnStart()
 {
-	myScoreFont.loadFromFile("Assets/ScoreFont.ttf");
 }
 
 void EnemyManager::AddEnemyCopy(Enemy* anEnemy) 
 {
 	myEnemies.push_back(anEnemy);
+	anEnemy->OnStart();
 }
 
 void EnemyManager::OnUpdate()
@@ -37,7 +36,7 @@ void EnemyManager::OnUpdate()
 		for (auto it = myEnemies.begin(); it != myEnemies.end();)
 		{
 			
-			if ((*it._Ptr)->IsDead()) // remove dead enemy and add particle effect
+			if ((*it)->IsDead()) // remove dead enemy and add particle effect
 			{
 				ParticleProps tempPP = ParticleProps();
 				tempPP.Position = sf::Vector2f((*it._Ptr)->GetPosition());
@@ -58,9 +57,10 @@ void EnemyManager::OnUpdate()
 				}
 				ScoreText tempText = ScoreText();
 				tempText.Init();
-				tempText.Text = sf::Text(std::to_string((*it._Ptr)->GetScore()), myScoreFont);
+				tempText.Text = sf::Text(std::to_string((*it._Ptr)->GetScore()), Player::GetScoreFont());
 				tempText.Text.setPosition((*it._Ptr)->GetPosition() - sf::Vector2f(tempText.Text.getLocalBounds().width/2, tempText.Text.getLocalBounds().height/2));
 
+				Player::AddScore((*it._Ptr)->GetScore());
 				for (int i = 0; i < myTexts.size(); i++)
 				{
 					if (Math::Distance(tempText.Text.getPosition(), myTexts[i].Text.getPosition())< 100)
@@ -82,9 +82,11 @@ void EnemyManager::OnUpdate()
 				delete (*it._Ptr);
 				it = myEnemies.erase(it);
 				Sandbox::Shake(10);
-
 			}
-			else ++it;
+			else
+			{
+				it++;
+			}
 		}
 
 		myCurrentSummonTime += TimeTracker::GetDeltaTime();

@@ -31,6 +31,7 @@ protected:
 	sf::Vector2f myDirection;
 	float myVelocity = 0;
 	int myScore = 300;
+	bool myStarting = 1;
 private:
 	bool myDeadFlag = false;
 };

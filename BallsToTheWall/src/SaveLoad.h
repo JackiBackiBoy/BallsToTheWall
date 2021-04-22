@@ -2,6 +2,8 @@
 #include <string>
 #include <map>
 #include <vector>
+#include "Sandbox.h"
+
 class SaveLoad
 {
 private:
