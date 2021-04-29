@@ -17,7 +17,7 @@ void TriangleEnemy::OnUpdate()
 	myAngle += TimeTracker::GetDeltaTime();
 	sf::Vector2f tempGoal = Player::GetPosition() + sf::Vector2f(cos(myAngle), sin(myAngle)) * (myDistance + sin(myAngle * 10) * 25);
 	myShape.setRotation(Math::ToDegrees(atan2(Player::GetPosition().y - myShape.getPosition().y, Player::GetPosition().x - myShape.getPosition().x)));
-	myShape.setPosition(Math::Lerp(myShape.getPosition(), tempGoal, 0.3f / Math::Distance(myShape.getPosition(), tempGoal) * TimeTracker::GetTimeScale()));
+	myShape.setPosition(Math::Lerp(myShape.getPosition(), tempGoal, 200.f / Math::Distance(myShape.getPosition(), tempGoal) * TimeTracker::GetDeltaTime()));
 	Enemy::OnUpdate();
 }
 
