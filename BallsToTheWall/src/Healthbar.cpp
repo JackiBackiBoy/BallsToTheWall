@@ -59,7 +59,7 @@ void Healthbar::OnRender(sf::RenderWindow* aWindow)
 		(1 - tempHPPercent) * 255, 
 		tempHPPercent * 200, 
 		tempHPPercent * 200, 
-		100 + 100 * std::max(0.f, std::min(1.f, Math::LengthSqrd((Player::GetPosition() + Window::GetSize() / 2.f - myPosition) / 500.f))));
+		50 + 100 * std::max(0.f, std::min(1.f, Math::LengthSqrd((Player::GetPosition() + Window::GetSize() / 2.f - myPosition) / 500.f))));
 
 	for (int i = 0; i < tempVCount - 1; i++)
 	{

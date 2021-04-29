@@ -13,6 +13,21 @@
 #include "MusicManager.h"
 #include "SaveLoad.h"
 #include "Options.h"
+struct Score
+{
+	std::string Name;
+	int Value;
+	Score()
+	{
+		Name = "";
+		Value = 0;
+	}
+	Score(std::string aName, int aValue)
+	{
+		Name = aName;
+		Value = aValue;
+	}
+};
 class Sandbox : public Window
 {
 public:
@@ -27,4 +42,6 @@ public:
 	static void Shake(float aMagnitude);
 private:
 	static float myMagnitude;
+
+	void CheckScore(Score aScore);
 };
