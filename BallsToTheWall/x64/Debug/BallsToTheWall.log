@@ -13,33 +13,45 @@ D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\math\Math.h(143,28)
 D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\ParticleSystem.h(11,40): warning C4305: 'initializing': truncation from 'double' to 'float'
 D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\SummonSystem.h(19,38): warning C4305: 'initializing': truncation from 'double' to 'float'
 D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\EnemyManager.h(21,100): warning C4244: 'argument': conversion from 'float' to 'sf::Uint8', possible loss of data
-D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(54,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(74,86): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(74,60): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(74,130): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(74,104): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
-D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(74,103): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(58,16): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(65,80): warning C4244: 'argument': conversion from 'T' to 'const int', possible loss of data
           with
           [
               T=float
           ]
-D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(74,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(93,67): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(93,42): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(116,86): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(116,60): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(116,130): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(116,104): warning C4244: 'argument': conversion from 'float' to 'const int', possible loss of data
+D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(116,103): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(74,159): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(116,59): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(74,150): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(116,159): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float
           ]
-D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(104,41): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(142,76): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(116,150): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(146,41): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(180,76): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
+          with
+          [
+              T=float
+          ]
+D:\Projects\BallsToTheWall\BallsToTheWall\BallsToTheWall\src\Sandbox.cpp(196,76): warning C4244: 'argument': conversion from 'int' to 'T', possible loss of data
           with
           [
               T=float

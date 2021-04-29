@@ -166,7 +166,7 @@ void Player::OnUpdate()
 		myButtonTime = 0;
 	}
 	myShape.setScale(0.7f, 0.7f);
-	if (Ball::Intersects(myShape))
+	if (Ball::Intersects(myShape) && Ball::GetVelocity() != sf::Vector2f(0,0))
 	{
 		myShape.setScale(1, 1);
 		Die();

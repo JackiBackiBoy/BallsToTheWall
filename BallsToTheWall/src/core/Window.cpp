@@ -1,13 +1,17 @@
 #include "Window.h"
 #include "math/Math.h"
 #include "input/Keyboard.h"
+#include <iostream>
 
+std::string* Window::myCurrentTextField = nullptr;
 void Window::Run()
 {
 	myPixel = sf::RectangleShape({ 1, 1 });
-	myRawWindow = new sf::RenderWindow(sf::VideoMode(myWidth, myHeight), myTitle, 7U, sf::ContextSettings(0,0,16));
+	myRawWindow = new sf::RenderWindow(sf::VideoMode(myWidth, myHeight), myTitle, 7U, sf::ContextSettings(0, 0, 16));
 
 	myRawWindow->setView(sf::View(sf::Vector2f(0, 0), sf::Vector2f(myWidth, myHeight)));
+
+
 
 	// OnStart
 	Window::OnStart();
@@ -21,10 +25,28 @@ void Window::Run()
 		Window::OnUpdate();
 
 		sf::Event event;
-		while (myRawWindow->pollEvent(event))
+		while (Window::CurrentWindow->GetRawWindow()->pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				myRawWindow->close();
+			if ( myCurrentTextField != nullptr)
+			{
+				if(event.type == sf::Event::TextEntered)
+				{
+					if (std::isprint(event.text.unicode))
+					{
+						*myCurrentTextField += event.text.unicode;
+					}
+				}
+				if (event.type == sf::Event::KeyPressed)
+				{
+					if (event.key.code == sf::Keyboard::BackSpace)
+					{
+						if (!myCurrentTextField->empty())
+							myCurrentTextField->pop_back();
+					}
+				}
+			}
 		}
 
 		myRawWindow->clear({ 20, 20, 20 });
@@ -32,7 +54,6 @@ void Window::Run()
 		// OnRender
 		Window::OnRender(myRawWindow);
 		OnRender(myRawWindow);
-
 		myRawWindow->display();
 	}
 }
@@ -136,6 +157,11 @@ void Window::DrawVerticalLine(const sf::Vector2f& aStartPoint, const int& aWidth
 	myPixel.setFillColor(aColor);
 
 	myRawWindow->draw(myPixel);
+}
+
+void Window::SetTextField(std::string* aString)
+{
+	myCurrentTextField = aString;
 }
 
 Window* Window::CurrentWindow = nullptr;

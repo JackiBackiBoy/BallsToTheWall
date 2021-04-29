@@ -1,5 +1,6 @@
 #include "Sandbox.h"
 #include"InputManager.h"
+#include "Button.h"
 
 float Sandbox::myMagnitude = 0;
 Score myHighscores[10];
@@ -14,8 +15,11 @@ float myTempWidth;
 bool myScoreCheckedFlag = false;
 
 sf::Text myPlayerText;
+sf::Text myGameOverText;
 int myTitleSplit = 10;
 std::string myPlayerInput;
+
+Button myRestartButton;
 
 ParticleSystem myTitleParticleSystem;
 
@@ -26,7 +30,7 @@ void Sandbox::OnStart()
 	{
 		std::string tempValue = SaveLoad::Load("HSV" + std::to_string(i));
 		std::string tempName = SaveLoad::Load("HSN" + std::to_string(i));
-		myHighscores[i] = Score(tempName != "" ? tempName: "Unclaimed", std::stoi(tempValue != "" ? tempValue : "0"));
+		myHighscores[i] = Score(tempName != "" ? tempName : " ", std::stoi(tempValue != "" ? tempValue : "0"));
 	}
 
 	myStartWidth = myWidth;
@@ -52,12 +56,50 @@ void Sandbox::OnStart()
 	myHeight /= 2;
 	myWidth /= 2;
 	myTempWidth = myWidth;
+
+	myPlayerText = sf::Text("", Player::GetScoreFont(), 50);
+	myGameOverText = sf::Text("GAME OVER", Player::GetScoreFont(), 100);
+	myGameOverText.setPosition(sf::Vector2f(-myGameOverText.getLocalBounds().width / 2, -150 - myGameOverText.getLocalBounds().height / 2));
+
+	myRestartButton = Button(sf::Vector2f(0, 0), "RESTART", 60);
+	myRestartButton.SetPosition(-myRestartButton.GetText().getLocalBounds().width / 2, 0);
 }
 
 
 
 void Sandbox::OnUpdate()
 {
+	if (Player::GetDeadFlag())
+	{
+		if (!myScoreCheckedFlag)
+		{
+			Window::SetTextField(&myPlayerInput);
+			myPlayerText.setString(myPlayerInput);
+			myPlayerText.setPosition(sf::Vector2f(-myPlayerText.getLocalBounds().width / 2,0));
+			while (myPlayerInput.length() > 8)
+			{
+				myPlayerInput.pop_back();
+			}
+
+			if (InputManager::GetKeyDown(sf::Keyboard::Enter) && !myPlayerInput.empty())
+			{
+				CheckScore(Score(myPlayerInput, Player::GetScore()));
+				Window::SetTextField(nullptr);
+				myScoreCheckedFlag = true;
+			}
+		}
+		else
+		{
+			myRestartButton.OnUpdate(myStartWidth / myWidth, myStartHeight / myHeight);
+			if (myRestartButton.GetClickedFlag())
+			{
+				//Restart();
+			}
+		}
+
+	}
+
+
 	InputManager::OnUpdate();
 
 	TimeTracker::Update();
@@ -69,7 +111,7 @@ void Sandbox::OnUpdate()
 
 	if (myMagnitude > 0)
 	{
-		myMagnitude -= fmin(myMagnitude * TimeTracker::GetDeltaTime() * 10, myMagnitude / 2);
+		myMagnitude -= fmin(myMagnitude * TimeTracker::GetUnscaledDeltaTime() * 10, myMagnitude / 2);
 	}
 	GetRawWindow()->setView(sf::View(sf::Vector2f(Random::Int(-myMagnitude, myMagnitude + 1), Random::Int(-myMagnitude, myMagnitude + 1)), sf::Vector2f(myWidth, myHeight)));
 
@@ -101,7 +143,7 @@ void Sandbox::OnUpdate()
 	myTitleParticleSystem.OnUpdate();
 	if (GameStarted && (myWidth <= myStartWidth || myHeight <= myStartHeight))
 	{
-		myTempWidth = Math::Lerp(myTempWidth, myStartWidth, 7.f * TimeTracker::GetDeltaTime());
+		myTempWidth = Math::Lerp(myTempWidth, myStartWidth, 7.f * TimeTracker::GetUnscaledDeltaTime());
 		myWidth = (int)myTempWidth;
 		if (myWidth > myStartWidth)
 			myWidth = myStartWidth;
@@ -109,12 +151,8 @@ void Sandbox::OnUpdate()
 	}
 
 
-	if (Player::GetDeadFlag() && !myScoreCheckedFlag)
-	{
-		CheckScore(Score("Steve", Player::GetScore()));
-		myScoreCheckedFlag = true;
-		myPlayerText = sf::Text("", Player::GetScoreFont(), 50);
-	}
+
+
 
 
 }
@@ -131,7 +169,7 @@ void Sandbox::OnRender(sf::RenderWindow* aWindow)
 
 	if (Ball::GetVelocity() == sf::Vector2f(0, 0))
 	{
-		sf::Vector2f tempStartPos = sf::Vector2f(-300, -160);
+		sf::Vector2f tempStartPos = sf::Vector2f(-Window::CurrentWindow->GetSize().x /4, -Window::CurrentWindow->GetSize().y /4);
 		sf::Text tempHsText = sf::Text("Highscores:", Player::GetScoreFont(), 20);
 		tempHsText.setPosition(tempStartPos);
 		aWindow->draw(tempHsText);
@@ -146,8 +184,32 @@ void Sandbox::OnRender(sf::RenderWindow* aWindow)
 
 	if (Player::GetDeadFlag())
 	{
-		aWindow->draw(myPlayerText);
+
+		sf::Vector2f tempStartPos = sf::Vector2f(-Window::CurrentWindow->GetSize().x/2, -Window::CurrentWindow->GetSize().y / 2);
+		sf::Text tempHsText = sf::Text("Highscores:", Player::GetScoreFont(), 40);
+		tempHsText.setPosition(tempStartPos);
+		aWindow->draw(tempHsText);
+
+		for (short i = 0; i < 10; i++)
+		{
+			sf::Text tempScoreText = sf::Text(myHighscores[i].Name + ": " + std::to_string(myHighscores[i].Value), Player::GetScoreFont(), 40);
+			tempScoreText.setPosition(tempStartPos + sf::Vector2f(0, ((i + 1) * 40) + 40));
+			aWindow->draw(tempScoreText);
+		}
+
+
+		aWindow->draw(myGameOverText);
+
+		if (!myScoreCheckedFlag)
+		{
+			aWindow->draw(myPlayerText);
+		}
+		else
+		{
+			myRestartButton.OnRender(aWindow);
+		}
 	}
+
 }
 
 void Sandbox::CheckScore(Score aScore)

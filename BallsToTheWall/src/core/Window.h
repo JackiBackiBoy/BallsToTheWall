@@ -29,11 +29,14 @@ public:
 
 	static Window* CurrentWindow;
 
+	static void SetTextField(std::string* aString);
+
 protected:
 	std::string myTitle;
 	int myWidth;
 	int myHeight;
 	sf::RenderWindow* myRawWindow;
 	sf::RectangleShape myPixel;
+	static std::string* myCurrentTextField;
 };
 #endif
