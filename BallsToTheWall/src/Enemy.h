@@ -14,7 +14,7 @@ public:
 	virtual void OnStart();
 	virtual void OnUpdate();
 	virtual void OnRender(sf::RenderWindow* aWindow);
-	void Die();
+	virtual void Die();
 	bool IsDead();
 	bool Intersects(sf::ConvexShape a);
 	void Collision();

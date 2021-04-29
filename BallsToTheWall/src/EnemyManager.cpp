@@ -121,7 +121,7 @@ void EnemyManager::OnUpdate()
 			{
 				int tempSector = tempSectorIndices[Random::Int(0, tempSectorIndices.size())];
 				SummonProps tempSP = SummonProps();
-				tempSP.EnemyType = (EnemyType)Random::Int(0, 2);
+				tempSP.EnemyType = (EnemyType)Random::Int(0, 3);
 				float tempW = Window::GetSize().x / 2.f;
 				float tempH = Window::GetSize().y / 2.f;
 				if (tempSector == 0) tempSP.Position = sf::Vector2f(-tempW, -tempH);

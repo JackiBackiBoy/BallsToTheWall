@@ -113,6 +113,7 @@ void SummonSystem::Summon(const SummonProps& someSummonProps)
 	}
 	else if (someSummonProps.EnemyType == EnemyType::Hexagon)
 	{
+		tempS.Position = sf::Vector2f(0, 0);
 		HexagonEnemy tempEnemy = HexagonEnemy(someSummonProps.Position, 0);
 		float tempDist = Math::Length(tempEnemy.GetShape().getPoint(0)) * sqrt(3);
 		tempS.Enemies.push_back(new HexagonEnemy({ 0, 0 }, tempS.Rotation));
