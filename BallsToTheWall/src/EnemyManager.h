@@ -40,6 +40,7 @@ public:
 	static void AddEnemyCopy(Enemy* anEnemy);
 	static void IncreaseSummonLevel();
 	static void Reset();
+	static sf::Texture& GetEnemyTexture();
 private:
 	static std::vector<Enemy*> myEnemies;
 	static ParticleSystem myParticleSystem;
@@ -49,5 +50,7 @@ private:
 	static float myCurrentSummonTime;
 	static std::vector<ScoreText> myTexts;
 	static int myCurrentSummonLevel;
+	static std::vector<sf::Color> myParticleColors;
+	static sf::Texture myTexture;
 };
 

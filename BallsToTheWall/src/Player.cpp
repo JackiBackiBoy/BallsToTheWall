@@ -88,7 +88,7 @@ void Player::OnStart()
 	myShape.setPoint(1, sf::Vector2f(12.5f, 12.5f));
 	myShape.setPoint(2, sf::Vector2f(-12.5f, 12.5f));
 	myShape.setPosition(sf::Vector2f(0, 0));
-	myShape.setFillColor(sf::Color(0, 200, 200));
+	myShape.setFillColor(sf::Color(255, 255, 255));
 
 	myShapeDir.setPoint(0, sf::Vector2f(0, -12.5f));
 	myShapeDir.setPoint(1, sf::Vector2f(5, -3));
