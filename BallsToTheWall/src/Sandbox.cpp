@@ -3,6 +3,7 @@
 #include "Button.h"
 
 float Sandbox::myMagnitude = 0;
+float Sandbox::myScaleFactor = 0;
 Score myHighscores[10];
 
 Sandbox::Sandbox(const std::string& aTitle, const int& aWidth, const int& aHeight) : Window(aTitle, aWidth, aHeight) {};
@@ -33,12 +34,17 @@ void Sandbox::OnStart()
 		myHighscores[i] = Score(tempName != "" ? tempName : " ", std::stoi(tempValue != "" ? tempValue : "0"));
 	}
 
+	float tempRatio = myWidth / (float)myHeight;
+	float tempDefaultRatio = 1240.f / 720.f;
+
+	myScaleFactor = (myWidth / 1240.f) * (tempDefaultRatio / tempRatio);
+
 	myStartWidth = myWidth;
 	myStartHeight = myHeight;
 
 	TitleNameTex.loadFromFile("Assets/GameName.png");
 	TitleText = sf::Sprite(TitleNameTex);
-	TitleText.setScale(sf::Vector2f(0.5f, 0.5f));
+	TitleText.setScale(sf::Vector2f(0.5f, 0.5f) * myScaleFactor);
 	TitleText.setPosition(sf::Vector2f(-(int)TitleNameTex.getSize().x * TitleText.getScale().x / 2, -(int)TitleNameTex.getSize().y * TitleText.getScale().y / 2));
 	myTitleParticleSystem = ParticleSystem((TitleNameTex.getSize().x / myTitleSplit) * (TitleNameTex.getSize().y / myTitleSplit));
 
@@ -51,7 +57,7 @@ void Sandbox::OnStart()
 	Healthbar::OnStart();
 	MusicManager::Start("EDM 2");
 
-	Player::SetPosition(sf::Vector2f(0, 65));
+	Player::SetPosition(sf::Vector2f(0, 65) * myScaleFactor);
 	Mouse::SetPosition(sf::Vector2i(0, 20));
 	myHeight /= 2;
 	myWidth /= 2;
@@ -251,6 +257,11 @@ void Sandbox::Restart()
 void Sandbox::Shake(float aMagnitude)
 {
 	myMagnitude += aMagnitude;
+}
+
+float Sandbox::GetScaleFactor()
+{
+	return myScaleFactor;
 }
 
 Window* BuildWindow()

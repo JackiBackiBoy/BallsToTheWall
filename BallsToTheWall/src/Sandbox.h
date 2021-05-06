@@ -40,9 +40,11 @@ public:
 	void OnRender(sf::RenderWindow* aWindow) override;
 
 	static void Shake(float aMagnitude);
+	static float GetScaleFactor();
 private:
 	static float myMagnitude;
 
 	void CheckScore(Score aScore);
 	void Restart();
+	static float myScaleFactor;
 };
