@@ -20,8 +20,30 @@ int myTitleSplit = 10;
 std::string myPlayerInput;
 
 Button myRestartButton;
+Button myShopButton;
 
 ParticleSystem myTitleParticleSystem;
+
+
+Button myGameButton;
+std::vector<Button> myTexButtons;
+enum TexturePack
+{
+	None,
+	DotCom,
+	Lul,
+	Fun,
+	Inception
+};
+
+enum GameState
+{
+	Game,
+	Options,
+	Shop
+};
+
+GameState myGameState = Game;
 
 
 void Sandbox::OnStart()
@@ -63,51 +85,154 @@ void Sandbox::OnStart()
 
 	myRestartButton = Button(sf::Vector2f(0, 0), "RESTART", 60);
 	myRestartButton.SetPosition(-myRestartButton.GetText().getLocalBounds().width / 2, 0);
+
+	myShopButton = Button(sf::Vector2f(0, 0), "SHOP", 40);
+	myShopButton.SetPosition(myWidth / 2 - myShopButton.GetText().getLocalBounds().width - 10, -myHeight / 2);
+
+	myGameButton = Button(sf::Vector2f(0, 0), "BACK", 40);
+	myGameButton.SetPosition(myWidth - myGameButton.GetText().getLocalBounds().width - 20, myHeight - myGameButton.GetText().getLocalBounds().height * 2);
+
+	float tempStartY = -myHeight;
+	float tempXPos = -myWidth;
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "NONE", 60));
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), ".COM", 60));
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "LUL", 60));
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "FUN (EPILEPSY WARNING)", 60));
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
+
+	for (int i = 0; i < myTexButtons.size(); i++)
+	{
+		if (i <11)
+			myTexButtons[i].SetPosition(-myWidth, tempStartY + i * 60);
+		else
+		{
+			myTexButtons[i].SetPosition(0, tempStartY + (i- 11) * 60);
+		}
+	}
 }
 
 
 
 void Sandbox::OnUpdate()
 {
-	if (Player::GetDeadFlag())
-	{
-		if (!myScoreCheckedFlag)
-		{
-			Window::SetTextField(&myPlayerInput);
-			myPlayerText.setString(myPlayerInput);
-			myPlayerText.setPosition(sf::Vector2f(-myPlayerText.getLocalBounds().width / 2,0));
-			while (myPlayerInput.length() > 8)
-			{
-				myPlayerInput.pop_back();
-			}
-
-			if (InputManager::GetKeyDown(sf::Keyboard::Enter) && !myPlayerInput.empty())
-			{
-				CheckScore(Score(myPlayerInput, Player::GetScore()));
-				Window::SetTextField(nullptr);
-				myScoreCheckedFlag = true;
-			}
-		}
-		else
-		{
-			myRestartButton.OnUpdate(myStartWidth / myWidth, myStartHeight / myHeight);
-			if (myRestartButton.GetClickedFlag())
-			{
-				Restart();
-			}
-		}
-
-	}
-
-
 	InputManager::OnUpdate();
-
 	TimeTracker::Update();
-	EnemyManager::OnUpdate();
-	Ball::OnUpdate();
-	Player::OnUpdate();
-	Healthbar::OnUpdate();
 	MusicManager::OnUpdate();
+	Button::SetScale(sf::Vector2f(myStartWidth / myWidth, myStartHeight / myHeight));
+	if (myGameState == Game)
+	{
+		if (Player::GetDeadFlag())
+		{
+			if (!myScoreCheckedFlag)
+			{
+				Window::SetTextField(&myPlayerInput);
+				myPlayerText.setString(myPlayerInput);
+				myPlayerText.setPosition(sf::Vector2f(-myPlayerText.getLocalBounds().width / 2, 0));
+				while (myPlayerInput.length() > 8)
+				{
+					myPlayerInput.pop_back();
+				}
+
+				if (InputManager::GetKeyDown(sf::Keyboard::Enter) && !myPlayerInput.empty())
+				{
+					CheckScore(Score(myPlayerInput, Player::GetScore()));
+					Window::SetTextField(nullptr);
+					myScoreCheckedFlag = true;
+				}
+			}
+			else
+			{
+				myRestartButton.OnUpdate();
+				if (myRestartButton.GetClickedFlag())
+				{
+					Restart();
+				}
+			}
+
+		}
+
+
+
+		EnemyManager::OnUpdate();
+		Ball::OnUpdate();
+		Player::OnUpdate();
+		Healthbar::OnUpdate();
+
+
+
+		if ((std::abs(Ball::GetVelocity().x) > 0 || std::abs(Ball::GetVelocity().y > 0)) && !GameStarted)
+		{
+			GameStarted = true;
+			Shake(200);
+			sf::Image tempImg = TitleNameTex.copyToImage();
+			for (int i = 0; i < myTitleParticleSystem.GetSize(); i++)
+			{
+				int tempPlace = i * myTitleSplit;
+				sf::Color tempCol = tempImg.getPixel(tempPlace % tempImg.getSize().x, myTitleSplit * (tempPlace / tempImg.getSize().x));
+				ParticleProps tempProp = ParticleProps();
+				if (tempCol == sf::Color::Transparent)
+				{
+					continue;
+				}
+				tempProp.ColorBegin = tempCol;
+				tempProp.SizeEnd = sf::Vector2f(0, 0);
+				tempProp.LifeTime = 3;
+				tempProp.Position = TitleText.getPosition() + sf::Vector2f(tempPlace % tempImg.getSize().x * TitleText.getScale().x, (myTitleSplit * tempPlace / tempImg.getSize().x) * TitleText.getScale().x);
+				tempProp.PointCount = Random::Int(3, 7);
+				tempProp.Velocity = tempProp.Position * 5.f;
+				tempProp.VelocityVariation = sf::Vector2f(70, 70);
+				tempProp.AngVelVariation = 30;
+				myTitleParticleSystem.Emit(tempProp);
+			}
+		}
+
+		if (!GameStarted)
+		{
+			myShopButton.OnUpdate();
+			if (myShopButton.GetClickedFlag())
+			{
+				myGameState = Shop;
+				myWidth = myStartWidth;
+				myHeight = myStartHeight;
+			}
+		}
+
+		myTitleParticleSystem.OnUpdate();
+		if (GameStarted && (myWidth <= myStartWidth || myHeight <= myStartHeight))
+		{
+			myTempWidth = Math::Lerp(myTempWidth, myStartWidth, 7.f * TimeTracker::GetUnscaledDeltaTime());
+			myWidth = (int)myTempWidth;
+			if (myWidth > myStartWidth)
+				myWidth = myStartWidth;
+			myHeight = myStartHeight * myWidth / myStartWidth;
+		}
+	}
+	else if (myGameState == Shop)
+	{
+		myGameButton.OnUpdate();
+		if (myGameButton.GetClickedFlag())
+		{
+			myGameState = Game;
+			Restart();
+		}
+
+		for (int i = 0; i < myTexButtons.size(); i++)
+		{
+			myTexButtons[i].OnUpdate();
+		}
+	}
 
 	if (myMagnitude > 0)
 	{
@@ -115,91 +240,72 @@ void Sandbox::OnUpdate()
 	}
 	GetRawWindow()->setView(sf::View(sf::Vector2f(Random::Int(-myMagnitude, myMagnitude + 1), Random::Int(-myMagnitude, myMagnitude + 1)), sf::Vector2f(myWidth, myHeight)));
 
-	if ((std::abs(Ball::GetVelocity().x) > 0 || std::abs(Ball::GetVelocity().y > 0)) && !GameStarted)
-	{
-		GameStarted = true;
-		Shake(200);
-		sf::Image tempImg = TitleNameTex.copyToImage();
-		for (int i = 0; i < myTitleParticleSystem.GetSize(); i++)
-		{
-			int tempPlace = i * myTitleSplit;
-			sf::Color tempCol = tempImg.getPixel(tempPlace % tempImg.getSize().x, myTitleSplit * (tempPlace / tempImg.getSize().x));
-			ParticleProps tempProp = ParticleProps();
-			if (tempCol == sf::Color::Transparent)
-			{
-				continue;
-			}
-			tempProp.ColorBegin = tempCol;
-			tempProp.SizeEnd = sf::Vector2f(0, 0);
-			tempProp.LifeTime = 3;
-			tempProp.Position = TitleText.getPosition() + sf::Vector2f(tempPlace % tempImg.getSize().x * TitleText.getScale().x, (myTitleSplit * tempPlace / tempImg.getSize().x) * TitleText.getScale().x);
-			tempProp.PointCount = Random::Int(3, 7);
-			tempProp.Velocity = tempProp.Position * 5.f;
-			tempProp.VelocityVariation = sf::Vector2f(70, 70);
-			tempProp.AngVelVariation = 30;
-			myTitleParticleSystem.Emit(tempProp);
-		}
-	}
-	myTitleParticleSystem.OnUpdate();
-	if (GameStarted && (myWidth <= myStartWidth || myHeight <= myStartHeight))
-	{
-		myTempWidth = Math::Lerp(myTempWidth, myStartWidth, 7.f * TimeTracker::GetUnscaledDeltaTime());
-		myWidth = (int)myTempWidth;
-		if (myWidth > myStartWidth)
-			myWidth = myStartWidth;
-		myHeight = myStartHeight * myWidth / myStartWidth;
-	}
 }
 void Sandbox::OnRender(sf::RenderWindow* aWindow)
 {
-	if (!GameStarted)
-		aWindow->draw(TitleText);
-	myTitleParticleSystem.OnRender(aWindow);
-	EnemyManager::OnRender(aWindow);
-	Ball::OnRender(aWindow);
-	Player::OnRender(aWindow);
-	Healthbar::OnRender(aWindow);
-
-	if (Ball::GetVelocity() == sf::Vector2f(0, 0))
+	if (myGameState == Game)
 	{
-		sf::Vector2f tempStartPos = sf::Vector2f(-Window::CurrentWindow->GetSize().x /4, -Window::CurrentWindow->GetSize().y /4);
-		sf::Text tempHsText = sf::Text("Highscores:", Player::GetScoreFont(), 20);
-		tempHsText.setPosition(tempStartPos);
-		aWindow->draw(tempHsText);
+		if (!GameStarted)
+			aWindow->draw(TitleText);
+		myTitleParticleSystem.OnRender(aWindow);
+		EnemyManager::OnRender(aWindow);
+		Ball::OnRender(aWindow);
+		Player::OnRender(aWindow);
+		Healthbar::OnRender(aWindow);
 
-		for (short i = 0; i < 10; i++)
+		if (Ball::GetVelocity() == sf::Vector2f(0, 0))
 		{
-			sf::Text tempScoreText = sf::Text(myHighscores[i].Name + ": " + std::to_string(myHighscores[i].Value), Player::GetScoreFont(), 20);
-			tempScoreText.setPosition(tempStartPos + sf::Vector2f(0, ((i + 1) * 20) + 20));
-			aWindow->draw(tempScoreText);
+			sf::Vector2f tempStartPos = sf::Vector2f(-Window::CurrentWindow->GetSize().x / 4, -Window::CurrentWindow->GetSize().y / 4);
+			sf::Text tempHsText = sf::Text("Highscores:", Player::GetScoreFont(), 20);
+			tempHsText.setPosition(tempStartPos);
+			aWindow->draw(tempHsText);
+
+			for (short i = 0; i < 10; i++)
+			{
+				sf::Text tempScoreText = sf::Text(myHighscores[i].Name + ": " + std::to_string(myHighscores[i].Value), Player::GetScoreFont(), 20);
+				tempScoreText.setPosition(tempStartPos + sf::Vector2f(0, ((i + 1) * 20) + 20));
+				aWindow->draw(tempScoreText);
+			}
+		}
+
+		if (Player::GetDeadFlag())
+		{
+
+			sf::Vector2f tempStartPos = sf::Vector2f(-Window::CurrentWindow->GetSize().x / 2, -Window::CurrentWindow->GetSize().y / 2);
+			sf::Text tempHsText = sf::Text("Highscores:", Player::GetScoreFont(), 40);
+			tempHsText.setPosition(tempStartPos);
+			aWindow->draw(tempHsText);
+
+			for (short i = 0; i < 10; i++)
+			{
+				sf::Text tempScoreText = sf::Text(myHighscores[i].Name + ": " + std::to_string(myHighscores[i].Value), Player::GetScoreFont(), 40);
+				tempScoreText.setPosition(tempStartPos + sf::Vector2f(0, ((i + 1) * 40) + 40));
+				aWindow->draw(tempScoreText);
+			}
+
+
+			aWindow->draw(myGameOverText);
+
+			if (!myScoreCheckedFlag)
+			{
+				aWindow->draw(myPlayerText);
+			}
+			else
+			{
+				myRestartButton.OnRender(aWindow);
+			}
+		}
+		if (!GameStarted)
+		{
+			myShopButton.OnRender(aWindow);
 		}
 	}
-
-	if (Player::GetDeadFlag())
+	else if (myGameState == Shop)
 	{
-
-		sf::Vector2f tempStartPos = sf::Vector2f(-Window::CurrentWindow->GetSize().x/2, -Window::CurrentWindow->GetSize().y / 2);
-		sf::Text tempHsText = sf::Text("Highscores:", Player::GetScoreFont(), 40);
-		tempHsText.setPosition(tempStartPos);
-		aWindow->draw(tempHsText);
-
-		for (short i = 0; i < 10; i++)
+		myGameButton.OnRender(aWindow);
+		for (int i = 0; i < myTexButtons.size(); i++)
 		{
-			sf::Text tempScoreText = sf::Text(myHighscores[i].Name + ": " + std::to_string(myHighscores[i].Value), Player::GetScoreFont(), 40);
-			tempScoreText.setPosition(tempStartPos + sf::Vector2f(0, ((i + 1) * 40) + 40));
-			aWindow->draw(tempScoreText);
-		}
-
-
-		aWindow->draw(myGameOverText);
-
-		if (!myScoreCheckedFlag)
-		{
-			aWindow->draw(myPlayerText);
-		}
-		else
-		{
-			myRestartButton.OnRender(aWindow);
+			myTexButtons[i].OnRender(aWindow);
 		}
 	}
 
