@@ -94,6 +94,9 @@ void Player::OnStart()
 	myShapeDir.setPoint(2, sf::Vector2f(-5, -3));
 	myShapeDir.setPosition(sf::Vector2f(0, 0));
 	myShapeDir.setFillColor(sf::Color(200, 100, 0));
+
+	myTexture.loadFromFile("Assets/NameGoesHere.png");
+	myShape.setTexture(&myTexture);
 }
 
 void Player::OnUpdate()

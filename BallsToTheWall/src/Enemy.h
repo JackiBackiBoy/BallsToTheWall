@@ -34,5 +34,6 @@ protected:
 	bool myStarting = 1;
 private:
 	bool myDeadFlag = false;
+	sf::Texture myTexture;
 };
 

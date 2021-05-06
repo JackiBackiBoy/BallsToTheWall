@@ -37,6 +37,7 @@ private:
 
 	static int myScore;
 	static float myTimeScore;
+	static sf::Texture myTexture;
 
 };
 

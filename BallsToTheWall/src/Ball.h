@@ -17,5 +17,6 @@ private:
 	static sf::CircleShape myShape;
 	static sf::Vector2f myDirection;
 	static float myVelocity;
+	static sf::Texture myTexture;
 };
 

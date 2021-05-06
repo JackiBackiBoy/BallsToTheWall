@@ -15,7 +15,9 @@ void Ball::OnStart()
 	myShape.setOrigin(sf::Vector2f(myShape.getLocalBounds().width / 2, myShape.getLocalBounds().height / 2));
 	myDirection = Math::Normalized(sf::Vector2f(3, 7));
 	//myShape.setFillColor(sf::Color(200, 255, 255));
-	myShape.setFillColor(sf::Color::Magenta);
+	myShape.setFillColor(sf::Color(255, 255, 255, 255));
+	myTexture.loadFromFile("Assets/NameGoesHere.png");
+	myShape.setTexture(&myTexture);
 }
 
 void Ball::OnUpdate()

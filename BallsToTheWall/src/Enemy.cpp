@@ -8,9 +8,11 @@ Enemy::Enemy(const int& aPointCount, const float& aRadius, const sf::Vector2f& a
 	{
 		myShape.setPoint(i, sf::Vector2f(cos(tempAngle * i), sin(tempAngle * i)) * aRadius);
 	}
-	myShape.setFillColor(sf::Color::Color(200, 0, 0, 255));
+	myShape.setFillColor(sf::Color::Color(255, 255, 255, 255));
 	myShape.setPosition(aPosition);
 	myShape.setRotation(Math::ToDegrees(aRotation));
+	myTexture.loadFromFile("Assets/NameGoesHere.png");
+	myShape.setTexture(&myTexture);
 }
 
 void Enemy::OnStart()
