@@ -7,10 +7,8 @@ std::string* Window::myCurrentTextField = nullptr;
 void Window::Run()
 {
 	myPixel = sf::RectangleShape({ 1, 1 });
-	myRawWindow = new sf::RenderWindow(sf::VideoMode(myWidth, myHeight), myTitle, 7U, sf::ContextSettings(0, 0, 16));
-
+	myRawWindow = new sf::RenderWindow(sf::VideoMode(myWidth, myHeight), myTitle, sf::Style::Fullscreen, sf::ContextSettings(0, 0, 16) );
 	myRawWindow->setView(sf::View(sf::Vector2f(0, 0), sf::Vector2f(myWidth, myHeight)));
-
 
 
 	// OnStart

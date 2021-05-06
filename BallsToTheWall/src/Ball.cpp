@@ -3,6 +3,7 @@
 #include "math/Math.h"
 #include <Player.h>
 #include "TimeTracker.h"
+#include "Sandbox.h"
 
 sf::CircleShape Ball::myShape = sf::CircleShape(13);
 sf::Texture Ball::myTexture = sf::Texture();
@@ -16,12 +17,17 @@ void Ball::OnStart()
 	myDirection = Math::Normalized(sf::Vector2f(3, 7));
 	//myShape.setFillColor(sf::Color(200, 255, 255));
 	myShape.setFillColor(sf::Color(255, 255, 255, 255));
-	myTexture.loadFromFile("Assets/NameGoesHere.png");
-	myShape.setTexture(&myTexture);
+
 }
 
 void Ball::OnUpdate()
 {
+
+	if (Sandbox::GetPack() == "Fun")
+	{
+		myShape.setFillColor(Math::ShiftRainbow(myShape.getFillColor(), TimeTracker::GetDeltaTime() * 500));
+	}
+
 	//calculate new pos
 	sf::Vector2f tempNewPos = myShape.getPosition() + myDirection * myVelocity * TimeTracker::GetDeltaTime();
 
@@ -99,10 +105,10 @@ bool CheckLineCircle(const sf::Vector2f& circle, const float& radiusSqrd, const 
 	// get the unit distance of the closest point on the line
 	float u = (v2.x * v1.x + v2.y * v1.y) / (v1.y * v1.y + v1.x * v1.x);
 	// if this is on the line segment
-	if (u >= 0 && u <= 1) 
+	if (u >= 0 && u <= 1)
 	{
 		// get the point on the line segment
-		sf::Vector2f v3 = v1 * u; 
+		sf::Vector2f v3 = v1 * u;
 
 		// get the distance to that point and return true or false depending on the 
 		// it being inside the circle
@@ -121,10 +127,10 @@ bool Ball::Intersects(const sf::ConvexShape& aPolygon)
 	for (auto i = 0; i < aPolygon.getPointCount(); i++)
 	{
 		auto next = aPolygon.getPoint(i);
-	    next.x *= aPolygon.getScale().x;
+		next.x *= aPolygon.getScale().x;
 		next.y *= aPolygon.getScale().y;
 		next = Math::RotPDeg(next, aPolygon.getRotation());
-		if (CheckLineCircle(myShape.getPosition(),  tempRadiusSqrd, current + aPolygon.getPosition(), next + aPolygon.getPosition()))
+		if (CheckLineCircle(myShape.getPosition(), tempRadiusSqrd, current + aPolygon.getPosition(), next + aPolygon.getPosition()))
 		{
 			//If ball hits enemy, reduce the velocity of the ball
 			if (aPolygon.getPointCount() != 6)
@@ -143,4 +149,15 @@ void Ball::Reset()
 	myShape.setPosition(sf::Vector2f(-45, 0));
 	myDirection = sf::Vector2f(0, 0);
 	myVelocity = 0;
+	myTexture.loadFromFile("Assets/" + Sandbox::GetPack() + "Ball.png");
+	if (Sandbox::GetPack() == "Fun")
+	{
+		myShape.setTexture(nullptr);
+	}
+	else
+	{
+		myShape.setFillColor(sf::Color(255, 255, 255));
+		myShape.setTexture(&myTexture);
+		myShape.setTextureRect(sf::IntRect(0, 0, myTexture.getSize().x, myTexture.getSize().y));
+	}
 }

@@ -40,8 +40,10 @@ public:
 	void OnRender(sf::RenderWindow* aWindow) override;
 
 	static void Shake(float aMagnitude);
+	static std::string GetPack();
 private:
 	static float myMagnitude;
+	static std::string myPack;
 
 	void CheckScore(Score aScore);
 	void Restart();

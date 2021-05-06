@@ -18,19 +18,7 @@ sf::Texture EnemyManager::myTexture = sf::Texture();
 
 void EnemyManager::OnStart()
 {
-	if (myTexture.loadFromFile("Assets/NameGoesHere.png")) 
-	{
-		sf::Image tempImg = myTexture.copyToImage();
-		int step = tempImg.getSize().y / 32;
-		for (int i = 0; i < 32; i++)
-		{
-			myParticleColors.push_back(tempImg.getPixel(tempImg.getSize().x / 2, step * i));
-		}
-	}
-	else 
-	{
-		myParticleColors.push_back(sf::Color(200, 0, 0));
-	}
+	
 }
 
 void EnemyManager::AddEnemyCopy(Enemy* anEnemy) 
@@ -53,7 +41,19 @@ void EnemyManager::Reset()
 	myCurrentSummonTime = 0;
 	myTexts.clear();
 	myOpenSectors = new bool[4]{ true, true, true, true };
-	OnStart();
+	if (myTexture.loadFromFile("Assets/"+ Sandbox::GetPack() + "Enemy.png"))
+	{
+		sf::Image tempImg = myTexture.copyToImage();
+		int step = tempImg.getSize().y / 32;
+		for (int i = 0; i < 32; i++)
+		{
+			myParticleColors.push_back(tempImg.getPixel(tempImg.getSize().x / 2, step * i));
+		}
+	}
+	else
+	{
+		myParticleColors.push_back(sf::Color(200, 0, 0));
+	}
 }
 
 sf::Texture& EnemyManager::GetEnemyTexture()

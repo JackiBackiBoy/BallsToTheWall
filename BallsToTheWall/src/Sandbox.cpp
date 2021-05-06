@@ -3,6 +3,7 @@
 #include "Button.h"
 
 float Sandbox::myMagnitude = 0;
+std::string Sandbox::myPack = "Default";
 Score myHighscores[10];
 
 Sandbox::Sandbox(const std::string& aTitle, const int& aWidth, const int& aHeight) : Window(aTitle, aWidth, aHeight) {};
@@ -29,7 +30,7 @@ Button myGameButton;
 std::vector<Button> myTexButtons;
 enum TexturePack
 {
-	None,
+	Default,
 	DotCom,
 	Lul,
 	Fun,
@@ -48,6 +49,7 @@ GameState myGameState = Game;
 
 void Sandbox::OnStart()
 {
+	
 	for (int i = 0; i < 10; i++)
 	{
 		std::string tempValue = SaveLoad::Load("HSV" + std::to_string(i));
@@ -94,22 +96,10 @@ void Sandbox::OnStart()
 
 	float tempStartY = -myHeight;
 	float tempXPos = -myWidth;
-	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "NONE", 60));
+	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "DEFAULT", 60));
 	myTexButtons.push_back(Button(sf::Vector2f(0, 0), ".COM", 60));
 	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "LUL", 60));
 	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "FUN (EPILEPSY WARNING)", 60));
-	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
-	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
-	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
-	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
-	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
-	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
-	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
-	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
-	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
-	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
-	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
-	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
 	myTexButtons.push_back(Button(sf::Vector2f(0, 0), "INCEPTION", 60));
 
 	for (int i = 0; i < myTexButtons.size(); i++)
@@ -121,6 +111,8 @@ void Sandbox::OnStart()
 			myTexButtons[i].SetPosition(0, tempStartY + (i- 11) * 60);
 		}
 	}
+
+	Restart();
 }
 
 
@@ -231,6 +223,27 @@ void Sandbox::OnUpdate()
 		for (int i = 0; i < myTexButtons.size(); i++)
 		{
 			myTexButtons[i].OnUpdate();
+			if (myTexButtons[i].GetClickedFlag())
+			{
+				switch ((TexturePack)i)
+				{
+				case TexturePack::Default:
+					myPack = "Default";
+					break;
+				case TexturePack::DotCom:
+					myPack = "Com";
+					break;
+				case TexturePack::Lul:
+					myPack = "Emoji";
+					break;
+				case TexturePack::Fun:
+					myPack = "Fun";
+					break;
+				case TexturePack::Inception:
+					myPack = "Inception";
+					break;
+				}
+			}
 		}
 	}
 
@@ -345,8 +358,8 @@ void Sandbox::Restart()
 	myTitleParticleSystem = ParticleSystem((TitleNameTex.getSize().x / myTitleSplit) * (TitleNameTex.getSize().y / myTitleSplit));
 
 	Player::SetPosition(sf::Vector2f(0, 65));
-	myHeight /= 2;
-	myWidth /= 2;
+	myHeight = myStartHeight/2;
+	myWidth = myStartWidth/2;
 	myTempWidth = myWidth;
 	myMagnitude = 0;
 	GameStarted = false;
@@ -359,7 +372,12 @@ void Sandbox::Shake(float aMagnitude)
 	myMagnitude += aMagnitude;
 }
 
+std::string Sandbox::GetPack()
+{
+	return myPack;
+}
+
 Window* BuildWindow()
 {
-	return new Sandbox("Balls To The Wall", 1240, 720);
+	return new Sandbox("Balls To The Wall", sf::VideoMode::getDesktopMode().width, sf::VideoMode::getDesktopMode().height);
 }

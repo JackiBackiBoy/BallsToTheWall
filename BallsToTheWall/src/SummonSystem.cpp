@@ -3,6 +3,7 @@
 #include "Random.h"
 #include "math\Math.h"
 #include "EnemyManager.h"
+#include <Sandbox.h>
 
 SummonSystem::SummonSystem(const unsigned int& aSummonCount)
 {
@@ -36,6 +37,11 @@ void SummonSystem::OnUpdate()
 			s.Enemies[i]->SetScale(sf::Vector2f(1 - tempTime, 1 - tempTime));
 			s.Enemies[i]->Rotate(Math::ToDegrees(s.AngularVelocity * TimeTracker::GetDeltaTime()));
 			s.Enemies[i]->Collision();
+			if (Sandbox::GetPack() == "Fun")
+			{
+				s.Enemies[i]->SetFillColor(Math::ShiftRainbow(s.Enemies[i]->GetFillColor(), TimeTracker::GetDeltaTime() * 500));
+			}
+			
 		}
 		for (auto it = s.Enemies.begin(); it != s.Enemies.end();) 
 		{

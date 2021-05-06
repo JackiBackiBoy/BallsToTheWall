@@ -73,7 +73,17 @@ void Player::Reset()
 	myScoreMultiplier = 1;
 	myScore = 0;
 	myTimeScore = 0;
-
+	myShape.setFillColor(sf::Color(255, 255, 255));
+	if (Sandbox::GetPack() == "Fun")
+	{
+		myShape.setTexture(nullptr);
+	}
+	else
+	{
+		myTexture.loadFromFile("Assets/" + Sandbox::GetPack() + "Player.png");
+		myShape.setTexture(&myTexture);
+	}
+	myShape.setTextureRect(sf::IntRect(0, 0, myTexture.getSize().x, myTexture.getSize().y));
 }
 
 void Player::OnStart()
@@ -95,13 +105,16 @@ void Player::OnStart()
 	myShapeDir.setPoint(2, sf::Vector2f(-5, -3));
 	myShapeDir.setPosition(sf::Vector2f(0, 0));
 	myShapeDir.setFillColor(sf::Color(255, 255, 255));
-
-	myTexture.loadFromFile("Assets/NameGoesHere.png");
-	myShape.setTexture(&myTexture);
 }
 
 void Player::OnUpdate()
 {
+	if (Sandbox::GetPack() == "Fun")
+	{
+		myShape.setFillColor(Math::ShiftRainbow(myShape.getFillColor(), TimeTracker::GetDeltaTime() * 500));
+		myShapeDir.setFillColor(Math::ShiftRainbow(myShapeDir.getFillColor(), TimeTracker::GetDeltaTime() * 500));
+	}
+
 
 	if (myDeadFlag)
 		return;
@@ -170,6 +183,7 @@ void Player::OnUpdate()
 	{
 		myShapeDir.setFillColor(sf::Color(200, 100, 0));
 	}
+
 	if (myButtonTime > myCoyoteTime)
 	{
 		myButtonPressedFlag = true;
@@ -181,7 +195,7 @@ void Player::OnUpdate()
 		myButtonTime = 0;
 	}
 	myShape.setScale(0.7f, 0.7f);
-	if (Ball::Intersects(myShape) && Ball::GetVelocity() != sf::Vector2f(0,0))
+	if (Ball::Intersects(myShape) && Ball::GetVelocity() != sf::Vector2f(0, 0))
 	{
 		myShape.setScale(1, 1);
 		Die();

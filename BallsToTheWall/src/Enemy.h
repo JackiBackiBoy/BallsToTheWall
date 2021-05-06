@@ -27,6 +27,8 @@ public:
 	sf::Vector2f GetVelocity();
 	sf::ConvexShape GetShape();
 	int GetScore();
+	sf::Color GetFillColor();
+	void SetFillColor(sf::Color aColor);
 protected:
 	sf::ConvexShape myShape;
 	sf::Vector2f myDirection;

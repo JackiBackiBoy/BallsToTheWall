@@ -1,5 +1,6 @@
 #include "Enemy.h"
 #include "EnemyManager.h"
+#include "Sandbox.h"
 
 Enemy::Enemy(const int& aPointCount, const float& aRadius, const sf::Vector2f& aPosition, const float& aRotation)
 {
@@ -7,10 +8,20 @@ Enemy::Enemy(const int& aPointCount, const float& aRadius, const sf::Vector2f& a
 	myShape.setPointCount(aPointCount);
 	for (int i = 0; i < aPointCount; i++)
 	{
-		myShape.setPoint(i, sf::Vector2f(cos(tempAngle * i - Math::Pi / (2 * (aPointCount - 2))) * aRadius, sin(tempAngle * i - Math::Pi / (2 *(aPointCount - 2))) * aRadius));
+		myShape.setPoint(i, sf::Vector2f(cos(tempAngle * i - Math::Pi / (2 * (aPointCount - 2))) * aRadius, sin(tempAngle * i - Math::Pi / (2 * (aPointCount - 2))) * aRadius));
 	}
+
 	myShape.setFillColor(sf::Color::Color(255, 255, 255, 255));
-	myShape.setTexture(&EnemyManager::GetEnemyTexture());
+	if (Sandbox::GetPack() == "Fun")
+	{
+		myShape.setTexture(nullptr);
+	}
+	else
+	{
+		myShape.setTexture(&EnemyManager::GetEnemyTexture());
+		myShape.setTextureRect(sf::IntRect(0, 0, EnemyManager::GetEnemyTexture().getSize().x, EnemyManager::GetEnemyTexture().getSize().y));
+	}
+
 	myShape.setPosition(aPosition);
 	myShape.setRotation(Math::ToDegrees(aRotation + Math::Pi / (2 * (aPointCount - 2))));
 }
@@ -19,7 +30,7 @@ void Enemy::OnStart()
 {
 
 }
-void Enemy::Collision() 
+void Enemy::Collision()
 {
 	if (Ball::Intersects(myShape))
 	{
@@ -33,6 +44,10 @@ void Enemy::Collision()
 
 void Enemy::OnUpdate()
 {
+	if (Sandbox::GetPack() == "Fun")
+	{
+		myShape.setFillColor(Math::ShiftRainbow(myShape.getFillColor(), TimeTracker::GetDeltaTime() * 500));
+	}
 	Collision();
 }
 
@@ -61,12 +76,12 @@ void Enemy::SetScale(const sf::Vector2f& aScale)
 	myShape.setScale(aScale);
 }
 
-void Enemy::SetRotation(const float& someDegrees) 
+void Enemy::SetRotation(const float& someDegrees)
 {
 	myShape.setRotation(someDegrees);
 }
 
-void Enemy::Rotate(const float& someDegrees) 
+void Enemy::Rotate(const float& someDegrees)
 {
 	myShape.rotate(someDegrees);
 }
@@ -91,11 +106,21 @@ int Enemy::GetScore()
 	return myScore * Player::GetScoreMultiplier();
 }
 
+sf::Color Enemy::GetFillColor()
+{
+	return myShape.getFillColor();
+}
+
+void Enemy::SetFillColor(sf::Color aColor)
+{
+	myShape.setFillColor(aColor);
+}
+
 bool Enemy::Intersects(sf::ConvexShape a)
 {
 	sf::ConvexShape b = myShape;
 	// loop over the vertices(-> edges -> axis) of the first polygon
-	for (int n = 0; n < 2; n++) 
+	for (int n = 0; n < 2; n++)
 	{
 		auto current = a.getPoint(a.getPointCount() - 1);
 		current.x *= a.getScale().x;
