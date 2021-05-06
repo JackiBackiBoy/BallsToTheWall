@@ -127,7 +127,10 @@ bool Ball::Intersects(const sf::ConvexShape& aPolygon)
 		if (CheckLineCircle(myShape.getPosition(),  tempRadiusSqrd, current + aPolygon.getPosition(), next + aPolygon.getPosition()))
 		{
 			//If ball hits enemy, reduce the velocity of the ball
-			myVelocity *= 0.96f;
+			if (aPolygon.getPointCount() != 6)
+			{
+				myVelocity *= 0.96f;
+			}
 			return true;
 		}
 		current = next;

@@ -11,11 +11,26 @@ float EnemyManager::mySummonTime = 2;
 float EnemyManager::myCurrentSummonTime = 0;
 std::vector<ScoreText> EnemyManager::myTexts = std::vector<ScoreText>();
 int EnemyManager::myCurrentSummonLevel = 1;
+std::vector<sf::Color> EnemyManager::myParticleColors = std::vector<sf::Color>();
+sf::Texture EnemyManager::myTexture = sf::Texture();
 
 
 
 void EnemyManager::OnStart()
 {
+	if (myTexture.loadFromFile("Assets/NameGoesHere.png")) 
+	{
+		sf::Image tempImg = myTexture.copyToImage();
+		int step = tempImg.getSize().y / 32;
+		for (int i = 0; i < 32; i++)
+		{
+			myParticleColors.push_back(tempImg.getPixel(tempImg.getSize().x / 2, step * i));
+		}
+	}
+	else 
+	{
+		myParticleColors.push_back(sf::Color(200, 0, 0));
+	}
 }
 
 void EnemyManager::AddEnemyCopy(Enemy* anEnemy) 
@@ -38,6 +53,12 @@ void EnemyManager::Reset()
 	myCurrentSummonTime = 0;
 	myTexts.clear();
 	myOpenSectors = new bool[4]{ true, true, true, true };
+	OnStart();
+}
+
+sf::Texture& EnemyManager::GetEnemyTexture()
+{
+	return myTexture;
 }
 
 void EnemyManager::OnUpdate()
@@ -68,15 +89,16 @@ void EnemyManager::OnUpdate()
 				tempPP.VelocityVariation = sf::Vector2f(500, 500);
 				tempPP.LifeTime = 5;
 
-				tempPP.ColorBegin = sf::Color(200, 0, 0, 255);
 				tempPP.ColorEnd = sf::Color::Transparent;
 
 				tempPP.Shape = (*it._Ptr)->GetShape();
 				tempPP.SizeBegin = { 0.3f, 0.3f };
 				tempPP.SizeEnd = { 0.f, 0.f };
 				tempPP.SizeVariation = { 0.1f, 0.1f };
+
 				for (int i = 0; i < Random::Int(10, 30); i++)
 				{
+					tempPP.ColorBegin = myParticleColors[Random::Int(0, myParticleColors.size())];
 					myParticleSystem.Emit(tempPP);
 				}
 				ScoreText tempText = ScoreText();

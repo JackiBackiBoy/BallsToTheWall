@@ -1,4 +1,5 @@
 #include "Enemy.h"
+#include "EnemyManager.h"
 
 Enemy::Enemy(const int& aPointCount, const float& aRadius, const sf::Vector2f& aPosition, const float& aRotation)
 {
@@ -6,13 +7,12 @@ Enemy::Enemy(const int& aPointCount, const float& aRadius, const sf::Vector2f& a
 	myShape.setPointCount(aPointCount);
 	for (int i = 0; i < aPointCount; i++)
 	{
-		myShape.setPoint(i, sf::Vector2f(cos(tempAngle * i), sin(tempAngle * i)) * aRadius);
+		myShape.setPoint(i, sf::Vector2f(cos(tempAngle * i - Math::Pi / (2 * (aPointCount - 2))) * aRadius, sin(tempAngle * i - Math::Pi / (2 *(aPointCount - 2))) * aRadius));
 	}
 	myShape.setFillColor(sf::Color::Color(255, 255, 255, 255));
+	myShape.setTexture(&EnemyManager::GetEnemyTexture());
 	myShape.setPosition(aPosition);
-	myShape.setRotation(Math::ToDegrees(aRotation));
-	myTexture.loadFromFile("Assets/NameGoesHere.png");
-	myShape.setTexture(&myTexture);
+	myShape.setRotation(Math::ToDegrees(aRotation + Math::Pi / (2 * (aPointCount - 2))));
 }
 
 void Enemy::OnStart()

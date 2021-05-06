@@ -16,7 +16,7 @@ struct SummonProps
 {
 	sf::Vector2f Position;
 	sf::Color Color = sf::Color(200, 0, 0, 255);
-	float Rotation = 0, AngularVelocity = Math::Pi / 2.5f;
+	float Rotation = 0, AngularVelocity = Math::Pi / 3.3333333f;
 	float CompTime = 5.f;
 	EnemyType EnemyType;
 	bool* Sector;

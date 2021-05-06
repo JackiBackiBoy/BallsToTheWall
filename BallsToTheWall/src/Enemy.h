@@ -7,6 +7,7 @@
 #include "Ball.h"
 #include "Random.h"
 #include "core\Window.h"
+
 class Enemy
 {
 public:
@@ -34,6 +35,5 @@ protected:
 	bool myStarting = 1;
 private:
 	bool myDeadFlag = false;
-	sf::Texture myTexture;
 };
 
