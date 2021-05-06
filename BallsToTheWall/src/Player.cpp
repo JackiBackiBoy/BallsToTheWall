@@ -64,6 +64,17 @@ int Player::GetScore()
 	return myScore;
 }
 
+void Player::Reset()
+{
+	myButtonTime = 0;
+	myCurrentVelocity = sf::Vector2f(0, 0);
+	myDeadFlag = false;
+	myScoreMultiplier = 1;
+	myScore = 0;
+	myTimeScore = 0;
+
+}
+
 void Player::OnStart()
 {
 	myScoreFont.loadFromFile("Assets/ScoreFont.ttf");

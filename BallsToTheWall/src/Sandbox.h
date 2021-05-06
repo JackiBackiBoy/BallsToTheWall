@@ -44,4 +44,5 @@ private:
 	static float myMagnitude;
 
 	void CheckScore(Score aScore);
+	void Restart();
 };

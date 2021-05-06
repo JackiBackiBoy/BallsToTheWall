@@ -93,7 +93,7 @@ void Sandbox::OnUpdate()
 			myRestartButton.OnUpdate(myStartWidth / myWidth, myStartHeight / myHeight);
 			if (myRestartButton.GetClickedFlag())
 			{
-				//Restart();
+				Restart();
 			}
 		}
 
@@ -149,14 +149,7 @@ void Sandbox::OnUpdate()
 			myWidth = myStartWidth;
 		myHeight = myStartHeight * myWidth / myStartWidth;
 	}
-
-
-
-
-
-
 }
-
 void Sandbox::OnRender(sf::RenderWindow* aWindow)
 {
 	if (!GameStarted)
@@ -235,6 +228,24 @@ void Sandbox::CheckScore(Score aScore)
 			SaveLoad::Save("HSV" + std::to_string(i), std::to_string(myHighscores[i].Value));
 		}
 	}
+}
+
+void Sandbox::Restart()
+{
+	EnemyManager::Reset();
+	Ball::Reset();
+	Player::Reset();
+	Healthbar::Reset();
+	myTitleParticleSystem = ParticleSystem((TitleNameTex.getSize().x / myTitleSplit) * (TitleNameTex.getSize().y / myTitleSplit));
+
+	Player::SetPosition(sf::Vector2f(0, 65));
+	myHeight /= 2;
+	myWidth /= 2;
+	myTempWidth = myWidth;
+	myMagnitude = 0;
+	GameStarted = false;
+	myScoreCheckedFlag = false;
+	TimeTracker::SetTimeScale(1);
 }
 
 void Sandbox::Shake(float aMagnitude)

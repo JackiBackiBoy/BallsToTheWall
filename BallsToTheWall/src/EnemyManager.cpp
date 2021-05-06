@@ -7,9 +7,10 @@ std::vector<Enemy*> EnemyManager::myEnemies = std::vector<Enemy*>();
 ParticleSystem EnemyManager::myParticleSystem = ParticleSystem(3000);
 SummonSystem EnemyManager::mySummonSystem = SummonSystem();
 bool* EnemyManager::myOpenSectors = new bool[4] { true, true, true, true };
-float EnemyManager::mySummonTime = 3;
+float EnemyManager::mySummonTime = 2;
 float EnemyManager::myCurrentSummonTime = 0;
 std::vector<ScoreText> EnemyManager::myTexts = std::vector<ScoreText>();
+int EnemyManager::myCurrentSummonLevel = 1;
 
 
 
@@ -23,10 +24,33 @@ void EnemyManager::AddEnemyCopy(Enemy* anEnemy)
 	anEnemy->OnStart();
 }
 
+void EnemyManager::IncreaseSummonLevel()
+{
+	myCurrentSummonLevel++;
+}
+
+void EnemyManager::Reset()
+{
+	myCurrentSummonLevel = 1;
+	myEnemies.clear();
+	myParticleSystem = ParticleSystem(3000);
+	mySummonSystem = SummonSystem();
+	myCurrentSummonTime = 0;
+	myTexts.clear();
+	myOpenSectors = new bool[4]{ true, true, true, true };
+}
+
 void EnemyManager::OnUpdate()
 {
 
-
+	if (Player::GetScore() > 3000 && myCurrentSummonLevel == 1)
+	{
+		IncreaseSummonLevel();
+	}
+	if (Player::GetScore() > 8000 && myCurrentSummonLevel == 2)
+	{
+		IncreaseSummonLevel();
+	}
 	if (Ball::GetVelocity() != sf::Vector2f(0, 0))
 	{
 		for (auto& e : myEnemies)
@@ -121,7 +145,7 @@ void EnemyManager::OnUpdate()
 			{
 				int tempSector = tempSectorIndices[Random::Int(0, tempSectorIndices.size())];
 				SummonProps tempSP = SummonProps();
-				tempSP.EnemyType = (EnemyType)Random::Int(0, 3);
+				tempSP.EnemyType = (EnemyType)Random::Int(0, myCurrentSummonLevel);
 				float tempW = Window::GetSize().x / 2.f;
 				float tempH = Window::GetSize().y / 2.f;
 				if (tempSector == 0) tempSP.Position = sf::Vector2f(-tempW, -tempH);
