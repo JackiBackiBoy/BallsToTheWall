@@ -4,11 +4,12 @@
 
 Enemy::Enemy(const int& aPointCount, const float& aRadius, const sf::Vector2f& aPosition, const float& aRotation)
 {
+	float tempRadius = aRadius * Sandbox::GetScaleFactor();
 	float tempAngle = Math::Pi * 2 / aPointCount;
 	myShape.setPointCount(aPointCount);
 	for (int i = 0; i < aPointCount; i++)
 	{
-		myShape.setPoint(i, sf::Vector2f(cos(tempAngle * i - Math::Pi / (2 * (aPointCount - 2))) * aRadius, sin(tempAngle * i - Math::Pi / (2 * (aPointCount - 2))) * aRadius));
+		myShape.setPoint(i, sf::Vector2f(cos(tempAngle * i - Math::Pi / (2 * (aPointCount - 2))) * tempRadius, sin(tempAngle * i - Math::Pi / (2 * (aPointCount - 2))) * tempRadius));
 	}
 
 	myShape.setFillColor(sf::Color::Color(255, 255, 255, 255));

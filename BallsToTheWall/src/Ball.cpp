@@ -4,7 +4,6 @@
 #include <Player.h>
 #include "TimeTracker.h"
 #include "Sandbox.h"
-
 sf::CircleShape Ball::myShape = sf::CircleShape(13);
 sf::Texture Ball::myTexture = sf::Texture();
 sf::Vector2f Ball::myDirection = sf::Vector2f(0, 0);
@@ -12,7 +11,8 @@ float Ball::myVelocity = 0;
 
 void Ball::OnStart()
 {
-	myShape.setPosition(sf::Vector2f(-45, 0));
+	myShape.setRadius(myShape.getRadius() * Sandbox::GetScaleFactor());
+	myShape.setPosition(sf::Vector2f(-45, 0) * Sandbox::GetScaleFactor());
 	myShape.setOrigin(sf::Vector2f(myShape.getLocalBounds().width / 2, myShape.getLocalBounds().height / 2));
 	myDirection = Math::Normalized(sf::Vector2f(3, 7));
 	//myShape.setFillColor(sf::Color(200, 255, 255));

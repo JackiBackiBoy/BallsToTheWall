@@ -4,6 +4,7 @@
 #include "TimeTracker.h"
 #include "Player.h"
 #include "Ball.h"
+#include "Sandbox.h"
 
 std::vector<sf::Vector2f> Healthbar::myHealthbar = std::vector<sf::Vector2f>();
 sf::Vector2f Healthbar::myPosition = sf::Vector2f(30, 30);
@@ -13,8 +14,9 @@ bool Healthbar::Resetting = false;
 
 void Healthbar::OnStart()
 {
+	myPosition *= Sandbox::GetScaleFactor();
 	myHealth = myMaxHealth;
-	float scale = 25;
+	float scale = 25 * Sandbox::GetScaleFactor();
 	float tempAngle = Math::Pi * 2 / 10;
 	myHealthbar.push_back(sf::Vector2f(myPosition - Window::GetSize() / 2.f));
 	for (int i = 10; i >= 0; i--) 

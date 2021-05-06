@@ -94,15 +94,15 @@ void Player::OnStart()
 	myScoreText.setFont(myScoreFont);
 	myScoreText.setCharacterSize(40);
 
-	myShape.setPoint(0, sf::Vector2f(0, -12.5f));
-	myShape.setPoint(1, sf::Vector2f(12.5f, 12.5f));
-	myShape.setPoint(2, sf::Vector2f(-12.5f, 12.5f));
+	myShape.setPoint(0, sf::Vector2f(0, -12.5f) * Sandbox::GetScaleFactor());
+	myShape.setPoint(1, sf::Vector2f(12.5f, 12.5f) * Sandbox::GetScaleFactor());
+	myShape.setPoint(2, sf::Vector2f(-12.5f, 12.5f) * Sandbox::GetScaleFactor());
 	myShape.setPosition(sf::Vector2f(0, 0));
 	myShape.setFillColor(sf::Color(255, 255, 255));
 
-	myShapeDir.setPoint(0, sf::Vector2f(0, -12.5f));
-	myShapeDir.setPoint(1, sf::Vector2f(5, -3));
-	myShapeDir.setPoint(2, sf::Vector2f(-5, -3));
+	myShapeDir.setPoint(0, sf::Vector2f(0, -12.5f) * Sandbox::GetScaleFactor());
+	myShapeDir.setPoint(1, sf::Vector2f(5, -3) * Sandbox::GetScaleFactor());
+	myShapeDir.setPoint(2, sf::Vector2f(-5, -3) * Sandbox::GetScaleFactor());
 	myShapeDir.setPosition(sf::Vector2f(0, 0));
 	myShapeDir.setFillColor(sf::Color(255, 255, 255));
 }
@@ -169,7 +169,7 @@ void Player::OnUpdate()
 	sf::Vector2f tempBallVec = myShape.getPosition() - Ball::GetPosition();
 	sf::Vector2f tempMouseVecN = Math::Normalized(tempMouseVec);
 	sf::Vector2f tempBallVecN = Math::Normalized(tempBallVec);
-	if (Math::LengthSqrd(tempBallVec) <= myBallDistance && Math::Dot(tempBallVecN, tempMouseVecN) >= myBallLikeness)
+	if (Math::LengthSqrd(tempBallVec / Sandbox::GetScaleFactor()) <= myBallDistance && Math::Dot(tempBallVecN, tempMouseVecN) >= myBallLikeness)
 	{
 		myShapeDir.setFillColor(sf::Color(0, 255, 0));
 		if (InputManager::GetMouseButtonDown(sf::Mouse::Left))

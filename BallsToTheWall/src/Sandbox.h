@@ -41,10 +41,12 @@ public:
 
 	static void Shake(float aMagnitude);
 	static std::string GetPack();
+	static float GetScaleFactor();
 private:
 	static float myMagnitude;
 	static std::string myPack;
 
 	void CheckScore(Score aScore);
 	void Restart();
+	static float myScaleFactor;
 };
