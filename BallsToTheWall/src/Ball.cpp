@@ -5,7 +5,7 @@
 #include "TimeTracker.h"
 
 sf::CircleShape Ball::myShape = sf::CircleShape(13);
-
+sf::Texture Ball::myTexture = sf::Texture();
 sf::Vector2f Ball::myDirection = sf::Vector2f(0, 0);
 float Ball::myVelocity = 0;
 

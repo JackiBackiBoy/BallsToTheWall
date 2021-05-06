@@ -27,6 +27,7 @@ int Player::myScore = 0;
 float Player::myTimeScore = 0;
 sf::Font Player::myScoreFont = sf::Font();
 sf::Text Player::myScoreText = sf::Text();
+sf::Texture Player::myTexture = sf::Texture();
 
 
 sf::Vector2f Player::GetPosition()
