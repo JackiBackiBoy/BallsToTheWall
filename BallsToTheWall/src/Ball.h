@@ -12,6 +12,7 @@ public:
 	static sf::Vector2f GetVelocity();
 	static sf::CircleShape GetShape();
 	static bool Intersects(const sf::ConvexShape& aPolygon);
+	static void Reset();
 private:
 	static sf::CircleShape myShape;
 	static sf::Vector2f myDirection;

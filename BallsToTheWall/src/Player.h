@@ -15,6 +15,7 @@ public:
 	static void AddScore(int aVal);
 	static sf::Font& GetScoreFont();
 	static int GetScore();
+	static void Reset();
 private: 
 	static sf::Font myScoreFont;
 	static sf::Text myScoreText;

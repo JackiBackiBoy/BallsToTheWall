@@ -38,6 +38,8 @@ public:
 	static void OnUpdate();
 	static void OnRender(sf::RenderWindow* aWindow);
 	static void AddEnemyCopy(Enemy* anEnemy);
+	static void IncreaseSummonLevel();
+	static void Reset();
 private:
 	static std::vector<Enemy*> myEnemies;
 	static ParticleSystem myParticleSystem;
@@ -46,5 +48,6 @@ private:
 	static float mySummonTime;
 	static float myCurrentSummonTime;
 	static std::vector<ScoreText> myTexts;
+	static int myCurrentSummonLevel;
 };
 
