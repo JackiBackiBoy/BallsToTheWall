@@ -2,12 +2,15 @@
 #include "math/Math.h"
 #include "input/Keyboard.h"
 #include <iostream>
+#include "Sandbox.h"
 
 std::string* Window::myCurrentTextField = nullptr;
+sf::Color myBgColor = sf::Color(20, 20, 20);
+sf::Color myFunColor = sf::Color(50,50,50);
 void Window::Run()
 {
 	myPixel = sf::RectangleShape({ 1, 1 });
-	myRawWindow = new sf::RenderWindow(sf::VideoMode(myWidth, myHeight), myTitle, sf::Style::Fullscreen, sf::ContextSettings(0, 0, 16) );
+	myRawWindow = new sf::RenderWindow(sf::VideoMode(myWidth, myHeight), myTitle, sf::Style::Fullscreen, sf::ContextSettings(0, 0, 16));
 	myRawWindow->setView(sf::View(sf::Vector2f(0, 0), sf::Vector2f(myWidth, myHeight)));
 
 
@@ -27,9 +30,9 @@ void Window::Run()
 		{
 			if (event.type == sf::Event::Closed)
 				myRawWindow->close();
-			if ( myCurrentTextField != nullptr)
+			if (myCurrentTextField != nullptr)
 			{
-				if(event.type == sf::Event::TextEntered)
+				if (event.type == sf::Event::TextEntered)
 				{
 					if (std::isprint(event.text.unicode))
 					{
@@ -47,7 +50,16 @@ void Window::Run()
 			}
 		}
 
-		myRawWindow->clear({ 20, 20, 20 });
+		if (Sandbox::GetPack() == "Fun")
+		{
+			myFunColor = Math::ShiftRainbow(myFunColor, TimeTracker::GetUnscaledDeltaTime() * 600);
+			myRawWindow->clear(myFunColor - sf::Color(200,200,200));
+			
+		}
+		else
+		{
+			myRawWindow->clear(myBgColor);
+		}
 
 		// OnRender
 		Window::OnRender(myRawWindow);

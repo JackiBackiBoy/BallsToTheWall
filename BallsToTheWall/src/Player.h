@@ -21,10 +21,8 @@ private:
 	static sf::Text myScoreText;
 	static bool myDeadFlag;
 	static sf::ConvexShape myShape;
-	static sf::ConvexShape myShapeDir;
 	static bool myButtonPressedFlag;
 	static float myButtonTime;
-	static float myCoyoteTime;
 	static float myBallLikeness;
 	static float myBallDistance;
 
@@ -38,6 +36,9 @@ private:
 	static int myScore;
 	static float myTimeScore;
 	static sf::Texture myTexture;
+
+	static float myCoyoteTime;
+	static float myCoyoteTimer;
 
 };
 

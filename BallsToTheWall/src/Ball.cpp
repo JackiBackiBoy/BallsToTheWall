@@ -8,6 +8,8 @@ sf::CircleShape Ball::myShape = sf::CircleShape(13);
 sf::Texture Ball::myTexture = sf::Texture();
 sf::Vector2f Ball::myDirection = sf::Vector2f(0, 0);
 float Ball::myVelocity = 0;
+bool Ball::myOutlineFlag = false;
+float Ball::myOutlineThickness = 3.5;
 
 void Ball::OnStart()
 {
@@ -15,9 +17,8 @@ void Ball::OnStart()
 	myShape.setPosition(sf::Vector2f(-45, 0) * Sandbox::GetScaleFactor());
 	myShape.setOrigin(sf::Vector2f(myShape.getLocalBounds().width / 2, myShape.getLocalBounds().height / 2));
 	myDirection = Math::Normalized(sf::Vector2f(3, 7));
-	//myShape.setFillColor(sf::Color(200, 255, 255));
 	myShape.setFillColor(sf::Color(255, 255, 255, 255));
-
+	myShape.setOutlineColor(sf::Color::Green);
 }
 
 void Ball::OnUpdate()
@@ -25,7 +26,7 @@ void Ball::OnUpdate()
 
 	if (Sandbox::GetPack() == "Fun")
 	{
-		myShape.setFillColor(Math::ShiftRainbow(myShape.getFillColor(), TimeTracker::GetDeltaTime() * 500));
+		myShape.setFillColor(Math::ShiftRainbow(myShape.getFillColor(), TimeTracker::GetUnscaledDeltaTime() * 550));
 	}
 
 	//calculate new pos
@@ -56,6 +57,8 @@ void Ball::OnUpdate()
 void Ball::OnRender(sf::RenderWindow* aWindow)
 {
 	aWindow->draw(myShape);
+	myShape.setOutlineThickness(myOutlineFlag ? myOutlineThickness * Sandbox::GetScaleFactor(): 0);
+
 }
 
 sf::Vector2f Ball::GetPosition()
@@ -146,7 +149,7 @@ bool Ball::Intersects(const sf::ConvexShape& aPolygon)
 
 void Ball::Reset()
 {
-	myShape.setPosition(sf::Vector2f(-45, 0));
+	myShape.setPosition(sf::Vector2f(-45, 0) * Sandbox::GetScaleFactor());
 	myDirection = sf::Vector2f(0, 0);
 	myVelocity = 0;
 	myTexture.loadFromFile("Assets/" + Sandbox::GetPack() + "Ball.png");
@@ -160,4 +163,9 @@ void Ball::Reset()
 		myShape.setTexture(&myTexture);
 		myShape.setTextureRect(sf::IntRect(0, 0, myTexture.getSize().x, myTexture.getSize().y));
 	}
+}
+
+void Ball::SetOutlineFlag(bool aFlag)
+{
+	myOutlineFlag = aFlag;
 }

@@ -3,6 +3,7 @@
 #include "Random.h"
 #include "math\Math.h"
 #include "SFML/System/Clock.hpp"
+#include "Sandbox.h"
 
 sf::Clock tempClock = sf::Clock();
 
@@ -15,6 +16,7 @@ void ParticleSystem::OnUpdate()
 {
 	for (auto& p : myParticles)
 	{
+
 		if (!p.Active) continue;
 
 		p.LifeRemaining -= TimeTracker::GetUnscaledDeltaTime();
@@ -38,6 +40,11 @@ void ParticleSystem::OnRender(sf::RenderWindow* aWindow)
 
 		float tempLife = p.LifeRemaining / p.LifeTime;
 
+
+		if (Sandbox::GetPack() == "Fun")
+		{
+			p.ColorBegin = Math::ShiftRainbow(p.ColorBegin, TimeTracker::GetUnscaledDeltaTime() * 500);
+		}
 		p.Shape.setFillColor(Math::Lerp(p.ColorEnd, p.ColorBegin, tempLife));
 		p.Shape.setScale(Math::Lerp(p.SizeEnd, p.SizeBegin, tempLife));
 		aWindow->draw(p.Shape);

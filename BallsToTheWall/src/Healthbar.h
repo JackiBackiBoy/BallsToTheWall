@@ -14,5 +14,6 @@ private:
 	static float myMaxHealth;
 	static float myHealth;
 	static bool Resetting;
+	static sf::Color myFun;
 };
 

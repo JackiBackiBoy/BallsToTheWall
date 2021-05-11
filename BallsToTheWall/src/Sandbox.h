@@ -43,6 +43,8 @@ public:
 	static std::string GetPack();
 	static float GetScaleFactor();
 private:
+	void OnRenderUi(sf::RenderWindow* aWindow);
+	void OnRenderGame(sf::RenderWindow* aWindow);
 	static float myMagnitude;
 	static std::string myPack;
 

@@ -47,7 +47,7 @@ void Enemy::OnUpdate()
 {
 	if (Sandbox::GetPack() == "Fun")
 	{
-		myShape.setFillColor(Math::ShiftRainbow(myShape.getFillColor(), TimeTracker::GetDeltaTime() * 500));
+		myShape.setFillColor(Math::ShiftRainbow(myShape.getFillColor(), TimeTracker::GetUnscaledDeltaTime() * 500));
 	}
 	Collision();
 }

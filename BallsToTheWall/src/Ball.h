@@ -13,10 +13,13 @@ public:
 	static sf::CircleShape GetShape();
 	static bool Intersects(const sf::ConvexShape& aPolygon);
 	static void Reset();
+	static void SetOutlineFlag(bool aFlag);
 private:
 	static sf::CircleShape myShape;
 	static sf::Vector2f myDirection;
 	static float myVelocity;
 	static sf::Texture myTexture;
+	static bool myOutlineFlag;
+	static float myOutlineThickness;
 };
 

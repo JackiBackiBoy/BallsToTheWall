@@ -64,11 +64,11 @@ sf::Texture& EnemyManager::GetEnemyTexture()
 void EnemyManager::OnUpdate()
 {
 
-	if (Player::GetScore() > 3000 && myCurrentSummonLevel == 1)
+	if (Player::GetScore() > 4000 && myCurrentSummonLevel == 1)
 	{
 		IncreaseSummonLevel();
 	}
-	if (Player::GetScore() > 8000 && myCurrentSummonLevel == 2)
+	if (Player::GetScore() > 10000 && myCurrentSummonLevel == 2)
 	{
 		IncreaseSummonLevel();
 	}

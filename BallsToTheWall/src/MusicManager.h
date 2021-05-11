@@ -12,6 +12,7 @@ public:
 	static void SetLoopingFlag(const bool& aFlag);
 	static bool GetLoopingFlag();
 	static void OnUpdate();
+	static std::string GetCurrent();
 private:
 	static void TransitionThread();
 	static sf::Music myMusic[];
@@ -22,5 +23,6 @@ private:
 	static float myTransitionTime;
 	static sf::Clock myTransitionThreadClock;
 	static bool myLoopingFlag;
+	static std::string myCurrent;
 };
 

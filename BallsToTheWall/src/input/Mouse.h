@@ -9,7 +9,7 @@ class Mouse
 public:
 	~Mouse() {};
 
-	static sf::Vector2f GetPosition();
+	static sf::Vector2f GetPosition(bool aScaledFlag = true);
 
 	static void SetPosition(const sf::Vector2i& aPos);
 

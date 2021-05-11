@@ -39,7 +39,7 @@ void SummonSystem::OnUpdate()
 			s.Enemies[i]->Collision();
 			if (Sandbox::GetPack() == "Fun")
 			{
-				s.Enemies[i]->SetFillColor(Math::ShiftRainbow(s.Enemies[i]->GetFillColor(), TimeTracker::GetDeltaTime() * 500));
+				s.Enemies[i]->SetFillColor(Math::ShiftRainbow(s.Enemies[i]->GetFillColor(), TimeTracker::GetUnscaledDeltaTime() * 500));
 			}
 			
 		}

@@ -11,6 +11,7 @@ float MusicManager::myTransitionPercent = 0;
 sf::Clock MusicManager::myTransitionThreadClock = sf::Clock();
 bool MusicManager::myLoopingFlag = true;
 bool MusicManager::myTransitioningFlag = false;
+std::string MusicManager::myCurrent = "";
 
 void MusicManager::TransitionTo(const std::string& aString)
 {
@@ -49,12 +50,18 @@ void MusicManager::OnUpdate()
 	}
 }
 
+std::string MusicManager::GetCurrent()
+{
+	return myCurrent;
+}
+
 void MusicManager::Stop()
 {
 	myMusic[myCurrentMusicIndex].stop();
 }
 void MusicManager::Start(const std::string& aString)
 {
+	myCurrent = aString;
 	myMusic[myCurrentMusicIndex].openFromFile("Assets/" + aString + ".wav");
 	myMusic[myCurrentMusicIndex].setLoop(myLoopingFlag);
 	myMusic[myCurrentMusicIndex].play();

@@ -12,12 +12,13 @@ public:
 	sf::Text GetText();
 	sf::Vector2i GetPosition();
 	bool GetClickedFlag();
-	static void SetScale(sf::Vector2f aScale);
+	static void UpdateHover();
+	static bool GetHoverFlag();
 private:
 	sf::Rect<int> myRect;
 	sf::Text myText;
 	bool myClickedFlag;
-	static sf::Vector2f myScale;
+	static bool myButtonHovered;
 
 };
 

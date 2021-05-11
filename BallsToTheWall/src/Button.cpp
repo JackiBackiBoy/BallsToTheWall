@@ -4,8 +4,9 @@
 #include "core/Window.h"
 #include <iostream>
 #include "InputManager.h"
+#include "Sandbox.h"
 
-sf::Vector2f Button::myScale = sf::Vector2f(1, 1);
+bool Button::myButtonHovered = false;
 
 Button::Button()
 {
@@ -25,19 +26,16 @@ void Button::OnStart()
 
 void Button::OnUpdate()
 {
-	sf::Vector2f tempPos = Mouse::GetPosition();
-	sf::FloatRect tempRect = myText.getGlobalBounds();
-	tempRect.width = tempRect.width * myScale.x;
-	tempRect.height = tempRect.height * myScale.y;
-	
-	if (myScale.x == 2)//Hemskt
-	{
-		tempRect.left += myText.getPosition().x;
-		tempRect.top += myText.getPosition().y +10;
-	}
+	sf::Vector2f tempPos = Mouse::GetPosition(false);
+	sf::FloatRect tempRect = myText.getLocalBounds();
+	tempRect.left += myText.getPosition().x;
+	tempRect.top += myText.getPosition().y;
+	tempRect.width = tempRect.width;
+	tempRect.height = tempRect.height;
 
 	if (tempRect.contains(tempPos))
 	{
+		myButtonHovered = true;
 		myText.setFillColor(sf::Color::Magenta);
 		if (InputManager::GetMouseButtonDown(sf::Mouse::Left))
 		{
@@ -80,7 +78,12 @@ bool Button::GetClickedFlag()
 	return false;
 }
 
-void Button::SetScale(sf::Vector2f aScale)
+void Button::UpdateHover()
 {
-	myScale = aScale;
+	myButtonHovered = false;
+}
+
+bool Button::GetHoverFlag()
+{
+	return myButtonHovered;
 }

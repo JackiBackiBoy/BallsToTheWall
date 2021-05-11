@@ -8,12 +8,11 @@
 #include "TimeTracker.h"
 #include "Healthbar.h"
 #include "SaveLoad.h"
+#include "Button.h"
 
 sf::ConvexShape Player::myShape = sf::ConvexShape(3);
-sf::ConvexShape Player::myShapeDir = sf::ConvexShape(3);
 bool Player::myButtonPressedFlag = false;
 float Player::myButtonTime = 0;
-float Player::myCoyoteTime = 0.1f;
 float Player::myBallLikeness = 0.7f;
 float Player::myBallDistance = 10000;
 sf::Vector2f Player::myCurrentVelocity = sf::Vector2f(0, 0);
@@ -28,6 +27,9 @@ float Player::myTimeScore = 0;
 sf::Font Player::myScoreFont = sf::Font();
 sf::Text Player::myScoreText = sf::Text();
 sf::Texture Player::myTexture = sf::Texture();
+
+float Player::myCoyoteTime = 0.1f;
+float Player::myCoyoteTimer = 0;
 
 
 sf::Vector2f Player::GetPosition()
@@ -99,20 +101,13 @@ void Player::OnStart()
 	myShape.setPoint(2, sf::Vector2f(-12.5f, 12.5f) * Sandbox::GetScaleFactor());
 	myShape.setPosition(sf::Vector2f(0, 0));
 	myShape.setFillColor(sf::Color(255, 255, 255));
-
-	myShapeDir.setPoint(0, sf::Vector2f(0, -12.5f) * Sandbox::GetScaleFactor());
-	myShapeDir.setPoint(1, sf::Vector2f(5, -3) * Sandbox::GetScaleFactor());
-	myShapeDir.setPoint(2, sf::Vector2f(-5, -3) * Sandbox::GetScaleFactor());
-	myShapeDir.setPosition(sf::Vector2f(0, 0));
-	myShapeDir.setFillColor(sf::Color(255, 255, 255));
 }
 
 void Player::OnUpdate()
 {
 	if (Sandbox::GetPack() == "Fun")
 	{
-		myShape.setFillColor(Math::ShiftRainbow(myShape.getFillColor(), TimeTracker::GetDeltaTime() * 500));
-		myShapeDir.setFillColor(Math::ShiftRainbow(myShapeDir.getFillColor(), TimeTracker::GetDeltaTime() * 500));
+		myShape.setFillColor(Math::ShiftRainbow(myShape.getFillColor(), TimeTracker::GetUnscaledDeltaTime() * 500));
 	}
 
 
@@ -171,18 +166,29 @@ void Player::OnUpdate()
 	sf::Vector2f tempBallVecN = Math::Normalized(tempBallVec);
 	if (Math::LengthSqrd(tempBallVec / Sandbox::GetScaleFactor()) <= myBallDistance && Math::Dot(tempBallVecN, tempMouseVecN) >= myBallLikeness)
 	{
-		myShapeDir.setFillColor(sf::Color(0, 255, 0));
-		if (InputManager::GetMouseButtonDown(sf::Mouse::Left))
+		Ball::SetOutlineFlag(true);
+		if ((InputManager::GetMouseButtonDown(sf::Mouse::Left) || myCoyoteTimer > 0) && !Button::GetHoverFlag())
 		{
 			Healthbar::Reset();
 			Ball::Hit(std::atan2((tempMouseVecN.y + tempBallVecN.y) / 2, (tempMouseVecN.x + tempBallVecN.x) / 2) - Math::Pi);
 			myButtonPressedFlag = true;
+			myCoyoteTimer = 0;
 		}
 	}
 	else
 	{
-		myShapeDir.setFillColor(sf::Color(200, 100, 0));
+		Ball::SetOutlineFlag(false);
 	}
+	
+	if (InputManager::GetMouseButtonDown(sf::Mouse::Left) && !Button::GetHoverFlag())
+	{
+		myCoyoteTimer = myCoyoteTime;
+	}
+	else
+	{
+		myCoyoteTimer -= TimeTracker::GetDeltaTime();
+	}
+
 
 	if (myButtonTime > myCoyoteTime)
 	{
@@ -218,11 +224,16 @@ void Player::OnUpdate()
 void Player::OnRender(sf::RenderWindow* aWindow)
 {
 	aWindow->draw(myShape);
-	myShapeDir.setRotation(myShape.getRotation());
-	myShapeDir.setPosition(myShape.getPosition());
-	aWindow->draw(myShapeDir);
 
 	myScoreText.setString("Score: " + std::to_string(myScore));
+	if (Sandbox::GetPack() == "Fun")
+	{
+		myScoreText.setFillColor(Math::ShiftRainbow(myScoreText.getFillColor(), TimeTracker::GetUnscaledDeltaTime() * 800));
+	}	
+	else
+	{
+		myScoreText.setFillColor(sf::Color::White);
+	}
 	aWindow->draw(myScoreText);
 
 	//Player to Mouse
