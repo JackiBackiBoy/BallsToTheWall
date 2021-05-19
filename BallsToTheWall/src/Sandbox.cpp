@@ -62,8 +62,8 @@ void Sandbox::OnStart()
 		std::string tempName = SaveLoad::Load("HSN" + std::to_string(i));
 		myHighscores[i] = Score(tempName != "" ? tempName : " ", std::stoi(tempValue != "" ? tempValue : "0"));
 	}
-
-	myGoldenOctagons = std::stoi(SaveLoad::Load("GOcts"));
+	std::string tempLoad = SaveLoad::Load("GOcts");
+	myGoldenOctagons = std::stoi(tempLoad != ""? tempLoad: "0");
 
 	float tempRatio = myWidth / (float)myHeight;
 	float tempDefaultRatio = 1240.f / 720.f;
