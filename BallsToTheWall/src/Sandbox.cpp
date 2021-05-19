@@ -2,6 +2,8 @@
 #include"InputManager.h"
 #include "Button.h"
 
+int myGoldenOctagons = 0;
+
 float Sandbox::myMagnitude = 0;
 std::string Sandbox::myPack = "Default";
 float Sandbox::myScaleFactor = 0;
@@ -60,6 +62,8 @@ void Sandbox::OnStart()
 		std::string tempName = SaveLoad::Load("HSN" + std::to_string(i));
 		myHighscores[i] = Score(tempName != "" ? tempName : " ", std::stoi(tempValue != "" ? tempValue : "0"));
 	}
+
+	myGoldenOctagons = std::stoi(SaveLoad::Load("GOcts"));
 
 	float tempRatio = myWidth / (float)myHeight;
 	float tempDefaultRatio = 1240.f / 720.f;
@@ -236,10 +240,7 @@ void Sandbox::OnUpdate()
 			if (myTexButtons[i].GetClickedFlag())
 			{
 				TitleText.setColor(sf::Color::White);
-				if (myPack != "Com" && MusicManager::GetCurrent() != "EDM 2")
-				{
-					MusicManager::Start("EDM 2");
-				}
+
 				switch ((TexturePack)i)
 				{
 				case TexturePack::Default:
@@ -247,7 +248,10 @@ void Sandbox::OnUpdate()
 					break;
 				case TexturePack::DotCom:
 					myPack = "Com";
-					MusicManager::Start("Soviet Techno");
+					if (MusicManager::GetCurrent() != "Soviet Techno")
+					{
+						MusicManager::Start("Soviet Techno");
+					}
 					break;
 				case TexturePack::Lul:
 					myPack = "Emoji";
@@ -261,6 +265,10 @@ void Sandbox::OnUpdate()
 				case TexturePack::SpreadIt:
 					myPack = "SpreadIt";
 					break;
+				}
+				if (myPack != "Com" && MusicManager::GetCurrent() != "EDM 2")
+				{
+					MusicManager::Start("EDM 2");
 				}
 			}
 		}
@@ -281,6 +289,16 @@ void Sandbox::OnRender(sf::RenderWindow* aWindow)
 	OnRenderUi(aWindow);
 	Window::CurrentWindow->GetRawWindow()->setView(tempView);
 
+}
+void DecreaseGold(int someAmount)
+{
+	myGoldenOctagons -= someAmount;
+	SaveLoad::Save("GOcts", std::to_string(myGoldenOctagons));
+}
+void IncreaseGold(int someAmount)
+{
+	myGoldenOctagons += someAmount;
+	SaveLoad::Save("GOcts", std::to_string(myGoldenOctagons));
 }
 
 void Sandbox::CheckScore(Score aScore)
@@ -366,7 +384,7 @@ void Sandbox::OnRenderUi(sf::RenderWindow* aWindow)
 				tempScoreText.setPosition(tempStartPos + sf::Vector2f(0, ((i + 1) * 40) + 40));
 				if (myPack == "Fun")
 				{
-					tempFun = Math::ShiftRainbow(tempFun, (10-i) *3);
+					tempFun = Math::ShiftRainbow(tempFun, (10 - i) * 3);
 					tempScoreText.setFillColor(tempFun);
 				}
 				aWindow->draw(tempScoreText);
